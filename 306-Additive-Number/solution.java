@@ -3,7 +3,7 @@ public class Solution {
         if(num.length()==0) return false;
         int l=num.length();
         for(int i=1;i<(l+1)/2;i++){
-            if(num.charAt(0)=='0'&&i>=2) continue;
+            if(num.charAt(0)=='0'&&i>=2) break;
             for(int j=i+1;l-j>=j-i&&l-j>=i;j++){
                 if(num.charAt(i)=='0'&&(j-i)>=2) break;
                 long num1=Long.parseLong(num.substring(0,i));
