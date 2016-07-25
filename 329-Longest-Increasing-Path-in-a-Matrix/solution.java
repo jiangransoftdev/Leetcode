@@ -8,18 +8,20 @@ public class Solution {
         int res=0;
         for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
-                res=Math.max(res,explore(matrix,i,j,len));
+                res=Math.max(res,explore(matrix,i,j,len,Integer.MIN_VALUE));
             }
         }
         return res;
     }
-    public int explore(int[][] matrix,int i,int j,int[][] len){
+    public int explore(int[][] matrix,int i,int j,int[][] len,int pre){
+        if(i<0||i>=matrix.length||j<0||j>=matrix[0].length||matrix[i][j]<=pre) return 0;
         if(len[i][j]>0) return len[i][j];
         int count=0;
-        if(i>0&&matrix[i-1][j]>matrix[i][j]) count=Math.max(count,explore(matrix,i-1,j,len));
-        if(i<matrix.length-1&&matrix[i+1][j]>matrix[i][j]) count=Math.max(count,explore(matrix,i+1,j,len));
-        if(j>0&&matrix[i][j-1]>matrix[i][j]) count=Math.max(count,explore(matrix,i,j-1,len));
-        if(j<matrix[0].length-1&&matrix[i][j+1]>matrix[i][j]) count=Math.max(count,explore(matrix,i,j+1,len));
+        pre=matrix[i][j];
+        count=Math.max(count,explore(matrix,i-1,j,len,pre));
+        count=Math.max(count,explore(matrix,i+1,j,len,pre));
+        count=Math.max(count,explore(matrix,i,j-1,len,pre));
+        count=Math.max(count,explore(matrix,i,j+1,len,pre));
         len[i][j]=++count;
         return count;
     }
