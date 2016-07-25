@@ -10,7 +10,7 @@ For example,
 
 [click to show corner cases.](#)
 
-<div class="spoilers" style="display: none;">**Corner Cases:**
+<div class="spoilers" style="display: block;">**Corner Cases:**
 
 *   Did you consider the case where **path** = `"/../"`?  
     In this case, you should return `"/"`.
