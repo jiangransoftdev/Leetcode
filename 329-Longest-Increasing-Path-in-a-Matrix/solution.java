@@ -1,5 +1,4 @@
 public class Solution {
-    Map<Integer,Integer> map=new HashMap<>();
     public int longestIncreasingPath(int[][] matrix) {
         int m=matrix.length;
         if(m==0) return 0;
