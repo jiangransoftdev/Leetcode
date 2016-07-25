@@ -1,23 +1,42 @@
+class Sum implements Comparable<Sum> {
+    int val;
+    int i;
+    int j;
+    
+    public Sum(int val, int i, int j) {
+        this.val = val;
+        this.i = i;
+        this.j = j;
+    }
+    
+    public int compareTo(Sum o) {
+        return this.val - o.val;
+    }
+}
 public class Solution {
     public List<int[]> kSmallestPairs(int[] nums1, int[] nums2, int k) {
-List<int[]> res=new ArrayList<>();
-        if(k==0) return res;
-        PriorityQueue<int[]> pq=new PriorityQueue( new Comparator<int[]>(){
-            public int compare(int[] a,int[] b){
-                return a[0]+a[1]-b[0]-b[1];
-                }
-            });
-        for(int i=0;i<nums1.length;i++){
-        	for(int j=0;j<nums2.length;j++){
-        		int[] a=new int[2];
-        		a[0]=nums1[i];
-        		a[1]=nums2[j];
-        		pq.offer(a);
-        	}
+        List<int[]> res=new ArrayList<>();
+         if ((nums1 == null || nums1.length == 0) || (nums2 == null || nums2.length ==0) || k <= 0) {
+        return res;
+    }
+        PriorityQueue<Sum> pq=new PriorityQueue<>();
+        for(int i=0;i<Math.min(nums1.length,k);i++){
+            int row=i;
+            int col=0;
+            int val=nums1[row]+nums2[col];
+            pq.offer(new Sum(val,row,col));
         }
-        for(int i=0;i<k;i++){
-            if(pq.size()==0) break;
-        	res.add(pq.poll());
+        for(int i=0;i<Math.min(nums1.length*nums2.length,k);i++){
+            Sum sum=pq.poll();
+            int row=sum.i;
+            int col=sum.j;
+            int[] pair={nums1[row],nums2[col]};
+            if(col<nums2.length-1){
+                int val=nums1[row]+nums2[col+1];
+                pq.offer(new Sum(val,row,col+1));
+            }
+            res.add(pair);
+            
         }
         return res;
     }
