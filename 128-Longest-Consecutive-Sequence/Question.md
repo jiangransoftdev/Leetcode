@@ -18,18 +18,18 @@ Your algorithm should run in O(_n_) complexity.
 
 <div>
 
-<div id="company_tags" class="btn btn-xs btn-warning">Hide Company Tags</div>
+<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
 
-<span class="hidebutton" style="display: inline;">[Facebook](/company/facebook/) [Google](/company/google/)</span></div>
-
-<div>
-
-<div id="tags" class="btn btn-xs btn-warning">Hide Tags</div>
-
-<span class="hidebutton" style="display: inline;">[Array](/tag/array/) [Union Find](/tag/union-find/)</span></div>
+<span class="hidebutton">[Facebook](/company/facebook/) [Google](/company/google/)</span></div>
 
 <div>
 
-<div id="similar" class="btn btn-xs btn-warning">Hide Similar Problems</div>
+<div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
 
-<span class="hidebutton" style="display: inline;">[(M) Binary Tree Longest Consecutive Sequence](/problems/binary-tree-longest-consecutive-sequence/)</span></div>
+<span class="hidebutton">[Array](/tag/array/) [Union Find](/tag/union-find/)</span></div>
+
+<div>
+
+<div id="similar" class="btn btn-xs btn-warning">Show Similar Problems</div>
+
+<span class="hidebutton">[(M) Binary Tree Longest Consecutive Sequence](/problems/binary-tree-longest-consecutive-sequence/)</span></div>
