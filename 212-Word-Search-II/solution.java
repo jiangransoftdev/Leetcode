@@ -13,26 +13,27 @@ public class Solution {
         TrieNode root=buildTrie(words);
         for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
-                helper(board,i,j,root,res);
+                explore(board,i,j,root,res);
             }
         }
         return res;
     }
-    public void helper(char[][] board,int i,int j,TrieNode root,List<String> res){
-		char c=board[i][j];
-		if(c=='#'||root.child[c-'a']==null) return;
-		root=root.child[c-'a'];
-		board[i][j]='#';
-		if(root.word!=null){
-			res.add(root.word);
-			root.word=null;
-		}
-		if(i>0) helper(board,i-1,j,root,res);
-		if(j>0) helper(board,i,j-1,root,res);
-		if(i<board.length-1) helper(board,i+1,j,root,res);
-		if(j<board[0].length-1) helper(board,i,j+1,root,res);
-		board[i][j]=c;
-	}
+    public void explore(char[][] board,int i,int j,TrieNode p,List<String> res){
+        char c=board[i][j];
+        if(c=='#'||p.child[c-'a']==null) return;
+        p=p.child[c-'a'];
+        board[i][j]='#';
+        if(p.word!=null){
+            res.add(p.word);
+            p.word=null;
+        }
+        if(i>0) explore(board,i-1,j,p,res);
+        if(i<board.length-1) explore(board,i+1,j,p,res);
+        if(j>0) explore(board,i,j-1,p,res);
+        if(j<board[0].length-1) explore(board,i,j+1,p,res);
+        board[i][j]=c;
+        
+    }
     public TrieNode buildTrie(String[] words){
         TrieNode root=new TrieNode();
         for(String word:words){
