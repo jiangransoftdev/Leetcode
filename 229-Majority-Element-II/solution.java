@@ -29,8 +29,8 @@ public class Solution {
             if(i==a) counta++;
             if(i==b) countb++;
         }
-        if(counta>=(nums.length/3+1)) res.add(a);
-        if(countb>=(nums.length/3+1)) res.add(b);
+        if(counta>nums.length/3) res.add(a);
+        if(countb>nums.length/3) res.add(b);
         return res;
     }
 }
