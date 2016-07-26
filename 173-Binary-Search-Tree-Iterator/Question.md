@@ -19,18 +19,18 @@ Special thanks to [@ts](https://oj.leetcode.com/discuss/user/ts) for adding this
 
 <div>
 
-<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
+<div id="company_tags" class="btn btn-xs btn-warning">Hide Company Tags</div>
 
-<span class="hidebutton">[Facebook](/company/facebook/) [Google](/company/google/) [LinkedIn](/company/linkedin/) [Microsoft](/company/microsoft/)</span></div>
-
-<div>
-
-<div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
-
-<span class="hidebutton">[Tree](/tag/tree/) [Stack](/tag/stack/) [Design](/tag/design/)</span></div>
+<span class="hidebutton" style="display: inline;">[Facebook](/company/facebook/) [Google](/company/google/) [LinkedIn](/company/linkedin/) [Microsoft](/company/microsoft/)</span></div>
 
 <div>
 
-<div id="similar" class="btn btn-xs btn-warning">Show Similar Problems</div>
+<div id="tags" class="btn btn-xs btn-warning">Hide Tags</div>
 
-<span class="hidebutton">[(M) Binary Tree Inorder Traversal](/problems/binary-tree-inorder-traversal/) [(M) Flatten 2D Vector](/problems/flatten-2d-vector/) [(M) Zigzag Iterator](/problems/zigzag-iterator/) [(M) Peeking Iterator](/problems/peeking-iterator/) [(M) Inorder Successor in BST](/problems/inorder-successor-in-bst/)</span></div>
+<span class="hidebutton" style="display: inline;">[Tree](/tag/tree/) [Stack](/tag/stack/) [Design](/tag/design/)</span></div>
+
+<div>
+
+<div id="similar" class="btn btn-xs btn-warning">Hide Similar Problems</div>
+
+<span class="hidebutton" style="display: inline;">[(M) Binary Tree Inorder Traversal](/problems/binary-tree-inorder-traversal/) [(M) Flatten 2D Vector](/problems/flatten-2d-vector/) [(M) Zigzag Iterator](/problems/zigzag-iterator/) [(M) Peeking Iterator](/problems/peeking-iterator/) [(M) Inorder Successor in BST](/problems/inorder-successor-in-bst/)</span></div>
