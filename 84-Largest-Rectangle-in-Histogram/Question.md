@@ -24,12 +24,12 @@ return `10`.
 
 <div>
 
-<div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
+<div id="tags" class="btn btn-xs btn-warning">Hide Tags</div>
 
-<span class="hidebutton">[Array](/tag/array/) [Stack](/tag/stack/)</span></div>
+<span class="hidebutton" style="display: inline;">[Array](/tag/array/) [Stack](/tag/stack/)</span></div>
 
 <div>
 
-<div id="similar" class="btn btn-xs btn-warning">Show Similar Problems</div>
+<div id="similar" class="btn btn-xs btn-warning">Hide Similar Problems</div>
 
-<span class="hidebutton">[(H) Maximal Rectangle](/problems/maximal-rectangle/)</span></div>
+<span class="hidebutton" style="display: inline;">[(H) Maximal Rectangle](/problems/maximal-rectangle/)</span></div>
