@@ -9,29 +9,21 @@
  */
 public class Solution {
     public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
-        intervals.add(newInterval);
         List<Interval> res=new ArrayList<>();
-        Collections.sort(intervals,new Comparator<Interval>(){
-            public int compare(Interval a,Interval b){
-                if(a.start!=b.start) return a.start-b.start;
-                else return a.end-b.end;
-            }
-        });
-        int i=1,start=intervals.get(0).start,end=intervals.get(0).end;
-        while(i<intervals.size()){
-            int tstart=intervals.get(i).start,tend=intervals.get(i).end;
-            if(tstart>end){
-                res.add(new Interval(start,end));
-                start=tstart;
-                end=tend;
+        for(Interval i:intervals){
+            if(i.end<newInterval.start)
+                res.add(i);
+            else if(i.start>newInterval.end){
+                res.add(newInterval);
+                newInterval=i;
             }
             else{
-                if(tend>end)
-                    end=tend;
+                if(i.start<=newInterval.end||i.end>=newInterval.start){
+                    newInterval=new Interval(Math.min(i.start,newInterval.start),Math.max(i.end,newInterval.end));
+                }
             }
-            i++;
         }
-        res.add(new Interval(start,end));
+        res.add(newInterval);
         return res;
     }
 }
