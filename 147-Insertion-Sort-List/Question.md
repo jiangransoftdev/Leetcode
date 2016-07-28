@@ -12,12 +12,12 @@ Sort a linked list using insertion sort.
 
 <div>
 
-<div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
+<div id="tags" class="btn btn-xs btn-warning">Hide Tags</div>
 
-<span class="hidebutton">[Linked List](/tag/linked-list/) [Sort](/tag/sort/)</span></div>
+<span class="hidebutton" style="display: inline;">[Linked List](/tag/linked-list/) [Sort](/tag/sort/)</span></div>
 
 <div>
 
-<div id="similar" class="btn btn-xs btn-warning">Show Similar Problems</div>
+<div id="similar" class="btn btn-xs btn-warning">Hide Similar Problems</div>
 
-<span class="hidebutton">[(M) Sort List](/problems/sort-list/)</span></div>
+<span class="hidebutton" style="display: inline;">[(M) Sort List](/problems/sort-list/)</span></div>
