@@ -9,21 +9,37 @@
  */
 public class Solution {
     public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
-        List<Interval> res=new ArrayList<>();
-        for(Interval i:intervals){
-            if(i.end<newInterval.start)
-                res.add(i);
-            else if(i.start>newInterval.end){
-                res.add(newInterval);
-                newInterval=i;
-            }
-            else{
-                if(i.start<=newInterval.end||i.end>=newInterval.start){
-                    newInterval=new Interval(Math.min(i.start,newInterval.start),Math.max(i.end,newInterval.end));
-                }
-            }
-        }
-        res.add(newInterval);
-        return res;
+         List<Interval> ans = new ArrayList<Interval>();  
+          
+        // insert newInterval by binary searching  
+        int l = 0;  
+        int r = intervals.size() - 1;  
+        while (l <= r) {  
+            int mid = (l + r) >> 1;  
+            if (intervals.get(mid).start > newInterval.start) {  
+                r = mid - 1;  
+            } else {  
+                l = mid + 1;  
+            }  
+        }  
+        intervals.add(l, newInterval);  
+          
+        // merge all overlapping intervals  
+        int start = intervals.get(0).start;  
+        int end = intervals.get(0).end;  
+        for (int i = 1; i < intervals.size(); i++) {  
+            Interval inter = intervals.get(i);  
+            if (inter.start > end) {  
+                ans.add(new Interval(start, end));  
+                start = inter.start;  
+                end = inter.end;  
+            } else {  
+                end = Math.max(end, inter.end);  
+            }  
+        }  
+        ans.add(new Interval(start, end));  
+          
+        return ans;  
+
     }
 }
