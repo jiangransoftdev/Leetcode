@@ -8,24 +8,18 @@
  */
 public class Solution {
     public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
-        if(node==null) return null;
-        Queue<UndirectedGraphNode> q=new LinkedList<>();
-        q.offer(node);
-        UndirectedGraphNode nodecopy=new UndirectedGraphNode(node.label);
         Map<UndirectedGraphNode,UndirectedGraphNode> map=new HashMap<>();
+        return dfs(node,map);
+    }
+    public UndirectedGraphNode dfs(UndirectedGraphNode node,Map<UndirectedGraphNode,UndirectedGraphNode> map){
+        if(node==null) return null;
+        if(map.containsKey(node))
+            return map.get(node);
+        UndirectedGraphNode nodecopy=new UndirectedGraphNode(node.label);
         map.put(node,nodecopy);
-        while(!q.isEmpty()){
-            UndirectedGraphNode cur=q.poll();
-            for(int i=0;i<cur.neighbors.size();i++){
-                UndirectedGraphNode neighb=cur.neighbors.get(i);
-                if(!map.containsKey(neighb)){
-                    UndirectedGraphNode neighbcopy=new UndirectedGraphNode(neighb.label);
-                    map.get(cur).neighbors.add(neighbcopy);
-                    map.put(neighb,neighbcopy);
-                    q.offer(neighb);
-                }
-                else map.get(cur).neighbors.add(map.get(neighb));
-            }
+        for(int i=0;i<node.neighbors.size();i++){
+            UndirectedGraphNode clone=dfs(node.neighbors.get(i),map);
+            nodecopy.neighbors.add(clone);
         }
         return nodecopy;
     }
