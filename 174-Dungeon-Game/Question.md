@@ -70,18 +70,18 @@ Special thanks to [@stellari](https://oj.leetcode.com/discuss/user/stellari) for
 
 <div>
 
-<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
+<div id="company_tags" class="btn btn-xs btn-warning">Hide Company Tags</div>
 
-<span class="hidebutton">[Microsoft](/company/microsoft/)</span></div>
-
-<div>
-
-<div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
-
-<span class="hidebutton">[Binary Search](/tag/binary-search/) [Dynamic Programming](/tag/dynamic-programming/)</span></div>
+<span class="hidebutton" style="display: inline;">[Microsoft](/company/microsoft/)</span></div>
 
 <div>
 
-<div id="similar" class="btn btn-xs btn-warning">Show Similar Problems</div>
+<div id="tags" class="btn btn-xs btn-warning">Hide Tags</div>
 
-<span class="hidebutton">[(M) Unique Paths](/problems/unique-paths/) [(M) Minimum Path Sum](/problems/minimum-path-sum/)</span></div>
+<span class="hidebutton" style="display: inline;">[Binary Search](/tag/binary-search/) [Dynamic Programming](/tag/dynamic-programming/)</span></div>
+
+<div>
+
+<div id="similar" class="btn btn-xs btn-warning">Hide Similar Problems</div>
+
+<span class="hidebutton" style="display: inline;">[(M) Unique Paths](/problems/unique-paths/) [(M) Minimum Path Sum](/problems/minimum-path-sum/)</span></div>
