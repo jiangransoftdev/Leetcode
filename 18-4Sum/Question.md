@@ -24,12 +24,12 @@ A solution set is:
 
 <div>
 
-<div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
+<div id="tags" class="btn btn-xs btn-warning">Hide Tags</div>
 
-<span class="hidebutton">[Array](/tag/array/) [Hash Table](/tag/hash-table/) [Two Pointers](/tag/two-pointers/)</span></div>
+<span class="hidebutton" style="display: inline;">[Array](/tag/array/) [Hash Table](/tag/hash-table/) [Two Pointers](/tag/two-pointers/)</span></div>
 
 <div>
 
-<div id="similar" class="btn btn-xs btn-warning">Show Similar Problems</div>
+<div id="similar" class="btn btn-xs btn-warning">Hide Similar Problems</div>
 
-<span class="hidebutton">[(E) Two Sum](/problems/two-sum/) [(M) 3Sum](/problems/3sum/)</span></div>
+<span class="hidebutton" style="display: inline;">[(E) Two Sum](/problems/two-sum/) [(M) 3Sum](/problems/3sum/)</span></div>
