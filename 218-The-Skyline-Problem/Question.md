@@ -32,12 +32,12 @@ Special thanks to [@stellari](https://oj.leetcode.com/discuss/user/stellari) for
 
 <div>
 
-<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
+<div id="company_tags" class="btn btn-xs btn-warning">Hide Company Tags</div>
 
-<span class="hidebutton">[Facebook](/company/facebook/) [Google](/company/google/) [Microsoft](/company/microsoft/) [Twitter](/company/twitter/) [Yelp](/company/yelp/)</span></div>
+<span class="hidebutton" style="display: inline;">[Facebook](/company/facebook/) [Google](/company/google/) [Microsoft](/company/microsoft/) [Twitter](/company/twitter/) [Yelp](/company/yelp/)</span></div>
 
 <div>
 
-<div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
+<div id="tags" class="btn btn-xs btn-warning">Hide Tags</div>
 
-<span class="hidebutton">[Binary Indexed Tree](/tag/binary-indexed-tree/) [Segment Tree](/tag/segment-tree/) [Heap](/tag/heap/) [Divide and Conquer](/tag/divide-and-conquer/)</span></div>
+<span class="hidebutton" style="display: inline;">[Binary Indexed Tree](/tag/binary-indexed-tree/) [Segment Tree](/tag/segment-tree/) [Heap](/tag/heap/) [Divide and Conquer](/tag/divide-and-conquer/)</span></div>
