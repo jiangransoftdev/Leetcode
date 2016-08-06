@@ -35,12 +35,12 @@ Return
 
 <div>
 
-<div id="company_tags" class="btn btn-xs btn-warning">Hide Company Tags</div>
+<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
 
-<span class="hidebutton" style="display: inline;">[Amazon](/company/amazon/) [Yelp](/company/yelp/)</span></div>
+<span class="hidebutton">[Amazon](/company/amazon/) [Yelp](/company/yelp/)</span></div>
 
 <div>
 
-<div id="tags" class="btn btn-xs btn-warning">Hide Tags</div>
+<div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
 
-<span class="hidebutton" style="display: inline;">[Array](/tag/array/) [Backtracking](/tag/backtracking/) [Breadth-first Search](/tag/breadth-first-search/) [String](/tag/string/)</span></div>
+<span class="hidebutton">[Array](/tag/array/) [Backtracking](/tag/backtracking/) [Breadth-first Search](/tag/breadth-first-search/) [String](/tag/string/)</span></div>
