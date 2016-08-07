@@ -21,18 +21,18 @@ For the purpose of this problem, we define empty string as valid palindrome.
 
 <div>
 
-<div id="company_tags" class="btn btn-xs btn-warning">Hide Company Tags</div>
+<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
 
-<span class="hidebutton" style="display: inline;">[Facebook](/company/facebook/) [Microsoft](/company/microsoft/) [Uber](/company/uber/) [Zenefits](/company/zenefits/)</span></div>
-
-<div>
-
-<div id="tags" class="btn btn-xs btn-warning">Hide Tags</div>
-
-<span class="hidebutton" style="display: inline;">[Two Pointers](/tag/two-pointers/) [String](/tag/string/)</span></div>
+<span class="hidebutton">[Facebook](/company/facebook/) [Microsoft](/company/microsoft/) [Uber](/company/uber/) [Zenefits](/company/zenefits/)</span></div>
 
 <div>
 
-<div id="similar" class="btn btn-xs btn-warning">Hide Similar Problems</div>
+<div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
 
-<span class="hidebutton" style="display: inline;">[(E) Palindrome Linked List](/problems/palindrome-linked-list/)</span></div>
+<span class="hidebutton">[Two Pointers](/tag/two-pointers/) [String](/tag/string/)</span></div>
+
+<div>
+
+<div id="similar" class="btn btn-xs btn-warning">Show Similar Problems</div>
+
+<span class="hidebutton">[(E) Palindrome Linked List](/problems/palindrome-linked-list/)</span></div>
