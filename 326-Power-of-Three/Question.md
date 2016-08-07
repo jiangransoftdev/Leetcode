@@ -18,18 +18,18 @@ Special thanks to [@dietpepsi](https://leetcode.com/discuss/user/dietpepsi) for 
 
 <div>
 
-<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
+<div id="company_tags" class="btn btn-xs btn-warning">Hide Company Tags</div>
 
-<span class="hidebutton">[Google](/company/google/)</span></div>
-
-<div>
-
-<div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
-
-<span class="hidebutton">[Math](/tag/math/)</span></div>
+<span class="hidebutton" style="display: inline;">[Google](/company/google/)</span></div>
 
 <div>
 
-<div id="similar" class="btn btn-xs btn-warning">Show Similar Problems</div>
+<div id="tags" class="btn btn-xs btn-warning">Hide Tags</div>
 
-<span class="hidebutton">[(E) Power of Two](/problems/power-of-two/) [(E) Power of Four](/problems/power-of-four/)</span></div>
+<span class="hidebutton" style="display: inline;">[Math](/tag/math/)</span></div>
+
+<div>
+
+<div id="similar" class="btn btn-xs btn-warning">Hide Similar Problems</div>
+
+<span class="hidebutton" style="display: inline;">[(E) Power of Two](/problems/power-of-two/) [(E) Power of Four](/problems/power-of-four/)</span></div>
