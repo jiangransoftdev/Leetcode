@@ -3,8 +3,8 @@ public class Solution {
         if(envelopes.length==0) return 0;
         Arrays.sort(envelopes,new Comparator<int[]>(){
             public int compare(int[] a,int[] b){
-                if(a[0]==b[0]) return b[1]-a[1];
-                else return a[0]-b[0];
+                if(a[0]!=b[0]) return a[0]-b[0];
+                else return b[1]-a[1];
             }
         });
         int[] dp=new int[envelopes.length];
