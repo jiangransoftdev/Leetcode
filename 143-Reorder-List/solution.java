@@ -27,12 +27,11 @@ public class Solution {
         slow=head;
         fast=p1;
         while(slow!=null&&fast!=null){
-            ListNode tmp1=slow.next;
-            ListNode tmp2=fast.next;
+            ListNode tmp=fast.next;
+            fast.next=slow.next;
             slow.next=fast;
-            fast.next=tmp1;
-            slow=tmp1;
-            fast=tmp2;
+            fast=tmp;
+            slow=slow.next.next;
         }
     }
     
