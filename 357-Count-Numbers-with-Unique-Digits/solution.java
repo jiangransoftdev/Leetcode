@@ -2,12 +2,12 @@ public class Solution {
     public int countNumbersWithUniqueDigits(int n) {
         if(n==0) return 1;
         if(n==1) return 10;
-        int factor=9,res=10;
-        for(int i=2;i<=n;i++){
+        int res=0,factor=9,i=2;
+        while(i<=n){
             factor*=9-i+2;
-            res=res+factor;
+            res+=factor;
+            i++;
         }
-            
-        return res;
+        return res+10;
     }
 }
