@@ -24,6 +24,6 @@ So you should return 1, because there is only one bulb is on.
 
 <div>
 
-<div id="tags" class="btn btn-xs btn-warning">Hide Tags</div>
+<div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
 
-<span class="hidebutton" style="display: inline;">[Math](/tag/math/) [Brainteaser](/tag/brainteaser/)</span></div>
+<span class="hidebutton">[Math](/tag/math/) [Brainteaser](/tag/brainteaser/)</span></div>
