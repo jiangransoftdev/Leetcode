@@ -16,6 +16,6 @@ Given `1->1->1->2->3`, return `2->3`.
 
 <div>
 
-<div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
+<div id="tags" class="btn btn-xs btn-warning">Hide Tags</div>
 
-<span class="hidebutton">[Linked List](/tag/linked-list/)</span></div>
+<span class="hidebutton" style="display: inline;">[Linked List](/tag/linked-list/)</span></div>
