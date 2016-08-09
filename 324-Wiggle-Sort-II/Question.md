@@ -25,18 +25,18 @@ Special thanks to [@dietpepsi](https://leetcode.com/discuss/user/dietpepsi) for 
 
 <div>
 
-<div id="company_tags" class="btn btn-xs btn-warning">Hide Company Tags</div>
+<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
 
-<span class="hidebutton" style="display: inline;">[Google](/company/google/)</span></div>
-
-<div>
-
-<div id="tags" class="btn btn-xs btn-warning">Hide Tags</div>
-
-<span class="hidebutton" style="display: inline;">[Sort](/tag/sort/)</span></div>
+<span class="hidebutton">[Google](/company/google/)</span></div>
 
 <div>
 
-<div id="similar" class="btn btn-xs btn-warning">Hide Similar Problems</div>
+<div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
 
-<span class="hidebutton" style="display: inline;">[(M) Sort Colors](/problems/sort-colors/) [(M) Kth Largest Element in an Array](/problems/kth-largest-element-in-an-array/) [(M) Wiggle Sort](/problems/wiggle-sort/)</span></div>
+<span class="hidebutton">[Sort](/tag/sort/)</span></div>
+
+<div>
+
+<div id="similar" class="btn btn-xs btn-warning">Show Similar Problems</div>
+
+<span class="hidebutton">[(M) Sort Colors](/problems/sort-colors/) [(M) Kth Largest Element in an Array](/problems/kth-largest-element-in-an-array/) [(M) Wiggle Sort](/problems/wiggle-sort/)</span></div>
