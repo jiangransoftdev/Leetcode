@@ -15,12 +15,7 @@ public class Solution {
                     else if(sum>target)
                         right--;
                     else{
-                        List<Integer> tmp=new ArrayList<>();
-                        tmp.add(nums[i]);
-                        tmp.add(nums[j]);
-                        tmp.add(nums[left]);
-                        tmp.add(nums[right]);
-                        res.add(tmp);
+                        res.add(Arrays.asList(nums[i],nums[j],nums[left],nums[right]));
                         while(left<right&&nums[left]==nums[left+1]) left++;
                         while(left<right&&nums[right]==nums[right-1]) right--;
                         left++;
