@@ -36,9 +36,9 @@ You may assume that all words are consist of lowercase letters `a-z`.
 
 <div>
 
-<div id="company_tags" class="btn btn-xs btn-warning">Hide Company Tags</div>
+<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
 
-<span class="hidebutton" style="display: inline;">[Facebook](/company/facebook/)</span></div>
+<span class="hidebutton">[Facebook](/company/facebook/)</span></div>
 
 <div>
 
@@ -48,6 +48,6 @@ You may assume that all words are consist of lowercase letters `a-z`.
 
 <div>
 
-<div id="similar" class="btn btn-xs btn-warning">Hide Similar Problems</div>
+<div id="similar" class="btn btn-xs btn-warning">Show Similar Problems</div>
 
-<span class="hidebutton" style="display: inline;">[(M) Implement Trie (Prefix Tree)](/problems/implement-trie-prefix-tree/)</span></div>
+<span class="hidebutton">[(M) Implement Trie (Prefix Tree)](/problems/implement-trie-prefix-tree/)</span></div>
