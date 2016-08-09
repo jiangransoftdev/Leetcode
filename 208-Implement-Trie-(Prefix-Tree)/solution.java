@@ -3,7 +3,7 @@ class TrieNode {
     TrieNode[] child;
     boolean isEnd;
     public TrieNode() {
-        this.child=new TrieNode[26];
+        child=new TrieNode[26];
         isEnd=false;
     }
 }
@@ -19,12 +19,11 @@ public class Trie {
     public void insert(String word) {
         TrieNode p=root;
         for(int i=0;i<word.length();i++){
-            int k=word.charAt(i)-'a';
-            if(p.child[k]==null){
-                TrieNode tmp=new TrieNode();
-                p.child[k]=tmp;
+            int index=word.charAt(i)-'a';
+            if(p.child[index]==null){
+                p.child[index]=new TrieNode();
             }
-            p=p.child[k];
+            p=p.child[index];
         }
         p.isEnd=true;
     }
@@ -38,25 +37,21 @@ public class Trie {
         }
         return false;
     }
-
+    public TrieNode searchNode(String word){
+        TrieNode p=root;
+        for(int i=0;i<word.length();i++){
+            int index=word.charAt(i)-'a';
+            if(p.child[index]==null) return null;
+            p=p.child[index];
+        }
+        return p;
+    }
     // Returns if there is any word in the trie
     // that starts with the given prefix.
     public boolean startsWith(String prefix) {
         TrieNode p=searchNode(prefix);
-        if(p!=null)
-            return true;
+        if(p!=null) return true;
         return false;
-    }
-    public TrieNode searchNode(String word){
-        TrieNode p=root;
-        for(int i=0;i<word.length();i++){
-            int k=word.charAt(i)-'a';
-            if(p.child[k]!=null)
-                p=p.child[k];
-            else return null;
-        }
-        if(p==root) return null;
-        return p;
     }
 }
 
