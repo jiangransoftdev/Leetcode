@@ -23,18 +23,18 @@ A solution set is:
 
 <div>
 
-<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
+<div id="company_tags" class="btn btn-xs btn-warning">Hide Company Tags</div>
 
-<span class="hidebutton">[Adobe](/company/adobe/) [Amazon](/company/amazon/) [Bloomberg](/company/bloomberg/) [Facebook](/company/facebook/) [Microsoft](/company/microsoft/)</span></div>
-
-<div>
-
-<div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
-
-<span class="hidebutton">[Array](/tag/array/) [Two Pointers](/tag/two-pointers/)</span></div>
+<span class="hidebutton" style="display: inline;">[Adobe](/company/adobe/) [Amazon](/company/amazon/) [Bloomberg](/company/bloomberg/) [Facebook](/company/facebook/) [Microsoft](/company/microsoft/)</span></div>
 
 <div>
 
-<div id="similar" class="btn btn-xs btn-warning">Show Similar Problems</div>
+<div id="tags" class="btn btn-xs btn-warning">Hide Tags</div>
 
-<span class="hidebutton">[(E) Two Sum](/problems/two-sum/) [(M) 3Sum Closest](/problems/3sum-closest/) [(M) 4Sum](/problems/4sum/) [(M) 3Sum Smaller](/problems/3sum-smaller/)</span></div>
+<span class="hidebutton" style="display: inline;">[Array](/tag/array/) [Two Pointers](/tag/two-pointers/)</span></div>
+
+<div>
+
+<div id="similar" class="btn btn-xs btn-warning">Hide Similar Problems</div>
+
+<span class="hidebutton" style="display: inline;">[(E) Two Sum](/problems/two-sum/) [(M) 3Sum Closest](/problems/3sum-closest/) [(M) 4Sum](/problems/4sum/) [(M) 3Sum Smaller](/problems/3sum-smaller/)</span></div>
