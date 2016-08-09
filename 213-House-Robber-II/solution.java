@@ -8,7 +8,7 @@ public class Solution {
         int take=0,nontake=0,profit=0;
         for(int i=s;i<=e;i++){
             take=nontake+nums[i];
-            nontake=Math.max(nontake,profit);
+            nontake=profit;
             profit=Math.max(nontake,take);
         }
         return profit;
