@@ -37,6 +37,6 @@ For example, the lowest common ancestor (LCA) of nodes `2` and `8` is `6`. Anoth
 
 <div>
 
-<div id="similar" class="btn btn-xs btn-warning">Show Similar Problems</div>
+<div id="similar" class="btn btn-xs btn-warning">Hide Similar Problems</div>
 
-<span class="hidebutton">[(M) Lowest Common Ancestor of a Binary Tree](/problems/lowest-common-ancestor-of-a-binary-tree/)</span></div>
+<span class="hidebutton" style="display: inline;">[(M) Lowest Common Ancestor of a Binary Tree](/problems/lowest-common-ancestor-of-a-binary-tree/)</span></div>
