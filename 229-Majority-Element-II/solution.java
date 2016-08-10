@@ -1,15 +1,12 @@
 public class Solution {
     public List<Integer> majorityElement(int[] nums) {
         List<Integer> res=new ArrayList<>();
-        if(nums.length==0) return res;
-        int counta=0,countb=0,a=0,b=1;
+        int a=0,b=1,counta=0,countb=0;
         for(int i:nums){
-            if(i==a){
+            if(a==i)
                 counta++;
-            }
-            else if(i==b){
+            else if(b==i)
                 countb++;
-            }
             else if(counta==0){
                 a=i;
                 counta=1;
