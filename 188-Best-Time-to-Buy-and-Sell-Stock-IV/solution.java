@@ -9,16 +9,16 @@ public class Solution {
             }
             return profit;
         }
-        int[][] global=new int[prices.length][k+1];
-        int[][] local=new int[prices.length][k+1];
-        for(int i=1;i<prices.length;i++){
-            int diff=prices[i]-prices[i-1];
+        int[][] buy=new int[prices.length+1][k+1];
+        int[][] sell=new int[prices.length+1][k+1];
+        for(int i=1;i<=k;i++) buy[0][i]=Integer.MIN_VALUE;
+        for(int i=1;i<=prices.length;i++){
             for(int j=1;j<=k;j++){
-                local[i][j]=Math.max(global[i-1][j-1]+Math.max(diff,0),local[i-1][j]+diff);
-                global[i][j]=Math.max(local[i][j],global[i-1][j]);
+                buy[i][j]=Math.max(buy[i-1][j],sell[i-1][j-1]-prices[i-1]);
+                sell[i][j]=Math.max(sell[i-1][j],buy[i-1][j]+prices[i-1]);
                 
             }
         }
-        return global[prices.length-1][k];
+        return sell[prices.length][k];
     }
 }
