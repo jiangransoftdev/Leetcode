@@ -1,10 +1,10 @@
 public class Solution {
     public boolean containsNearbyDuplicate(int[] nums, int k) {
-        HashSet<Integer> hs=new HashSet<>();
+        Set<Integer> set=new HashSet<>();
         for(int i=0;i<nums.length;i++){
-            if(hs.add(nums[i])==false) return true;
-            if(hs.size()==k+1) hs.remove(nums[i-k]);
-         }
+            if(set.add(nums[i])==false) return true;
+            if(set.size()>k) set.remove(nums[i-k]);
+        }
         return false;
     }
 }
