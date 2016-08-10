@@ -9,7 +9,7 @@ the subarray `[4,3]` has the minimal length under the problem constraint.
 
 [click to show more practice.](#)
 
-<div class="spoilers" style="display: none;">**More practice:**
+<div class="spoilers" style="display: block;">**More practice:**
 
 If you have figured out the _O_(_n_) solution, try coding another solution of which the time complexity is _O_(_n_ log _n_).
 
@@ -26,18 +26,18 @@ Special thanks to [@Freezen](https://oj.leetcode.com/discuss/user/Freezen) for a
 
 <div>
 
-<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
+<div id="company_tags" class="btn btn-xs btn-warning">Hide Company Tags</div>
 
-<span class="hidebutton">[Facebook](/company/facebook/)</span></div>
-
-<div>
-
-<div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
-
-<span class="hidebutton">[Array](/tag/array/) [Two Pointers](/tag/two-pointers/) [Binary Search](/tag/binary-search/)</span></div>
+<span class="hidebutton" style="display: inline;">[Facebook](/company/facebook/)</span></div>
 
 <div>
 
-<div id="similar" class="btn btn-xs btn-warning">Show Similar Problems</div>
+<div id="tags" class="btn btn-xs btn-warning">Hide Tags</div>
 
-<span class="hidebutton">[(H) Minimum Window Substring](/problems/minimum-window-substring/) [(M) Maximum Size Subarray Sum Equals k](/problems/maximum-size-subarray-sum-equals-k/)</span></div>
+<span class="hidebutton" style="display: inline;">[Array](/tag/array/) [Two Pointers](/tag/two-pointers/) [Binary Search](/tag/binary-search/)</span></div>
+
+<div>
+
+<div id="similar" class="btn btn-xs btn-warning">Hide Similar Problems</div>
+
+<span class="hidebutton" style="display: inline;">[(H) Minimum Window Substring](/problems/minimum-window-substring/) [(M) Maximum Size Subarray Sum Equals k](/problems/maximum-size-subarray-sum-equals-k/)</span></div>
