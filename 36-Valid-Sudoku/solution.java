@@ -20,6 +20,7 @@ public class Solution {
         for(int a=(i/3)*3;a<(i/3+1)*3;a++)
             for(int b=(j/3)*3;b<(j/3+1)*3;b++)
                 if(board[a][b]==c) return false;
+        board[i][j]=c;
         return true;
     }
 }
