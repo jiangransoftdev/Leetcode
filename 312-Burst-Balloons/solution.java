@@ -1,20 +1,18 @@
 public class Solution {
-    public int maxCoins(int[] iNums) {
-        int[] nums = new int[iNums.length + 2];
-    int n = 1;
-    for (int x : iNums) if (x > 0) nums[n++] = x;
-    nums[0] = nums[n++] = 1;
-
-
-    int[][] dp = new int[n][n];
-    for (int k = 2; k < n; ++k)
-        for (int left = 0; left < n - k; ++left) {
-            int right = left + k;
-            for (int i = left + 1; i < right; ++i)
-                dp[left][right] = Math.max(dp[left][right], 
-                nums[left] * nums[i] * nums[right] + dp[left][i] + dp[i][right]);
+    public int maxCoins(int[] nums) {
+        if(nums.length==0) return 0;
+        int[][] dp=new int[nums.length][nums.length];
+        for(int len=1;len<=nums.length;len++){
+            for(int start=0;start+len<=nums.length;start++){
+                int end=start+len-1;
+                for(int i=start;i<=end;i++){
+                    int count=nums[i]*(start==0?1:nums[start-1])*(end==nums.length-1?1:nums[end+1]);
+                    count+=(i==start)?0:dp[start][i-1];
+                    count+=(i==end)?0:dp[i+1][end];
+                    dp[start][end]=Math.max(count,dp[start][end]);
+                }
+            }
         }
-
-    return dp[0][n - 1];
+        return dp[0][nums.length-1];
     }
 }
