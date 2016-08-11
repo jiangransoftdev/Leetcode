@@ -21,6 +21,6 @@ Special thanks to [@porker2008](https://oj.leetcode.com/discuss/user/porker2008)
 
 <div>
 
-<div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
+<div id="tags" class="btn btn-xs btn-warning">Hide Tags</div>
 
-<span class="hidebutton">[Sort](/tag/sort/)</span></div>
+<span class="hidebutton" style="display: inline;">[Sort](/tag/sort/)</span></div>
