@@ -5,11 +5,9 @@ public class Solution {
         Arrays.fill(dp,Integer.MAX_VALUE);
         dp[0]=0;
         for(int i=1;i<=amount;i++){
-            for(int coin:coins){
-                if(i-coin<0) continue;
-                int cur=dp[i-coin];
-                if(cur==Integer.MAX_VALUE) continue;
-                dp[i]=Math.min(dp[i],dp[i-coin]+1);
+            for(int j=0;j<coins.length;j++){
+                if(i-coins[j]>=0&&dp[i-coins[j]]!=Integer.MAX_VALUE)
+                    dp[i]=Math.min(dp[i],dp[i-coins[j]]+1);
             }
         }
         return dp[amount]==Integer.MAX_VALUE?-1:dp[amount];
