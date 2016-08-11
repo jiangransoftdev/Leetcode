@@ -20,11 +20,9 @@ public class Solution {
         }
     }
     public boolean isPalindrome(String s){
-        int l=0,h=s.length()-1;
-        while(l<h){
-            if(s.charAt(l)!=s.charAt(h)) return false;
-            l++;
-            h--;
+        int i=0,j=s.length()-1;
+        while(i<j){
+            if(s.charAt(i++)!=s.charAt(j--)) return false;
         }
         return true;
     }
