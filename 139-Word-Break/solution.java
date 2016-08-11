@@ -5,8 +5,11 @@ public class Solution {
             if(wordDict.contains(s.substring(0,i)))
                 dp[i]=true;
             for(int j=1;j<i;j++){
-                if(dp[j]&&wordDict.contains(s.substring(j,i)))
-                    dp[i]=true;
+                if(dp[j]&&wordDict.contains(s.substring(j,i))){
+                     dp[i]=true;
+                     break;
+                }
+                   
             }
         }
         return dp[s.length()];
