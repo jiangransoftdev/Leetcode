@@ -1,7 +1,7 @@
 public class Solution {
     public int maximumGap(int[] nums) {
         if(nums.length<2) return 0;
-        int m=Integer.MIN_VALUE,max=Integer.MIN_VALUE;
+        int m=Integer.MIN_VALUE,max=0;
         for(int i:nums)
             m=Math.max(i,m);
         int[] another=new int[nums.length];
