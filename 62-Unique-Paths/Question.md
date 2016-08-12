@@ -22,18 +22,18 @@ Above is a 3 x 7 grid. How many possible unique paths are there?
 
 <div>
 
-<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
+<div id="company_tags" class="btn btn-xs btn-warning">Hide Company Tags</div>
 
-<span class="hidebutton">[Bloomberg](/company/bloomberg/)</span></div>
-
-<div>
-
-<div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
-
-<span class="hidebutton">[Array](/tag/array/) [Dynamic Programming](/tag/dynamic-programming/)</span></div>
+<span class="hidebutton" style="display: inline;">[Bloomberg](/company/bloomberg/)</span></div>
 
 <div>
 
-<div id="similar" class="btn btn-xs btn-warning">Show Similar Problems</div>
+<div id="tags" class="btn btn-xs btn-warning">Hide Tags</div>
 
-<span class="hidebutton">[(M) Unique Paths II](/problems/unique-paths-ii/) [(M) Minimum Path Sum](/problems/minimum-path-sum/) [(H) Dungeon Game](/problems/dungeon-game/)</span></div>
+<span class="hidebutton" style="display: inline;">[Array](/tag/array/) [Dynamic Programming](/tag/dynamic-programming/)</span></div>
+
+<div>
+
+<div id="similar" class="btn btn-xs btn-warning">Hide Similar Problems</div>
+
+<span class="hidebutton" style="display: inline;">[(M) Unique Paths II](/problems/unique-paths-ii/) [(M) Minimum Path Sum](/problems/minimum-path-sum/) [(H) Dungeon Game](/problems/dungeon-game/)</span></div>
