@@ -14,12 +14,12 @@ Given a _m_ x _n_ grid filled with non-negative numbers, find a path from top le
 
 <div>
 
-<div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
+<div id="tags" class="btn btn-xs btn-warning">Hide Tags</div>
 
-<span class="hidebutton">[Array](/tag/array/) [Dynamic Programming](/tag/dynamic-programming/)</span></div>
+<span class="hidebutton" style="display: inline;">[Array](/tag/array/) [Dynamic Programming](/tag/dynamic-programming/)</span></div>
 
 <div>
 
-<div id="similar" class="btn btn-xs btn-warning">Show Similar Problems</div>
+<div id="similar" class="btn btn-xs btn-warning">Hide Similar Problems</div>
 
-<span class="hidebutton">[(M) Unique Paths](/problems/unique-paths/) [(H) Dungeon Game](/problems/dungeon-game/)</span></div>
+<span class="hidebutton" style="display: inline;">[(M) Unique Paths](/problems/unique-paths/) [(H) Dungeon Game](/problems/dungeon-game/)</span></div>
