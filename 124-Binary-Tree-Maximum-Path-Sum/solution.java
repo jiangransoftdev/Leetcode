@@ -8,10 +8,11 @@
  * }
  */
 public class Solution {
-    int res=Integer.MIN_VALUE;
+    int res;
     public int maxPathSum(TreeNode root) {
-        Sum(root);
-        return res;
+       res=Integer.MIN_VALUE;
+       Sum(root);
+       return res;
     }
     public int Sum(TreeNode root){
         if(root==null) return 0;
@@ -19,7 +20,7 @@ public class Solution {
         int right=Sum(root.right);
         left=left<0?0:left;
         right=right<0?0:right;
-        res=Math.max(res,root.val+left+right);
-        return Math.max(left,right)+root.val;
+        res=res>(root.val+left+right)?res:root.val+left+right;
+        return root.val+Math.max(left,right);
     }
 }
