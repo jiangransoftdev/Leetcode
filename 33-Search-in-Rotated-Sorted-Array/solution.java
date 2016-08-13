@@ -1,20 +1,22 @@
 public class Solution {
     public int search(int[] nums, int target) {
-        int s=0,e=nums.length-1;
-        while(s<e){
-            int m=s+(e-s)/2;
-            if(nums[m]==target) return m;
-            if(nums[s]<=nums[m]){
-                if(target>=nums[s]&&target<nums[m])
-                    e=m-1;
-                else s=m+1;
+        if(nums.length==0) return -1;
+        int low=0,high=nums.length-1;
+        while(low<high){
+            int mid=low+(high-low)/2;
+            if(nums[mid]==target)
+                return mid;
+            if(nums[low]<=nums[mid]){
+                if(target>=nums[low]&&target<nums[mid])
+                    high=mid-1;
+                else low=mid+1;
             }
             else{
-                if(target>nums[m]&&target<=nums[e])
-                    s=m+1;
-                else e=m-1;
+                if(target>nums[mid]&&target<=nums[high])
+                    low=mid+1;
+                else high=mid-1;
             }
         }
-        return nums[s]==target?s:-1;
+        return nums[low]==target?low:-1;
     }
 }
