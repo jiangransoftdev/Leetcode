@@ -1,17 +1,29 @@
+class ListNode{
+    int val;
+    ListNode next;
+    int min;
+    public ListNode(int val,int min){
+        this.val=val;
+        this.min=min;
+    }
+    public ListNode(int val,int min,ListNode next){
+        this.val=val;
+        this.min=min;
+        this.next=next;
+    }
+}
+
 public class MinStack {
-    Node head;
+    ListNode head;
     /** initialize your data structure here. */
     public MinStack() {
-       
+        
     }
     
     public void push(int x) {
-        if(head==null){
-            head=new Node(x,x);
-        }
-        else{
-            head=new Node(x,Math.min(getMin(),x),head);
-        }
+        if(head==null)
+            head=new ListNode(x,x);
+        else head=new ListNode(x,Math.min(getMin(),x),head);
     }
     
     public void pop() {
@@ -24,20 +36,6 @@ public class MinStack {
     
     public int getMin() {
         return head.min;
-    }
-    private class Node{
-        int val;
-        int min;
-        Node next;
-        private Node(int x,int min){
-            this.val=x;
-            this.min=min;
-        }
-        private Node(int x,int min,Node next){
-            this.val=x;
-            this.min=min;
-            this.next=next;
-        }
     }
 }
 
