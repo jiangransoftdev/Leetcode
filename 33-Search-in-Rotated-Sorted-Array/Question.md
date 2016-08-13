@@ -26,7 +26,7 @@ You may assume no duplicate exists in the array.
 
 <div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
 
-<span class="hidebutton" style="display: none;">[Binary Search](/tag/binary-search/) [Array](/tag/array/)</span></div>
+<span class="hidebutton">[Binary Search](/tag/binary-search/) [Array](/tag/array/)</span></div>
 
 <div>
 
