@@ -1,20 +1,17 @@
 public class Solution {
     public boolean search(int[] nums, int target) {
-        if(nums.length==0) return false;
-        int left=0,right=nums.length-1;
-        while(left<=right){
-            int mid=left+(right-left)/2;
-            if(nums[mid]==target) return true;
-            if(nums[mid]==nums[left]) left++;
-            else if(nums[mid]>nums[left]){
-                if(target>=nums[left]&&target<nums[mid])
-                    right=mid-1;
-                else left=mid+1;
+        int s=0,e=nums.length-1;
+        while(s<=e){
+            int m=s+(e-s)/2;
+            if(target==nums[m]) return true;
+            if(nums[s]==nums[m]) s++;
+            else if(nums[s]<nums[m]){
+                if(target>=nums[s]&&target<nums[m]) e=m-1;
+                else s=m+1;
             }
             else{
-                if(target>nums[mid]&&target<=nums[right])
-                    left=mid+1;
-                else right=mid-1;
+                if(target>nums[m]&&target<=nums[e]) s=m+1;
+                else e=m-1;
             }
         }
         return false;
