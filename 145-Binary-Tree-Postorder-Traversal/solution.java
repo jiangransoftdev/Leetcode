@@ -15,9 +15,9 @@ public class Solution {
         s.push(root);
         while(!s.isEmpty()){
             TreeNode node=s.pop();
+            res.addFirst(node.val);
             if(node.left!=null) s.push(node.left);
             if(node.right!=null) s.push(node.right);
-            res.addFirst(node.val);
         }
         return res;
     }
