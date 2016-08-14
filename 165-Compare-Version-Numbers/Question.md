@@ -24,12 +24,12 @@ Special thanks to [@ts](https://oj.leetcode.com/discuss/user/ts) for adding this
 
 <div>
 
-<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
+<div id="company_tags" class="btn btn-xs btn-warning">Hide Company Tags</div>
 
-<span class="hidebutton">[Apple](/company/apple/) [Microsoft](/company/microsoft/)</span></div>
+<span class="hidebutton" style="display: inline;">[Apple](/company/apple/) [Microsoft](/company/microsoft/)</span></div>
 
 <div>
 
-<div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
+<div id="tags" class="btn btn-xs btn-warning">Hide Tags</div>
 
-<span class="hidebutton">[String](/tag/string/)</span></div>
+<span class="hidebutton" style="display: inline;">[String](/tag/string/)</span></div>
