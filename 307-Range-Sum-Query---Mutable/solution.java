@@ -1,23 +1,20 @@
 public class NumArray {
-    int[] tree,nums;
+    int[] tree;
+    int[] nums;
     public NumArray(int[] nums) {
         this.nums=nums;
         tree=new int[nums.length+1];
         for(int i=0;i<nums.length;i++)
-            build(i+1,nums[i]);
+            add(i+1,nums[i]);
     }
-    void build(int i,int val){
-        while(i<tree.length){
+    public void add(int i,int val){
+        int n=tree.length;
+        while(i<n){
             tree[i]+=val;
             i+=i&-i;
         }
     }
-    void update(int i, int val) {
-        int diff=val-nums[i];
-        nums[i]=val;
-        build(i+1,diff);
-    }
-    int sum(int i){
+    public int get(int i){
         i++;
         int sum=0;
         while(i>0){
@@ -26,8 +23,14 @@ public class NumArray {
         }
         return sum;
     }
+    void update(int i, int val) {
+        int diff=val-nums[i];
+        nums[i]=val;
+        add(i+1,diff);
+    }
+
     public int sumRange(int i, int j) {
-        return sum(j)-sum(i-1);
+        return get(j)-get(i-1);
     }
 }
 
