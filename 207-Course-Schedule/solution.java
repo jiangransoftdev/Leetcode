@@ -1,24 +1,25 @@
 public class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         List[] graph=new ArrayList[numCourses];
+        boolean[] visit=new boolean[numCourses];
         for(int i=0;i<numCourses;i++)
         	graph[i]=new ArrayList();
         for(int i=0;i<prerequisites.length;i++)
         	graph[prerequisites[i][1]].add(prerequisites[i][0]);
-        int[] visit=new int[numCourses];
-        for(int i=0;i<numCourses;i++)
-        	if(visit[i]==0&&dfs(graph,visit,i))
-        		return false;
+        for(int i=0;i<numCourses;i++){
+            if(!dfs(i,visit,graph))
+                return false;
+        }
         return true;
     }
-public boolean dfs(List[] graph,int[] visit,int i){
-	visit[i]=-1;
-	for(int j=0;j<graph[i].size();j++){
-	    if(visit[(int)graph[i].get(j)]==-1) return true;
-		if(visit[(int)graph[i].get(j)]==0&&dfs(graph,visit,(int)graph[i].get(j)))
-			return true;
-	}
-	visit[i]=1;
-	return false;
-}
+    public boolean dfs(int course,boolean[] visit,List[] graph){
+        if(visit[course]) return false;
+        visit[course]=true;
+
+        for(int i=0;i<graph[course].size();i++){
+            if(!dfs((int)graph[course].get(i),visit,graph)) return false;
+        }
+        visit[course]=false;
+        return true;
+    }
 }
