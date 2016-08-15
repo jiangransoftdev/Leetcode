@@ -18,7 +18,7 @@ public class Solution {
         int[] right=helper(root.right);
         int[] val=new int[2];
         val[0]=Math.max(left[0],left[1])+Math.max(right[0],right[1]);
-        val[1]=left[0]+right[0]+root.val;
+        val[1]=root.val+left[0]+right[0];
         return val;
     }
 }
