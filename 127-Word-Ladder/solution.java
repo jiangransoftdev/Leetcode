@@ -1,36 +1,32 @@
 public class Solution {
     public int ladderLength(String beginWord, String endWord, Set<String> wordList) {
         Queue<String> q=new LinkedList<>();
-        int distance=1;
-        q.offer(beginWord);
-        wordList.remove(beginWord);
+        if(beginWord.equals(endWord)) return 0;
+        int length=1;
         wordList.add(endWord);
+        wordList.remove(beginWord);
+        q.offer(beginWord);
         while(!q.isEmpty()){
             int size=q.size();
             for(int i=0;i<size;i++){
-                String cur=q.poll();
-                if(cur.equals(endWord)) return distance;
-                List<String> neighbor=find(cur,wordList);
-                for(String s:neighbor)
-                    q.offer(s);
-            }
-            distance++;
-        }
-        return 0;
-    }
-    public List<String> find(String cur,Set<String> wordList){
-        List<String> res=new ArrayList<>();
-        for(int i=0;i<cur.length();i++){
-            char[] c=cur.toCharArray();
-            for(char x='a';x<='z';x++){
-                c[i]=x;
-                String another=new String(c);
-                if(wordList.contains(another)){
-                    res.add(another);
-                    wordList.remove(another);
+                String s=q.poll();
+                if(s.equals(endWord)) return length;
+                char[] cs=s.toCharArray();
+                for(int l=0;l<s.length();l++){
+                    char c=cs[l];
+                    for(char cc='a';cc<='z';cc++){
+                        cs[l]=cc;
+                        String another=new String(cs);
+                        if(wordList.contains(another)){
+                            q.offer(another);
+                            wordList.remove(another);
+                        }
+                    }
+                    cs[l]=c;
                 }
             }
+            length++;
         }
-        return res;
+        return 0;
     }
 }
