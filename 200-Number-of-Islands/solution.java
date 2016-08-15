@@ -4,21 +4,21 @@ public class Solution {
         if(m==0) return 0;
         int n=grid[0].length,count=0;
         for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++){
+            for(int j=0;j<n;j++)
                 if(grid[i][j]=='1'){
-                    explore(grid,i,j);
+                    helper(grid,i,j,m,n);
                     count++;
                 }
-            }
         }
-        return count++;
+        return count;
     }
-    public void explore(char[][] grid,int i,int j){
-        if(i<0||i>=grid.length||j<0||j>=grid[0].length||grid[i][j]!='1') return;
+    public void helper(char[][] grid,int i,int j,int m,int n){
+        if(i<0||i>=m||j<0||j>=n) return;
         grid[i][j]='0';
-        explore(grid,i+1,j);
-        explore(grid,i-1,j);
-        explore(grid,i,j+1);
-        explore(grid,i,j-1);
+        if(i-1>=0&&grid[i-1][j]=='1') helper(grid,i-1,j,m,n);
+        if(i+1<m&&grid[i+1][j]=='1') helper(grid,i+1,j,m,n);
+        if(j-1>=0&&grid[i][j-1]=='1') helper(grid,i,j-1,m,n);
+        if(j+1<n&&grid[i][j+1]=='1') helper(grid,i,j+1,m,n);
+        
     }
 }
