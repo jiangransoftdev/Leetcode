@@ -1,10 +1,10 @@
 public class Solution {
     public boolean isValidSerialization(String preorder) {
-        String[] s=preorder.split(",");
+        String[] str=preorder.split(",");
         int diff=1;
-        for(String str:s){
+        for(String s:str){
             if(--diff<0) return false;
-            if(!str.equals("#")) diff+=2;
+            if(!s.equals("#")) diff+=2;
         }
         return diff==0;
     }
