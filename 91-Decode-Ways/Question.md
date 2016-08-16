@@ -25,12 +25,12 @@ The number of ways decoding `"12"` is 2.
 
 <div>
 
-<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
+<div id="company_tags" class="btn btn-xs btn-warning">Hide Company Tags</div>
 
-<span class="hidebutton">[Facebook](/company/facebook/) [Microsoft](/company/microsoft/) [Uber](/company/uber/)</span></div>
+<span class="hidebutton" style="display: inline;">[Facebook](/company/facebook/) [Microsoft](/company/microsoft/) [Uber](/company/uber/)</span></div>
 
 <div>
 
-<div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
+<div id="tags" class="btn btn-xs btn-warning">Hide Tags</div>
 
-<span class="hidebutton">[Dynamic Programming](/tag/dynamic-programming/) [String](/tag/string/)</span></div>
+<span class="hidebutton" style="display: inline;">[Dynamic Programming](/tag/dynamic-programming/) [String](/tag/string/)</span></div>
