@@ -17,7 +17,8 @@ public class RandomizedSet {
     
     /** Get a random element from the set. */
     public int getRandom() {
-        return new ArrayList<>(set).get((int)Math.random()*set.size());
+        Random rm=new Random();
+        return new ArrayList<>(set).get(rm.nextInt(set.size()));
     }
 }
 
