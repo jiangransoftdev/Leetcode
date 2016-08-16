@@ -24,9 +24,9 @@ public class Solution {
                 if(str[i-1]==pattern[j-1]||pattern[j-1]=='?')
                     dp[i][j]=dp[i-1][j-1];
                 else if(pattern[j-1]=='*')
-                    dp[i][j]=dp[i][j-1]||dp[i-1][j];
+                    dp[i][j]=dp[i-1][j]||dp[i][j-1];
             }
         }
-        return dp[dp.length-1][index];
+        return dp[str.length][index];
     }
 }
