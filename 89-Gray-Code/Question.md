@@ -29,12 +29,12 @@ For now, the judge is able to judge based on one instance of gray code sequence.
 
 <div>
 
-<div id="company_tags" class="btn btn-xs btn-warning">Hide Company Tags</div>
+<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
 
-<span class="hidebutton" style="display: inline;">[Amazon](/company/amazon/)</span></div>
+<span class="hidebutton">[Amazon](/company/amazon/)</span></div>
 
 <div>
 
-<div id="tags" class="btn btn-xs btn-warning">Hide Tags</div>
+<div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
 
-<span class="hidebutton" style="display: inline;">[Backtracking](/tag/backtracking/)</span></div>
+<span class="hidebutton">[Backtracking](/tag/backtracking/)</span></div>
