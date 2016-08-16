@@ -10,26 +10,25 @@ public class Solution {
             res.add(solu);
             return;
         }
-        int iter=3;
-        char digit=digits.charAt(index),start='a';
-        if(digit=='1'||digit=='0') return;
-        if(digit=='7') {
+        int num=digits.charAt(index)-'0';
+        int total=3;
+        char start='a';
+        if(num<7)
+            start=(char)('a'+(num-2)*3);
+        else if(num==7){
             start='p';
-            iter=4;
+            total=4;
         }
-        else if(digit=='8') start='t';
-        else if(digit=='9'){
-            iter=4;
+        else if(num==8){
+            start='t';
+        }
+        else if(num==9){
             start='w';
+            total=4;
         }
-        else{
-            start=(char)('a'+(digit-'2')*3);
-        }
-        for(int i=0;i<iter;i++){
+        for(int i=0;i<total;i++){
             char c=(char)(start+i);
-            String another=solu+c;
-            helper(digits,index+1,another,res);
+            helper(digits,index+1,solu+c,res);
         }
-            
     }
 }
