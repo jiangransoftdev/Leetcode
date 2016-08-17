@@ -27,9 +27,9 @@ public class LRUCache {
     }
     public void addNode(ListNode node){
         node.next=head.next;
-    	node.next.prev=node;
-    	head.next=node;
-    	node.prev=head;
+        node.next.prev=node;
+        head.next=node;
+        node.prev=head;
     }
     public int get(int key) {
         if(!map.containsKey(key)) return -1;
