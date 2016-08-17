@@ -1,23 +1,23 @@
 public class Solution {
     public int[][] generateMatrix(int n) {
-        int[][] m=new int[n][n];
-        helper(m,0,n,1);
-        return m;
+        if(n==0) return new int[0][0];
+        int[][] res=new int[n][n];
+        helper(res,0,n,1);
+        return res;
     }
-    public void helper(int[][] m,int offside,int l,int counter){
-        if(l<=0) return;
-        if(l==1){
-            m[offside][offside]=counter++;
+    public void helper(int[][] res,int offside,int size,int count){
+        if(size<=1){
+            if(size==1) res[offside][offside]=count;
             return;
         }
-        for(int i=0;i<l-1;i++)
-            m[offside][offside+i]=counter++;
-        for(int i=0;i<l-1;i++)
-            m[offside+i][offside+l-1]=counter++;
-        for(int i=0;i<l-1;i++)
-            m[offside+l-1][offside+l-1-i]=counter++;
-        for(int i=0;i<l-1;i++)
-            m[offside+l-1-i][offside]=counter++;
-        helper(m,offside+1,l-2,counter);
+        for(int i=0;i<size-1;i++)
+            res[offside][offside+i]=count++;
+        for(int i=0;i<size-1;i++)
+            res[offside+i][offside+size-1]=count++;
+        for(int i=0;i<size-1;i++)
+            res[offside+size-1][offside+size-1-i]=count++;
+        for(int i=0;i<size-1;i++)
+            res[offside+size-1-i][offside]=count++;
+        helper(res,offside+1,size-2,count);
     }
 }
