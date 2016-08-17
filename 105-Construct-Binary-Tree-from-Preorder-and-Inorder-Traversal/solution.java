@@ -18,9 +18,9 @@ public class Solution {
     public TreeNode helper(int[] preorder,int prel,int prer,int[] inorder,int inl,int inr,Map<Integer,Integer> map){
         if(inl>inr) return null;
         TreeNode root=new TreeNode(preorder[prel]);
-        int lsize=map.get(preorder[prel])-inl;
-        root.left=helper(preorder,prel+1,prer+lsize,inorder,inl,inl+lsize-1,map);
-        root.right=helper(preorder,prel+lsize+1,prer,inorder,inl+lsize+1,inr,map);
+        int leftsize=map.get(root.val)-inl;
+        root.left=helper(preorder,prel+1,prel+leftsize,inorder,inl,inl+leftsize-1,map);
+        root.right=helper(preorder,prel+leftsize+1,prer,inorder,inl+leftsize+1,inr,map);
         return root;
     }
 }
