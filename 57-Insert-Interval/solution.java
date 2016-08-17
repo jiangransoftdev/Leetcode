@@ -9,8 +9,7 @@
  */
 public class Solution {
     public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
-         List<Interval> ans = new ArrayList<Interval>();  
-          
+        List<Interval> ans = new ArrayList<Interval>();  
         // insert newInterval by binary searching  
         int l = 0;  
         int r = intervals.size() - 1;  
@@ -22,9 +21,7 @@ public class Solution {
                 l = mid + 1;  
             }  
         }  
-        intervals.add(l, newInterval);  
-          
-        // merge all overlapping intervals  
+        intervals.add(l, newInterval);
         int start = intervals.get(0).start;  
         int end = intervals.get(0).end;  
         for (int i = 1; i < intervals.size(); i++) {  
@@ -38,8 +35,6 @@ public class Solution {
             }  
         }  
         ans.add(new Interval(start, end));  
-          
         return ans;  
-
     }
 }
