@@ -1,6 +1,5 @@
 public class Solution {
     public int[][] generateMatrix(int n) {
-        if(n==0) return new int[0][0];
         int[][] res=new int[n][n];
         helper(res,0,n,1);
         return res;
