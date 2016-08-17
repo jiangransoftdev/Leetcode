@@ -4,13 +4,13 @@ public class Solution {
         int m=board.length,n=board[0].length;
         for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
-                int count=countNeighbors(board,m,n,i,j);
-                if(board[i][j]==1)
-                    if(count==2||count==3)
-                        board[i][j]=3;
-                if(board[i][j]==0)
-                    if(count==3)
-                        board[i][j]=2;
+                int count=neighbors(board,i,j,m,n);
+                if(board[i][j]==1){
+                    if(count==2||count==3) board[i][j]=3;
+                }
+                else if(board[i][j]==0){
+                    if(count==3) board[i][j]=2;
+                }
             }
         }
         for(int i=0;i<m;i++){
@@ -18,12 +18,14 @@ public class Solution {
                 board[i][j]=board[i][j]>>1;
         }
     }
-    public int countNeighbors(int[][] board,int m,int n,int i,int j){
+    public int neighbors(int[][] board,int i,int j,int m,int n){
         int count=0;
-        for(int a=Math.max(0,i-1);a<=Math.min(m-1,i+1);a++)
-            for(int b=Math.max(0,j-1);b<=Math.min(n-1,j+1);b++)
-                count+=board[a][b]&1;
-        count-=board[i][j]&1;
+        for(int a=Math.max(0,i-1);a<=Math.min(i+1,m-1);a++){
+            for(int b=Math.max(0,j-1);b<=Math.min(j+1,n-1);b++){
+                if(a==i&&b==j) continue;
+                if((board[a][b]&1)==1) count++;
+            }
+        }
         return count;
     }
 }
