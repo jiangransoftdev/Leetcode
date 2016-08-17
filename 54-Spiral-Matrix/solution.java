@@ -1,31 +1,31 @@
 public class Solution {
     public List<Integer> spiralOrder(int[][] matrix) {
-        List<Integer> res=new ArrayList<Integer>();
-        if(matrix.length==0) return res;
-        spiralMatrix(matrix,0,matrix[0].length,matrix.length,res);
+        List<Integer> res=new ArrayList<>();
+        int m=matrix.length;
+        if(m==0) return res;
+        int n=matrix[0].length;
+        helper(matrix,0,m,n,res);
         return res;
     }
-    public void spiralMatrix(int[][] matrix,int offside,int msize,int nsize,List<Integer> res){
-	if(nsize<=1){
-		for(int i=0;i<msize&&nsize==1;i++)
-			res.add(matrix[offside][offside+i]);
-		return;
-	}
-	if(msize<=1){
-		for(int i=0;i<nsize&&msize==1;i++)
-			res.add(matrix[offside+i][offside]);
-		return;
-	}
-	for(int i=0;i<msize;i++)
-		res.add(matrix[offside][offside+i]);
-	for(int j=1;j<nsize-1;j++)
-		res.add(matrix[offside+j][offside+msize-1]);
-	for(int k=0;k<msize;k++){
-		res.add(matrix[offside+nsize-1][offside+msize-1-k]);
-	}
-	for(int m=1;m<nsize-1;m++){
-		res.add(matrix[offside+nsize-1-m][offside]);
-	}
-	spiralMatrix(matrix,offside+1,msize-2,nsize-2,res);
-}
+    public void helper(int[][] matrix,int offside,int msize,int nsize,List<Integer> res){
+        if(msize<=1){
+            for(int i=0;i<nsize&&msize==1;i++)
+                res.add(matrix[offside][i+offside]);
+            return;
+        }
+        if(nsize<=1){
+            for(int i=0;i<msize&&nsize==1;i++)
+                res.add(matrix[offside+i][offside]);
+            return;
+        }
+        for(int i=0;i<nsize;i++)
+            res.add(matrix[offside][i+offside]);
+        for(int i=1;i<msize-1;i++)
+            res.add(matrix[offside+i][offside+nsize-1]);
+        for(int i=0;i<nsize;i++)
+            res.add(matrix[offside+msize-1][offside+nsize-1-i]);
+        for(int i=1;i<msize-1;i++)
+            res.add(matrix[offside+msize-1-i][offside]);
+        helper(matrix,offside+1,msize-2,nsize-2,res);
+    }
 }
