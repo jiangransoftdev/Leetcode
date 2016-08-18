@@ -21,18 +21,18 @@ Here are some examples. Inputs are in the left-hand column and its corresponding
 
 <div>
 
-<div id="company_tags" class="btn btn-xs btn-warning">Hide Company Tags</div>
+<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
 
-<span class="hidebutton" style="display: inline;">[Google](/company/google/)</span></div>
-
-<div>
-
-<div id="tags" class="btn btn-xs btn-warning">Hide Tags</div>
-
-<span class="hidebutton" style="display: inline;">[Array](/tag/array/)</span></div>
+<span class="hidebutton">[Google](/company/google/)</span></div>
 
 <div>
 
-<div id="similar" class="btn btn-xs btn-warning">Hide Similar Problems</div>
+<div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
 
-<span class="hidebutton" style="display: inline;">[(M) Permutations](/problems/permutations/) [(M) Permutations II](/problems/permutations-ii/) [(M) Permutation Sequence](/problems/permutation-sequence/) [(M) Palindrome Permutation II](/problems/palindrome-permutation-ii/)</span></div>
+<span class="hidebutton">[Array](/tag/array/)</span></div>
+
+<div>
+
+<div id="similar" class="btn btn-xs btn-warning">Show Similar Problems</div>
+
+<span class="hidebutton">[(M) Permutations](/problems/permutations/) [(M) Permutations II](/problems/permutations-ii/) [(M) Permutation Sequence](/problems/permutation-sequence/) [(M) Palindrome Permutation II](/problems/palindrome-permutation-ii/)</span></div>
