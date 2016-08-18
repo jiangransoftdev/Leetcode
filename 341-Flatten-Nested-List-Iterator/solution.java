@@ -32,7 +32,7 @@ public class NestedIterator implements Iterator<Integer> {
     @Override
     public boolean hasNext() {
         while(!s.isEmpty()){
-            if(s.peek().getInteger()!=null) return true;
+            if(s.peek().isInteger()) return true;
             List<NestedInteger> list=s.pop().getList();
             for(int i=list.size()-1;i>=0;i--)
                 s.push(list.get(i));
