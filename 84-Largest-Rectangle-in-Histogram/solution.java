@@ -3,7 +3,7 @@ public class Solution {
         Stack<Integer> s=new Stack<>();
         int sum=0;
         for(int i=0;i<=heights.length;i++){
-            if(s.isEmpty()||(i==heights.length?0:heights[i])>=heights[s.peek()])
+            if(s.isEmpty()||(i==heights.length?0:heights[i])>heights[s.peek()])
                 s.push(i);
             else{
                 int tmp=s.pop();
