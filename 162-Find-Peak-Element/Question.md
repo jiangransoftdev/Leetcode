@@ -31,12 +31,12 @@ Special thanks to [@ts](https://oj.leetcode.com/discuss/user/ts) for adding this
 
 <div>
 
-<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
+<div id="company_tags" class="btn btn-xs btn-warning">Hide Company Tags</div>
 
-<span class="hidebutton">[Google](/company/google/) [Microsoft](/company/microsoft/)</span></div>
+<span class="hidebutton" style="display: inline;">[Google](/company/google/) [Microsoft](/company/microsoft/)</span></div>
 
 <div>
 
-<div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
+<div id="tags" class="btn btn-xs btn-warning">Hide Tags</div>
 
-<span class="hidebutton">[Binary Search](/tag/binary-search/) [Array](/tag/array/)</span></div>
+<span class="hidebutton" style="display: inline;">[Binary Search](/tag/binary-search/) [Array](/tag/array/)</span></div>
