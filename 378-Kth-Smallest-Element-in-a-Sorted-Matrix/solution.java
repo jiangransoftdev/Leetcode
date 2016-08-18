@@ -6,14 +6,15 @@ public class Solution {
                 return a[0]-b[0];
             }
         });
-        for(int j=0;j<matrix[0].length;j++) pq.add(new int[]{matrix[0][j],0,j});
+        for(int i=0;i<matrix[0].length;i++)
+            pq.offer(new int[]{matrix[0][i],0,i});
         int[] cur=new int[3];
         while(k>0&&!pq.isEmpty()){
             cur=pq.poll();
             int row=cur[1];
             int col=cur[2];
             if(row<matrix.length-1)
-                pq.add(new int[]{matrix[row+1][col],row+1,col});
+                pq.offer(new int[]{matrix[row+1][col],row+1,col});
             k--;
         }
         return cur[0];
