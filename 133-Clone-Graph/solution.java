@@ -15,12 +15,13 @@ public class Solution {
         if(node==null) return null;
         if(map.containsKey(node))
             return map.get(node);
-        UndirectedGraphNode nodecopy=new UndirectedGraphNode(node.label);
-        map.put(node,nodecopy);
-        for(int i=0;i<node.neighbors.size();i++){
-            UndirectedGraphNode clone=dfs(node.neighbors.get(i),map);
-            nodecopy.neighbors.add(clone);
+        UndirectedGraphNode dup=new UndirectedGraphNode(node.label);
+        map.put(node,dup);
+        List<UndirectedGraphNode> neighbors=node.neighbors;
+        for(UndirectedGraphNode neighbor:neighbors){
+            UndirectedGraphNode clone=dfs(neighbor,map);
+            dup.neighbors.add(clone);
         }
-        return nodecopy;
+        return dup;
     }
 }
