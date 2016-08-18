@@ -1,25 +1,20 @@
-class Sum implements Comparable<Sum> {
-    int val;
-    int i;
-    int j;
-    
-    public Sum(int val, int i, int j) {
-        this.val = val;
-        this.i = i;
-        this.j = j;
-    }
-    
-    public int compareTo(Sum o) {
-        return this.val - o.val;
+class Sum{
+    int row,col,val;
+    public Sum(int val,int row,int col){
+        this.val=val;
+        this.row=row;
+        this.col=col;
     }
 }
 public class Solution {
     public List<int[]> kSmallestPairs(int[] nums1, int[] nums2, int k) {
         List<int[]> res=new ArrayList<>();
-         if ((nums1 == null || nums1.length == 0) || (nums2 == null || nums2.length ==0) || k <= 0) {
-        return res;
-    }
-        PriorityQueue<Sum> pq=new PriorityQueue<>();
+        if(nums1.length==0||nums2.length==0||k<=0) return res;
+        PriorityQueue<Sum> pq=new PriorityQueue<>(new Comparator<Sum>(){
+            public int compare(Sum a,Sum b){
+                return a.val-b.val;
+            }
+        });
         for(int i=0;i<Math.min(nums1.length,k);i++){
             int row=i;
             int col=0;
@@ -28,15 +23,14 @@ public class Solution {
         }
         for(int i=0;i<Math.min(nums1.length*nums2.length,k);i++){
             Sum sum=pq.poll();
-            int row=sum.i;
-            int col=sum.j;
+            int row=sum.row;
+            int col=sum.col;
             int[] pair={nums1[row],nums2[col]};
+            res.add(pair);
             if(col<nums2.length-1){
                 int val=nums1[row]+nums2[col+1];
                 pq.offer(new Sum(val,row,col+1));
             }
-            res.add(pair);
-            
         }
         return res;
     }
