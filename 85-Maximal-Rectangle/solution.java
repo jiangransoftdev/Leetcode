@@ -3,9 +3,7 @@ public class Solution {
         int m=matrix.length;
         if(m==0) return 0;
         int n=matrix[0].length;
-        int[] left=new int[n];
-        int[] right=new int[n];
-        int[] height=new int[n];
+        int[] left=new int[n],right=new int[n],height=new int[n];
         int max=0;
         Arrays.fill(right,n);
         for(int i=0;i<m;i++){
@@ -13,7 +11,7 @@ public class Solution {
             for(int j=0;j<n;j++){
                 if(matrix[i][j]=='1'){
                     height[j]++;
-                    left[j]=Math.max(curleft,left[j]);
+                    left[j]=Math.max(left[j],curleft);
                 }
                 else{
                     height[j]=0;
@@ -22,8 +20,9 @@ public class Solution {
                 }
             }
             for(int j=n-1;j>=0;j--){
-                if(matrix[i][j]=='1')
-                    right[j]=Math.min(curright,right[j]);
+                if(matrix[i][j]=='1'){
+                    right[j]=Math.min(right[j],curright);
+                }
                 else{
                     right[j]=n;
                     curright=j;
