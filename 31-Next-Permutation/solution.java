@@ -8,25 +8,25 @@ public class Solution {
                 break;
             }
         }
-        if(pos<0) {
+        if(pos<0){
             reverse(nums,0,nums.length-1);
             return;
         }
         for(int i=nums.length-1;i>pos;i--){
             if(nums[i]>nums[pos]){
-                int tmp=nums[pos];
-                nums[pos]=nums[i];
-                nums[i]=tmp;
+                int tmp=nums[i];
+                nums[i]=nums[pos];
+                nums[pos]=tmp;
                 break;
             }
         }
         reverse(nums,pos+1,nums.length-1);
     }
-    public void reverse(int[] nums,int s,int e){
-        while(s<e){
-            int tmp=nums[s];
-            nums[s++]=nums[e];
-            nums[e--]=tmp;
+    public void reverse(int[] nums,int i,int j){
+        while(i<j){
+            int tmp=nums[i];
+            nums[i++]=nums[j];
+            nums[j--]=tmp;
         }
     }
 }
