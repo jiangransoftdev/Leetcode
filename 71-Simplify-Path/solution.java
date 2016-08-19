@@ -1,8 +1,8 @@
 public class Solution {
     public String simplifyPath(String path) {
         if(path.length()==0) return "";
-        Stack<String> s=new Stack<>();
         StringBuilder sb=new StringBuilder();
+        Stack<String> s=new Stack<>();
         s.push("/");
         int i=0;
         while(i<path.length()){
@@ -31,16 +31,15 @@ public class Solution {
                 }
                 else{
                     s.push(sb.toString());
-                    sb.delete(0,sb.length());
                     s.push("/");
+                    sb.delete(0,sb.length());
                 }
                 i++;
             }
-            
         }
         if(s.size()>1&&s.peek().equals("/")) s.pop();
-        for(String ss:s)
-            sb.append(ss);
+        for(String str:s)
+            sb.append(str);
         return sb.toString();
     }
 }
