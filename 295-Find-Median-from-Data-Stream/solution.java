@@ -3,15 +3,15 @@ public class MedianFinder {
     boolean even=true;
     // Adds a number into the data structure.
     public void addNum(int num) {
-       if(even){
-           q[1].offer(num);
-           q[0].add(q[1].poll());
-       }
-       else{
-           q[0].offer(num);
-           q[1].add(q[0].poll());
-       }
-       even=!even;
+        if(even){
+            q[1].offer(num);
+            q[0].offer(q[1].poll());
+        }
+        else{
+            q[0].offer(num);
+            q[1].offer(q[0].poll());
+        }
+        even=!even;
     }
 
     // Returns the median of current data stream
