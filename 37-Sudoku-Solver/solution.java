@@ -14,7 +14,7 @@ public class Solution {
                                 return true;
                         }
                     }
-                    board[i][j]='.';    
+                    board[i][j]='.';
                     return false;
                 }
             }
@@ -22,15 +22,13 @@ public class Solution {
         return true;
     }
     public boolean isValid(char[][] board,int i,int j,char c){
-        for(int row=0;row<board.length;row++){
+        for(int row=0;row<9;row++)
             if(board[row][j]==c) return false;
-        }
-        for(int column=0;column<board[0].length;column++){
-            if(board[i][column]==c) return false;
-        }
+        for(int col=0;col<9;col++)
+            if(board[i][col]==c) return false;
         for(int row=(i/3)*3;row<(i/3+1)*3;row++){
-            for(int column=(j/3)*3;column<(j/3+1)*3;column++)
-            if(board[row][column]==c) return false;
+            for(int col=(j/3)*3;col<(j/3+1)*3;col++)
+                if(board[row][col]==c) return false;
         }
         return true;
     }
