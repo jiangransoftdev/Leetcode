@@ -21,35 +21,34 @@ public class Solution {
                 if(a.val!=b.val) return a.val-b.val;
                 if(a.flag!=b.flag) return a.flag-b.flag;
                 if(a.flag==0&&b.flag==0) return b.height-a.height;
-                else return a.height-b.height;
+                return a.height-b.height;
             }
         });
-        PriorityQueue<Integer> heights=new PriorityQueue<>(Collections.reverseOrder());
-        for(Point p:points){
-            if(p.flag==0){
-                if(heights.isEmpty()||p.height>heights.peek()){
-                    int[] keyPoint=new int[2];
-                    keyPoint[0]=p.val;
-                    keyPoint[1]=p.height;
-                    res.add(keyPoint);
+        PriorityQueue<Integer> pq=new PriorityQueue<>(Collections.reverseOrder());
+        for(Point point:points){
+            if(point.flag==0){
+                if(pq.isEmpty()||point.height>pq.peek()){
+                    int[] key={point.val,point.height};
+                    res.add(key);
                 }
-                heights.add(p.height);
+                pq.offer(point.height);
             }
             else{
-                if(p.height==heights.peek()){
-                    heights.poll();
-                    if(heights.isEmpty()||p.height>heights.peek()){
-                        int[] keyPoint=new int[2];
-                    keyPoint[0]=p.val;
-                    keyPoint[1]=heights.isEmpty()?0:heights.peek();
-                    res.add(keyPoint);
+                if(point.height==pq.peek()){
+                    pq.poll();
+                    if(pq.isEmpty()||point.height>pq.peek()){
+                        int[] keyPoint = new int[2];
+	                    keyPoint[0] = point.val;
+	                    keyPoint[1] = pq.isEmpty() ? 0 : pq.peek();
+	                    res.add(keyPoint);
                     }
+                    
                 }
                 else
-                    heights.remove(p.height);
+                    pq.remove(point.height);
             }
+            
         }
         return res;
     }
-    
 }
