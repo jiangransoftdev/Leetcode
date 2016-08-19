@@ -1,14 +1,14 @@
 public class Solution {
     public int calculate(String s) {
         if(s.length()==0) return 0;
-        int i=0;
-        char sign='+';
         Stack<Integer> sta=new Stack<>();
+        char sign='+';
+        int i=0;
         while(i<s.length()){
             int num=0;
-            while(i<s.length()&&((s.charAt(i)>=48&&s.charAt(i)<=57)||s.charAt(i)==' ')){
+            while(i<s.length()&&((s.charAt(i)>='0'&&s.charAt(i)<='9')||s.charAt(i)==' ')){
                 if(s.charAt(i)!=' ')
-                    num=num*10+s.charAt(i)-'0';
+                    num=num*10+(s.charAt(i)-'0');
                 i++;
             }
             switch(sign){
@@ -23,9 +23,8 @@ public class Solution {
             i++;
         }
         int res=0;
-        for(int j:sta){
-            res+=j;
-        }
+        for(int num:sta)
+            res+=num;
         return res;
     }
 }
