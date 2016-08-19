@@ -12,18 +12,18 @@ Given an array of integers, find out whether there are two distinct indices _i_ 
 
 <div>
 
-<div id="company_tags" class="btn btn-xs btn-warning">Hide Company Tags</div>
+<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
 
-<span class="hidebutton" style="display: inline;">[Airbnb](/company/airbnb/) [Palantir](/company/palantir/)</span></div>
-
-<div>
-
-<div id="tags" class="btn btn-xs btn-warning">Hide Tags</div>
-
-<span class="hidebutton" style="display: inline;">[Binary Search Tree](/tag/binary-search-tree/)</span></div>
+<span class="hidebutton">[Airbnb](/company/airbnb/) [Palantir](/company/palantir/)</span></div>
 
 <div>
 
-<div id="similar" class="btn btn-xs btn-warning">Hide Similar Problems</div>
+<div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
 
-<span class="hidebutton" style="display: inline;">[(E) Contains Duplicate](/problems/contains-duplicate/) [(E) Contains Duplicate II](/problems/contains-duplicate-ii/)</span></div>
+<span class="hidebutton">[Binary Search Tree](/tag/binary-search-tree/)</span></div>
+
+<div>
+
+<div id="similar" class="btn btn-xs btn-warning">Show Similar Problems</div>
+
+<span class="hidebutton">[(E) Contains Duplicate](/problems/contains-duplicate/) [(E) Contains Duplicate II](/problems/contains-duplicate-ii/)</span></div>
