@@ -1,12 +1,12 @@
 public class Solution {
     public List<String> addOperators(String num, int target) {
-        List<String> res=new ArrayList<>();
         StringBuilder sb=new StringBuilder();
-        helper(num,target,0,0,sb,res);
+        List<String> res=new ArrayList<>();
+        helper(num,target,sb,0,0,res);
         return res;
     }
-    public void helper(String num,int target,long cur,long pre,StringBuilder sb,List<String> res){
-        if(num.length()==0&&cur==target){
+    public void helper(String num,int target,StringBuilder sb,long cur,long pre,List<String> res){
+        if(cur==target&&num.length()==0){
             res.add(sb.toString());
             return;
         }
@@ -14,19 +14,19 @@ public class Solution {
             String curstr=num.substring(0,i);
             if(curstr.length()>1&&curstr.charAt(0)=='0')
                 return;
-            long curnum=Long.parseLong(curstr);
             String next=num.substring(i);
             int len=sb.length();
+            long curnum=Long.parseLong(curstr);
             if(sb.length()!=0){
-                helper(next,target,cur-pre+pre*curnum,pre*curnum,sb.append("*").append(curstr),res);
+                helper(next,target,sb.append("*").append(curstr),cur-pre+pre*curnum,pre*curnum,res);
                 sb.setLength(len);
-                helper(next,target,cur+curnum,curnum,sb.append("+").append(curstr),res);
+                helper(next,target,sb.append("-").append(curstr),cur-curnum,-curnum,res);
                 sb.setLength(len);
-                helper(next,target,cur-curnum,-curnum,sb.append("-").append(curstr),res);
+                helper(next,target,sb.append("+").append(curstr),cur+curnum,curnum,res);
                 sb.setLength(len);
             }
             else{
-                helper(next,target,curnum,curnum,sb.append(curstr),res);
+                helper(next,target,sb.append(curstr),curnum,curnum,res);
                 sb.setLength(len);
             }
         }
