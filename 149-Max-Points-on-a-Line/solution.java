@@ -10,12 +10,11 @@
 public class Solution {
     public int maxPoints(Point[] points) {
         if(points.length<=2) return points.length;
-        int m=points.length,res=0;
-        for(int i=0;i<m;i++){
-            int count=0;
-            int dup=0;
+        int res=0;
+        for(int i=0;i<points.length;i++){
             Point p=points[i];
-            for(int j=i+1;j<m;j++){
+            int count=0,dup=0;
+            for(int j=i+1;j<points.length;j++){
                 Point q=points[j];
                 if(p.x==q.x&&p.y==q.y){
                     dup++;
@@ -23,16 +22,17 @@ public class Solution {
                     continue;
                 }
                 count=1;
-                for(int k=j+1;k<m;k++){
+                for(int k=j+1;k<points.length;k++){
                     Point r=points[k];
-                    count+=(isColinear(p,q,r))?1:0;
+                    count+=coLinear(p,q,r)?1:0;
                 }
                 res=Math.max(res,count+dup+1);
             }
         }
         return res;
     }
-    public boolean isColinear(Point p,Point q,Point r){
-        return (p.y-q.y)*(q.x-r.x)==(p.x-q.x)*(q.y-r.y);
+    public boolean coLinear(Point p,Point q,Point r){
+        int val=(p.x-q.x)*(q.y-r.y)-(q.x-r.x)*(p.y-q.y);
+        return val==0;
     }
 }
