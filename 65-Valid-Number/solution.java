@@ -3,7 +3,7 @@ public class Solution {
         int start=0,end=s.length()-1;
         while(start<end&&s.charAt(start)==' ')
             start++;
-        while(end>=start+1&&s.charAt(end)==' ')
+        while(end>start&&s.charAt(end)==' ')
             end--;
         if(end-start==0&&(s.charAt(start)>'9'||s.charAt(start)<'0')) return false;
         if(s.charAt(start)=='+'||s.charAt(start)=='-'){
