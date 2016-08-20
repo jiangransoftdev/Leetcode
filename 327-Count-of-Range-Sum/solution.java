@@ -1,38 +1,25 @@
 public class Solution {
     public int countRangeSum(int[] nums, int lower, int upper) {
-        List<Long> cand=new ArrayList<>();
-        cand.add(Long.MIN_VALUE);
-        cand.add(0l);
-        long[] sum=new long[nums.length+1];
-        for(int i=1;i<sum.length;i++){
-            sum[i]=sum[i-1]+nums[i-1];
-            cand.add(sum[i]);
-            cand.add(sum[i-1]+lower-1);
-            cand.add(sum[i-1]+upper);
-        }
-        Collections.sort(cand);
-        int[] bit=new int[cand.size()];
-        for(int i=0;i<sum.length;i++) plus(bit,Collections.binarySearch(cand,sum[i]),1);
-        int ans=0;
-        for(int i=1;i<sum.length;i++){
-            plus(bit,Collections.binarySearch(cand,sum[i-1]),-1);
-            ans+=get(bit,Collections.binarySearch(cand,sum[i-1]+upper));
-            ans-=get(bit,Collections.binarySearch(cand,sum[i-1]+lower-1));
-        }
-        return ans;
+        int n=nums.length;
+        long[] sum=new long[n+1];
+        for(int i=0;i<n;i++)
+            sum[i+1]=nums[i]+sum[i];
+        return countWhileMergeSort(sum,0,n+1,lower,upper);
     }
-    public void plus(int[] bit,int i,int val){
-        while(i<bit.length){
-            bit[i]+=val;
-            i+=i&-i;
+    public int countWhileMergeSort(long[] sum,int start,int end,int lower,int upper){
+        if(end-start<=1) return 0;
+        int mid=start+(end-start)/2;
+        int count=countWhileMergeSort(sum,start,mid,lower,upper)+countWhileMergeSort(sum,mid,end,lower,upper);
+        int j=mid,k=mid,t=mid;
+        long[] cache=new long[end-start];
+        for(int i=start,r=0;i<mid;i++,r++){
+            while(j<end&&sum[j]-sum[i]<lower)j++;
+            while(k<end&&sum[k]-sum[i]<=upper)k++;
+            while(t<end&&sum[t]<sum[i])cache[r++]=sum[t++];
+            cache[r]=sum[i];
+            count+=k-j;
         }
-    }
-    public int get(int[] bit,int i){
-        int sum=0;
-        while(i>0){
-            sum+=bit[i];
-            i-=i&-i;
-        }
-        return sum;
+        System.arraycopy(cache, 0, sum, start, t - start);
+        return count;
     }
 }
