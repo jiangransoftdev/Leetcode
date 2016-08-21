@@ -1,69 +1,65 @@
+class Node{
+    String str;
+    LinkedList<Node> prev;
+    int dist;
+    public Node(String str,int dist){
+        this.str=str;
+        this.dist=dist;
+        this.prev=new LinkedList<>();
+    }
+}
 public class Solution {
     public List<List<String>> findLadders(String beginWord, String endWord, Set<String> wordList) {
         List<List<String>> res=new ArrayList<>();
-        Map<String,List<String>> neighbors=new HashMap<>();
-        Map<String,Integer> distance=new HashMap<>();
-        List<String> solu=new ArrayList<>();
+        Map<String,Node> map=new HashMap<>();
+        Queue<String> q=new LinkedList<>();
         wordList.add(endWord);
-        Bfs(beginWord,endWord,wordList,neighbors,distance);
-        Dfs(beginWord,endWord,wordList,neighbors,distance,solu,res);
-        return res; 
-    }
-    public void Bfs(String start, String end, Set<String> dict, Map<String, List<String>> nodeNeighbors, Map<String, Integer> distance){
-        for(String str:dict)
-            nodeNeighbors.put(str,new ArrayList<>());
-        Queue<String> queue=new LinkedList<>();
-        queue.offer(start);
-        distance.put(start,0);
-        while(!queue.isEmpty()){
-            int count=queue.size();
-            Boolean foundEnd=false;
-            for(int i=0;i<count;i++){
-                 String cur=queue.poll();
-                 int curDistance=distance.get(cur);
-                 List<String> neighbors=getNeighbors(cur,dict);
-                 for(String neighbor:neighbors){
-                     nodeNeighbors.get(cur).add(neighbor);
-                     if(!distance.containsKey(neighbor)){
-                         distance.put(neighbor,curDistance+1);
-                         if(end.equals(neighbor))
-                            foundEnd=true;
-                         else queue.offer(neighbor);
-                     }
-                     
-                 }
+        Node startnode=new Node(beginWord,1);
+        map.put(beginWord,startnode);
+        q.offer(beginWord);
+        while(!q.isEmpty()){
+            String str=q.poll();
+            if(str.equals(endWord)){
+                getPath(map.get(endWord),new ArrayList<>(),res);
+                return res;
             }
-            if(foundEnd) break;
-        }
-    }
-    public void Dfs(String cur, String end, Set<String> dict,Map<String,List<String>> nodeNeighbors, Map<String, Integer> distance, List<String> solu, List<List<String>> res){
-            solu.add(cur);
-            if(end.equals(cur))
-                res.add(new ArrayList<>(solu));
-            else{
-                List<String> neighbors=nodeNeighbors.get(cur);
-                for(String neighbor:neighbors){
-                    if(distance.get(neighbor)==distance.get(cur)+1)
-                        Dfs(neighbor,end,dict,nodeNeighbors,distance,solu,res);
+            char[] newchar=str.toCharArray();
+            for(int i=0;i<str.length();i++){
+                char old=newchar[i];
+                for(char c='a';c<='z';c++){
+                    newchar[i]=c;
+                    String newstr=new String(newchar);
+                    if(wordList.contains(newstr)){
+                        if(!map.containsKey(newstr)){
+                            Node node=map.get(str);
+                            Node newnode=new Node(newstr,node.dist+1);
+                            newnode.prev.add(node);
+                            map.put(newstr,newnode);
+                            q.offer(newstr);
+                        }
+                        else{
+                            Node node=map.get(str);
+                            Node newnode=map.get(newstr);
+                            if(newnode.dist==node.dist+1)
+                                newnode.prev.add(node);
+                        }
+                    }
                 }
-            }
-            solu.remove(solu.size()-1);
-    }
-    public List<String> getNeighbors(String cur,Set<String> dict){
-        List<String> res=new ArrayList<>();
-        char[] chs=cur.toCharArray();
-        for(int i=0;i<chs.length;i++){
-            for(char ch='a';ch<='z';ch++){
-                if(chs[i]==ch) continue;
-                char old=chs[i];
-                chs[i]=ch;
-                String another=new String(chs);
-                if(dict.contains(another))
-                    res.add(another);
-                chs[i]=old;
+                newchar[i]=old;
             }
         }
         return res;
-        
+    }
+    public void getPath(Node end,List<String> curpath,List<List<String>> res){
+        if(end==null){
+            res.add(curpath);
+            return;
+        }
+        curpath.add(0,end.str);
+        if(!end.prev.isEmpty()){
+            for(Node node:end.prev)
+                getPath(node,new ArrayList<>(curpath),res);
+        }
+        else getPath(null,new ArrayList<>(curpath),res);
     }
 }
