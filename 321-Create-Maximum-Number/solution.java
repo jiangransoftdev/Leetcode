@@ -26,7 +26,7 @@ public class Solution {
         return j==num.length||(i<sub.length&&sub[i]>num[j]);
     }
     public int[] merge(int[] nums1,int[] nums2,int k){
-         int[] ans=new int[k];
+        int[] ans=new int[k];
         for(int i=0,j=0,r=0;r<k;r++)
             ans[r]=greater(nums1,i,nums2,j)?nums1[i++]:nums2[j++];
         return ans;
