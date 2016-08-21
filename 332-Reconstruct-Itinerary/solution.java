@@ -5,22 +5,39 @@ public class Solution {
         Map<String,List<String>> map=new HashMap<>();
         int total=tickets.length+1;
         for(int i=0;i<tickets.length;i++){
-            if(map.containsKey(tickets[i][0])){
-                List<String> tmp=map.get(tickets[i][0]);
-                listadd(tickets[i][1],tmp);
-            }
-            else{
+            if(!map.containsKey(tickets[i][0])){
                 List<String> tmp=new ArrayList<>();
                 tmp.add(tickets[i][1]);
                 map.put(tickets[i][0],tmp);
+            }
+            else{
+                List<String> tmp=map.get(tickets[i][0]);
+                listadd(tickets[i][1],tmp);
             }
         }
         res.add("JFK");
         helper("JFK",map,res,total,1);
         return res;
     }
+    public void listadd(String str,List<String> tmp){
+	if(tmp.size()==0){
+		tmp.add(str);
+		return;
+	}
+	int i=0;
+	while(i<tmp.size()){
+		if(str.compareTo(tmp.get(i))<=0){
+			tmp.add(i, str);
+			return;
+		}
+		i++;
+	}
+	tmp.add(str);
+	return;
+}
     public boolean helper(String start,Map<String,List<String>> map,List<String> res,int total,int num){
-        if(num>=total) return true;
+        if(num>=total)
+            return true;
         if(!map.containsKey(start)||map.get(start).size()==0) return false;
         List<String> list=map.get(start);
         int i=0;
@@ -34,21 +51,5 @@ public class Solution {
             i++;
         }
         return false;
-    }
-    public void listadd(String str,List<String> list){
-        if(list.size()==0){
-            list.add(str);
-            return;
-        }
-        int i=0;
-        while(i<list.size()){
-            if(str.compareTo(list.get(i))<=0){
-                list.add(i,str);
-                return;
-            }
-            i++;
-        }
-        list.add(str);
-        return;
     }
 }
