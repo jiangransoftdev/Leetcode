@@ -2,7 +2,7 @@ class TrieNode{
     TrieNode[] next;
     int index;
     List<Integer> list;
-    TrieNode(){
+    public TrieNode(){
         next=new TrieNode[26];
         index=-1;
         list=new ArrayList<>();
@@ -13,40 +13,40 @@ public class Solution {
         List<List<Integer>> res=new ArrayList<>();
         TrieNode root=new TrieNode();
         for(int i=0;i<words.length;i++)
-            addWord(root,words[i],i);
+            addNode(words,i,root);
         for(int i=0;i<words.length;i++)
-            search(words,i,root,res);
+            searchNode(words,i,root,res);
         return res;
     }
-    public void addWord(TrieNode root,String word,int index){
-        for(int i=word.length()-1;i>=0;i--){
-            if(root.next[word.charAt(i)-'a']==null)
-                root.next[word.charAt(i)-'a']=new TrieNode();
-            if(isPalindrome(word,0,i))
-                root.list.add(index);
-            root=root.next[word.charAt(i)-'a'];
+    public void addNode(String[] words,int i,TrieNode root){
+        for(int j=words[i].length()-1;j>=0;j--){
+            int index=words[i].charAt(j)-'a';
+            if(root.next[index]==null)
+                root.next[index]=new TrieNode();
+            if(isPanlindrome(words[i],0,j))
+                root.list.add(i);
+            root=root.next[index];
         }
-        root.list.add(index);
-        root.index=index;
+        root.index=i;
+        root.list.add(i);
     }
-    public void search(String[] words, int i, TrieNode root, List<List<Integer>> res){
-        for(int j=0;j<words[i].length();j++){
-            if(root.index>=0&&root.index!=i&&isPalindrome(words[i],j,words[i].length()-1))
-                res.add(Arrays.asList(i,root.index));
-            root=root.next[words[i].charAt(j)-'a'];
+    public boolean isPanlindrome(String word,int i,int j){
+        while(i<=j){
+            if(word.charAt(i++)!=word.charAt(j--))
+                return false;
+        }
+        return true;
+    }
+    public void searchNode(String[] words,int index,TrieNode root,List<List<Integer>> res){
+        for(int i=0;i<words[index].length();i++){
+            if(root.index>=0&&root.index!=index&&isPanlindrome(words[index],i,words[index].length()-1))
+                res.add(Arrays.asList(index,root.index));
+            root=root.next[words[index].charAt(i)-'a'];
             if(root==null) return;
         }
-        for(int j:root.list){
-            if(i==j) continue;
-            res.add(Arrays.asList(i,j));
+        for(int i:root.list){
+            if(i==index) continue;
+            res.add(Arrays.asList(index,i));
         }
-        
     }
-    public boolean isPalindrome(String word, int i, int j) {
-	while (i < j) {
-		if (word.charAt(i++) != word.charAt(j--)) return false;
-	}
-	
-	return true;
-}
 }
