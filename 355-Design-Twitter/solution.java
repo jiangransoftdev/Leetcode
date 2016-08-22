@@ -20,11 +20,12 @@ public class Twitter {
     /** Compose a new tweet. */
     public void postTweet(int userId, int tweetId) {
         if(!tweetmap.containsKey(userId)){
-            List<Tweets> tmp=new ArrayList<>();
-            tmp.add(new Tweets(count,tweetId));
-            tweetmap.put(userId,tmp);
+            List<Tweets> list=new ArrayList<>();
+            list.add(new Tweets(count,tweetId));
+            tweetmap.put(userId,list);
         }
-        else tweetmap.get(userId).add(new Tweets(count,tweetId));
+        else
+            tweetmap.get(userId).add(new Tweets(count,tweetId));
         count++;
     }
     
@@ -36,44 +37,43 @@ public class Twitter {
                 return tweetmap.get(b[0]).get(b[1]).time-tweetmap.get(a[0]).get(a[1]).time;
             }
         });
-        Set<Integer> followeeset=new HashSet<>();
-        followeeset.add(userId);
+        Set<Integer> followeeSet=new HashSet<>();
+        followeeSet.add(userId);
         if(followmap.containsKey(userId))
-            followeeset.addAll(followmap.get(userId));
-        for(int followee:followeeset){
+            followeeSet.addAll(followmap.get(userId));
+        for(int followee:followeeSet){
             if(tweetmap.containsKey(followee)){
-                List<Tweets> list=tweetmap.get(followee);
-                if(list.size()>0)
-                    pq.offer(new int[]{followee,list.size()-1});
+                List<Tweets> t=tweetmap.get(followee);
+                if(t.size()>0)
+                    pq.offer(new int[]{followee,t.size()-1});
             }
         }
         while(res.size()<10&&pq.size()>0){
-            int[] tmp=pq.poll();
-            res.add(tweetmap.get(tmp[0]).get(tmp[1]).id);
-            tmp[1]--;
-            if(tmp[1]>=0)
-                pq.offer(tmp);
+            int[] i=pq.poll();
+            res.add(tweetmap.get(i[0]).get(i[1]).id);
+            i[1]--;
+            if(i[1]>=0)
+                pq.offer(i);
         }
         return res;
     }
     
     /** Follower follows a followee. If the operation is invalid, it should be a no-op. */
     public void follow(int followerId, int followeeId) {
-        if(followmap.containsKey(followerId))
-            followmap.get(followerId).add(followeeId);
-        else{
-            HashSet<Integer> tmp=new HashSet<>();
-            tmp.add(followeeId);
-            followmap.put(followerId,tmp);
+        if(!followmap.containsKey(followerId)){
+            HashSet<Integer> set=new HashSet<>();
+            set.add(followeeId);
+            followmap.put(followerId,set);
         }
+        else followmap.get(followerId).add(followeeId);
     }
     
     /** Follower unfollows a followee. If the operation is invalid, it should be a no-op. */
     public void unfollow(int followerId, int followeeId) {
-         HashSet<Integer> follow=followmap.get(followerId);
+        HashSet<Integer> follow=followmap.get(followerId);
         if(follow==null){
-        	follow=new HashSet<Integer>();
-        	followmap.put(followerId, follow);
+            follow=new HashSet<>();
+            followmap.put(followerId,follow);
         }
         follow.remove(followeeId);
     }
