@@ -3,7 +3,7 @@ public class Solution {
         if(nums.length==0) return 0;
         int curReach=0,curMax=0,jump=0;
         for(int i=0;i<nums.length;i++){
-            if(curReach<i){
+            if(i>curReach){
                 jump++;
                 curReach=curMax;
             }
