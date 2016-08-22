@@ -7,8 +7,8 @@ public class Solution {
                 else return b[1]-a[1];
             }
         });
-        int[] dp=new int[envelopes.length];
         int len=0;
+        int[] dp=new int[envelopes.length];
         for(int i=0;i<envelopes.length;i++){
             int index=Arrays.binarySearch(dp,0,len,envelopes[i][1]);
             if(index<0)
