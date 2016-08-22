@@ -6,11 +6,8 @@ public class Solution {
             int digit=x%10;
             x/=10;
             res+=x*factor;
-            if(digit==1){
-                res+=n%factor+1;
-            }
-            if(digit>1)
-                res+=factor;
+            if(digit==1) res+=n%factor+1;
+            if(digit>1)  res+=factor;
             factor*=10;
         }while(x>0);
         return res;
