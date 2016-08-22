@@ -1,6 +1,7 @@
 public class Solution {
-    int res;
+    int res=0;
     public int totalNQueens(int n) {
+        if(n==0) return 0;
         int[] row=new int[n];
         helper(n,0,row);
         return res;
@@ -11,15 +12,15 @@ public class Solution {
             return;
         }
         for(int i=0;i<n;i++){
-            row[index]=i;
+             row[index]=i;
             if(isValid(row,index))
                 helper(n,index+1,row);
         }
     }
     public boolean isValid(int[] row,int index){
-        for(int i=0;i<index;i++){
-            if(row[i]==row[index]||index-i==Math.abs(row[i]-row[index])) return false;
-        }
+        for(int i=0;i<index;i++)
+            if(row[index]==row[i]||index-i==Math.abs(row[index]-row[i])) return false;
         return true;
     }
+    
 }
