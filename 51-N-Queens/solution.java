@@ -1,35 +1,36 @@
 public class Solution {
     public List<List<String>> solveNQueens(int n) {
         List<List<String>> res=new ArrayList<>();
-        int[] q=new int[n];
-        helper(n,0,q,res);
+        if(n==0) return res;
+        int[] rows=new int[n];
+        helper(n,0,rows,res);
         return res;
     }
-    public void helper(int n,int index,int[] q,List<List<String>> res){
-        if(index==n){
+    public void helper(int n,int row,int[] rows,List<List<String>> res){
+        if(row==n){
             List<String> solu=new ArrayList<>();
             for(int i=0;i<n;i++){
-                StringBuilder s=new StringBuilder();
+                StringBuilder sb=new StringBuilder();
+                int index=rows[i];
                 for(int j=0;j<n;j++){
-                    if(q[i]==j)
-                        s.append("Q");
-                    else s.append(".");
+                    if(index==j)
+                        sb.append("Q");
+                    else sb.append(".");
                 }
-                solu.add(s.toString());
+                solu.add(sb.toString());
             }
             res.add(solu);
             return;
         }
         for(int i=0;i<n;i++){
-            q[index]=i;
-            if(isValid(q,index))
-                helper(n,index+1,q,res);
+            rows[row]=i;
+            if(isValid(rows,row))
+                helper(n,row+1,rows,res);
         }
     }
-    public boolean isValid(int[] q,int n){
-        for(int i=0;i<n;i++){
-            if(q[i]==q[n]||Math.abs(n-i)==Math.abs(q[i]-q[n])) return false;
-        }
+    public boolean isValid(int[] rows,int row){
+        for(int i=0;i<row;i++)
+            if(rows[row]==rows[i]||row-i==Math.abs(rows[row]-rows[i])) return false;
         return true;
     }
 }
