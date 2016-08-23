@@ -1,10 +1,9 @@
 public class Solution {
     public String minWindow(String s, String t) {
+        int minstart=0,minend=0,minsize=Integer.MAX_VALUE,start=0,end=0,count=t.length();
         int[] found=new int[256],need=new int[256];
-        int minstart=0,minend=0,minsize=Integer.MAX_VALUE,count=t.length();
         for(int i=0;i<t.length();i++)
             need[t.charAt(i)]++;
-        int start=0,end=0;
         while(true){
             if(count==0){
                 while(found[s.charAt(start)]>need[s.charAt(start)]){
@@ -12,8 +11,8 @@ public class Solution {
                     start++;
                 }
                 if(end-start+1<minsize){
-                    minstart=start;
                     minend=end;
+                    minstart=start;
                     minsize=end-start+1;
                 }
             }
