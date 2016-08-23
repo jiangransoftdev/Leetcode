@@ -11,7 +11,7 @@ public class Solution {
         for(int i=1;i<sb.length();i++){
             int j=p[i-1];
             while(j>0&&sb.charAt(i)!=sb.charAt(j)) j=p[j-1];
-            p[i]=j==0?(sb.charAt(i)==sb.charAt(j)?1:0):j+1;
+            p[i]=(j==0)?(sb.charAt(i)==sb.charAt(j)?1:0):j+1;
         }
         return p[p.length-1];
     }
