@@ -9,29 +9,29 @@
 public class Solution {
     public RandomListNode copyRandomList(RandomListNode head) {
         if(head==null) return null;
-        RandomListNode cur=head;
-        while(cur!=null){
-            RandomListNode copy=new RandomListNode(cur.label);
-            copy.next=cur.next;
-            cur.next=copy;
-            cur=cur.next.next;
+        RandomListNode index=head;
+        while(index!=null){
+            RandomListNode dup=new RandomListNode(index.label);
+            dup.next=index.next;
+            index.next=dup;
+            index=index.next.next;
         }
-        cur=head;
-        while(cur!=null){
-            cur.next.random=cur.random==null?null:cur.random.next;
-            cur=cur.next.next;
+        index=head;
+        while(index!=null){
+            index.next.random=index.random==null?null:index.random.next;
+            index=index.next.next;
         }
-        cur=head;
-        RandomListNode dup=cur==null?null:cur.next;
-        while(cur!=null){
-            RandomListNode tmp=cur.next;
-            cur.next=tmp.next;
+        index=head;
+        RandomListNode dup=index==null?null:index.next;
+        
+        while(index!=null){
+            RandomListNode tmp=index.next;
+            index.next=tmp.next;
             if(tmp.next!=null)
-                tmp.next=tmp.next.next;
-            cur=cur.next;
+                tmp.next=index.next.next;
+            index=index.next;
         }
         return dup;
-        
         
     }
 }
