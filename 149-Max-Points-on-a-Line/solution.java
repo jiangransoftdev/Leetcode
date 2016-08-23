@@ -24,15 +24,16 @@ public class Solution {
                 count=1;
                 for(int k=j+1;k<points.length;k++){
                     Point r=points[k];
-                    count+=coLinear(p,q,r)?1:0;
+                    if(isColinear(p,q,r))
+                        count++;
                 }
                 res=Math.max(res,count+dup+1);
             }
         }
         return res;
     }
-    public boolean coLinear(Point p,Point q,Point r){
-        int val=(p.x-q.x)*(q.y-r.y)-(q.x-r.x)*(p.y-q.y);
+    public boolean isColinear(Point p,Point q,Point r){
+        int val=(q.y-r.y)*(p.x-q.x)-(q.x-r.x)*(p.y-q.y);
         return val==0;
     }
 }
