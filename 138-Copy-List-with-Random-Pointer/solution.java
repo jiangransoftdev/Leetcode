@@ -22,7 +22,7 @@ public class Solution {
             index=index.next.next;
         }
         index=head;
-        RandomListNode dup=index==null?null:index.next;
+        RandomListNode dup=index.next;
         
         while(index!=null){
             RandomListNode tmp=index.next;
