@@ -23,7 +23,7 @@ public class Solution {
             if(root==null){
                 prev=dummy;
                 root=prev.next;
-                dummy.next=null;
+                prev.next=null;
             }
         }
     }
