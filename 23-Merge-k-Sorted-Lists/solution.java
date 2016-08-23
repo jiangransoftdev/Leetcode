@@ -8,32 +8,32 @@
  */
 public class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
+        if(lists.length==0) return null;
         return helper(lists,0,lists.length-1);
     }
-    public ListNode helper(ListNode[] lists,int s,int e){
-        if(s>e) return null;
-        if(s==e) return lists[s];
-        int m=s+(e-s)/2;
-        ListNode left=helper(lists,s,m);
-        ListNode right=helper(lists,m+1,e);
-        return combine(left,right);
-    }
-    public ListNode combine(ListNode left,ListNode right){
-        ListNode indexl=left,indexr=right;
-        ListNode dummy=new ListNode(0),index=dummy;
-        while(indexl!=null&&indexr!=null){
-            if(indexl.val<=indexr.val){
-                index.next=indexl;
-                indexl=indexl.next;
+    public ListNode helper(ListNode[] lists,int start,int end){
+        if(start>end) return null;
+        if(start==end) return lists[start];
+        int mid=start+(end-start)/2;
+        ListNode left=helper(lists,start,mid);
+        ListNode right=helper(lists,mid+1,end);
+        ListNode dummy=new ListNode(0);
+        ListNode l=left,r=right,index=dummy;
+        while(l!=null&&r!=null){
+            if(l.val<r.val){
+                index.next=l;
+                l=l.next;
             }
             else{
-                index.next=indexr;
-                indexr=indexr.next;
+                index.next=r;
+                r=r.next;
             }
             index=index.next;
+            
         }
-        if(indexl!=null) index.next=indexl;
-        if(indexr!=null) index.next=indexr;
+        if(l!=null) index.next=l;
+        if(r!=null) index.next=r;
         return dummy.next;
     }
+    
 }
