@@ -22,12 +22,12 @@ return `[1,6],[8,10],[15,18]`.
 
 <div>
 
-<div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
+<div id="tags" class="btn btn-xs btn-warning">Hide Tags</div>
 
-<span class="hidebutton">[Array](/tag/array/) [Sort](/tag/sort/)</span></div>
+<span class="hidebutton" style="display: inline;">[Array](/tag/array/) [Sort](/tag/sort/)</span></div>
 
 <div>
 
-<div id="similar" class="btn btn-xs btn-warning">Show Similar Problems</div>
+<div id="similar" class="btn btn-xs btn-warning">Hide Similar Problems</div>
 
-<span class="hidebutton">[(H) Insert Interval](/problems/insert-interval/) [(E) Meeting Rooms](/problems/meeting-rooms/) [(M) Meeting Rooms II](/problems/meeting-rooms-ii/)</span></div>
+<span class="hidebutton" style="display: inline;">[(H) Insert Interval](/problems/insert-interval/) [(E) Meeting Rooms](/problems/meeting-rooms/) [(M) Meeting Rooms II](/problems/meeting-rooms-ii/)</span></div>
