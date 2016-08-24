@@ -10,16 +10,16 @@ public class Solution {
         return res;
     }
     public int helper(int[][] matrix,int i,int j,int[][] len,int pre){
-        if(i<0||i>=matrix.length||j<0||j>=matrix[0].length||matrix[i][j]<=pre)
-            return 0;
+        
+        if(i<0||i>=matrix.length||j<0||j>=matrix[0].length||matrix[i][j]<pre) return 0;
         if(len[i][j]>0) return len[i][j];
         int count=0;
-        pre=matrix[i][j];
-        count=Math.max(count,helper(matrix,i-1,j,len,pre));
-        count=Math.max(count,helper(matrix,i+1,j,len,pre));
-        count=Math.max(count,helper(matrix,i,j-1,len,pre));
-        count=Math.max(count,helper(matrix,i,j+1,len,pre));
-        len[i][j]=++count;
+        if(i>0&&matrix[i-1][j]>matrix[i][j]) count=Math.max(count,helper(matrix,i-1,j,len,matrix[i][j]));
+        if(i<matrix.length-1&&matrix[i+1][j]>matrix[i][j])count=Math.max(count,helper(matrix,i+1,j,len,matrix[i][j]));
+        if(j>0&&matrix[i][j-1]>matrix[i][j])count=Math.max(count,helper(matrix,i,j-1,len,matrix[i][j]));
+        if(j<matrix[0].length-1&&matrix[i][j+1]>matrix[i][j])count=Math.max(count,helper(matrix,i,j+1,len,matrix[i][j]));
+        count++;
+        len[i][j]=count;
         return count;
     }
 }
