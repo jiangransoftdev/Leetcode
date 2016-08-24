@@ -3,6 +3,7 @@ public class RandomizedSet {
     /** Initialize your data structure here. */
     public RandomizedSet() {
         set=new HashSet<>();
+        
     }
     
     /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
