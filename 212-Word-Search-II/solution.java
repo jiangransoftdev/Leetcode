@@ -8,44 +8,43 @@ class TrieNode{
 public class Solution {
     public List<String> findWords(char[][] board, String[] words) {
         List<String> res=new ArrayList<>();
-        int m=board.length;
-        if(m==0) return res;
-        int n=board[0].length;
-        TrieNode p=build(words);
+        if(words.length==0) return res;
+        TrieNode root=build(words);
+        int m=board.length,n=board[0].length;
         for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++){
-                helper(board,i,j,p,res);
-            }
+            for(int j=0;j<n;j++)
+                helper(board,i,j,root,res);
         }
         return res;
     }
-    public void helper(char[][] board,int i,int j,TrieNode p,List<String> res){
+    public void helper(char[][] board,int i,int j,TrieNode root,List<String> res){
+        if(i<0||j<0||i>=board.length||j>=board[0].length) return;
         char c=board[i][j];
-        if(c=='#'||p.child[c-'a']==null) return;
+        if(c=='#'||root.child[c-'a']==null) return;
         board[i][j]='#';
-        p=p.child[c-'a'];
-        if(p.word!=null){
-            res.add(p.word);
-            p.word=null;
+        root=root.child[c-'a'];
+        if(root.word!=null){
+            res.add(root.word);
+            root.word=null;
         }
-        if(i>0) helper(board,i-1,j,p,res);
-        if(i<board.length-1) helper(board,i+1,j,p,res);
-        if(j>0) helper(board,i,j-1,p,res);
-        if(j<board[0].length-1) helper(board,i,j+1,p,res);
+        helper(board,i-1,j,root,res);
+        helper(board,i+1,j,root,res);
+        helper(board,i,j-1,root,res);
+        helper(board,i,j+1,root,res);
         board[i][j]=c;
     }
     public TrieNode build(String[] words){
         TrieNode root=new TrieNode();
-        for(String str:words){
+        for(int i=0;i<words.length;i++){
             TrieNode p=root;
-            for(int i=0;i<str.length();i++){
-            int index=str.charAt(i)-'a';
-            if(p.child[index]==null){
-                p.child[index]=new TrieNode();
+            String word=words[i];
+            for(int j=0;j<word.length();j++){
+                int index=word.charAt(j)-'a';
+                if(p.child[index]==null)
+                    p.child[index]=new TrieNode();
+                p=p.child[index];
             }
-            p=p.child[index];
-        }
-        p.word=str;
+            p.word=word;
         }
         return root;
     }
