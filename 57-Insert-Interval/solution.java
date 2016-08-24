@@ -9,32 +9,29 @@
  */
 public class Solution {
     public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
-        List<Interval> ans = new ArrayList<Interval>();  
-        // insert newInterval by binary searching  
-        int l = 0;  
-        int r = intervals.size() - 1;  
-        while (l <= r) {  
-            int mid = (l + r) >> 1;  
-            if (intervals.get(mid).start > newInterval.start) {  
-                r = mid - 1;  
-            } else {  
-                l = mid + 1;  
-            }  
-        }  
-        intervals.add(l, newInterval);
-        int start = intervals.get(0).start;  
-        int end = intervals.get(0).end;  
-        for (int i = 1; i < intervals.size(); i++) {  
-            Interval inter = intervals.get(i);  
-            if (inter.start > end) {  
-                ans.add(new Interval(start, end));  
-                start = inter.start;  
-                end = inter.end;  
-            } else {  
-                end = Math.max(end, inter.end);  
-            }  
-        }  
-        ans.add(new Interval(start, end));  
-        return ans;  
+        List<Interval> res=new ArrayList<>();
+        int newstart=newInterval.start,newend=newInterval.end,l=0,h=intervals.size()-1;
+        while(l<=h){
+            int m=l+(h-l)/2;
+            if(intervals.get(m).start<newstart)
+                l=m+1;
+            else h=m-1;
+        }
+        intervals.add(l,newInterval);
+        int start=intervals.get(0).start,end=intervals.get(0).end;
+        for(int i=1;i<intervals.size();i++){
+            int tmps=intervals.get(i).start;
+            int tmpe=intervals.get(i).end;
+            if(tmps<=end&&tmpe>end){
+                end=tmpe;
+            }
+            else if(tmps>end){
+                res.add(new Interval(start,end));
+                start=tmps;
+                end=tmpe;
+            }
+        }
+        res.add(new Interval(start,end));
+        return res;
     }
 }
