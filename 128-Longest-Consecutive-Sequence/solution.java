@@ -2,14 +2,15 @@ class UF{
     int[] id;
     int[] sz;
     int max;
-    public UF(int n){
-        id=new int[n];
-        sz=new int[n];
+    public UF(int num){
+        id=new int[num];
+        sz=new int[num];
         max=1;
-        for(int i=0;i<n;i++){
-            id[i]=i;
+        for(int i=0;i<num;i++){
+             id[i]=i;
             sz[i]=1;
         }
+           
     }
     public int find(int p){
         while(id[p]!=p){
@@ -19,35 +20,34 @@ class UF{
         return p;
     }
     public boolean isConnect(int p,int q){
-        if(find(p)==find(q)) return true;
-        return false;
+        return find(p)==find(q);
     }
-    public void connect(int p,int q){
+    public void union(int p,int q){
         int i=find(p);
         int j=find(q);
         if(i==j) return;
-        if(sz[i]>sz[j]){
-            id[j]=i;
-            sz[i]+=sz[j];
-            max=Math.max(max,sz[i]);
-        }
-        else{
+        if(sz[i]<sz[j]){
             id[i]=j;
             sz[j]+=sz[i];
             max=Math.max(max,sz[j]);
+        }
+        else{
+            id[j]=i;
+            sz[i]+=sz[j];
+            max=Math.max(max,sz[i]);
         }
     }
 }
 public class Solution {
     public int longestConsecutive(int[] nums) {
         if(nums.length==0) return 0;
-        UF uf=new UF(nums.length);
         Map<Integer,Integer> map=new HashMap<>();
+        UF uf=new UF(nums.length);
         for(int i=0;i<nums.length;i++){
             if(map.containsKey(nums[i])) continue;
             map.put(nums[i],i);
-            if(map.containsKey(nums[i]+1)) uf.connect(i,map.get(nums[i]+1));
-            if(map.containsKey(nums[i]-1)) uf.connect(i,map.get(nums[i]-1));
+            if(map.containsKey(nums[i]-1)) uf.union(i,map.get(nums[i]-1));
+            if(map.containsKey(nums[i]+1)) uf.union(i,map.get(nums[i]+1));
         }
         return uf.max;
     }
