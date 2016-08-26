@@ -1,33 +1,32 @@
 public class Solution {
     public List<String> addOperators(String num, int target) {
-        StringBuilder sb=new StringBuilder();
         List<String> res=new ArrayList<>();
-        helper(num,target,sb,0,0,res);
+        if(num.length()==0) return res;
+        helper(num,target,0,0,new StringBuilder(),res);
         return res;
     }
-    public void helper(String num,int target,StringBuilder sb,long cur,long pre,List<String> res){
+    public void helper(String num,int target,long cur,long pre,StringBuilder solu,List<String> res){
         if(cur==target&&num.length()==0){
-            res.add(sb.toString());
+            res.add(solu.toString());
             return;
         }
         for(int i=1;i<=num.length();i++){
             String curstr=num.substring(0,i);
-            if(curstr.length()>1&&curstr.charAt(0)=='0')
-                return;
-            String next=num.substring(i);
-            int len=sb.length();
+            if(curstr.length()>1&&curstr.charAt(0)=='0') return;
             long curnum=Long.parseLong(curstr);
-            if(sb.length()!=0){
-                helper(next,target,sb.append("*").append(curstr),cur-pre+pre*curnum,pre*curnum,res);
-                sb.setLength(len);
-                helper(next,target,sb.append("-").append(curstr),cur-curnum,-curnum,res);
-                sb.setLength(len);
-                helper(next,target,sb.append("+").append(curstr),cur+curnum,curnum,res);
-                sb.setLength(len);
+            String next=num.substring(i);
+            int len=solu.length();
+            if(len>0){
+                helper(next,target,cur-pre+pre*curnum,pre*curnum,solu.append("*").append(curnum),res);
+                solu.setLength(len);
+                helper(next,target,cur+curnum,curnum,solu.append("+").append(curnum),res);
+                solu.setLength(len);
+                helper(next,target,cur-curnum,-curnum,solu.append("-").append(curnum),res);
+                solu.setLength(len);
             }
             else{
-                helper(next,target,sb.append(curstr),curnum,curnum,res);
-                sb.setLength(len);
+                helper(next,target,curnum,curnum,solu.append(curnum),res);
+                solu.setLength(len);
             }
         }
     }
