@@ -9,20 +9,21 @@
 public class Solution {
     public ListNode reverseKGroup(ListNode head, int k) {
         int count=0;
-        ListNode index=head;
-        while(index!=null){
+        ListNode cur=head;
+        while(cur!=null&&count<k){
             count++;
-            index=index.next;
-            if(count==k) break;
+            cur=cur.next;
         }
-        if(count<k) return head;
-        index=reverseKGroup(index,k);
-        while(count-->0){
-            ListNode tmp=head.next;
-            head.next=index;
-            index=head;
-            head=tmp;
+        if(count==k){
+            cur=reverseKGroup(cur,k);
+            while(count-->0){
+                ListNode tmp=head.next;
+                head.next=cur;
+                cur=head;
+                head=tmp;
+            }
+            return cur;
         }
-        return index;
+        return head;
     }
 }
