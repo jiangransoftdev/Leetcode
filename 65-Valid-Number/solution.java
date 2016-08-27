@@ -3,11 +3,11 @@ public class Solution {
         int start=0,end=s.length()-1;
         while(start<end&&s.charAt(start)==' ')
             start++;
-        while(end>start&&s.charAt(end)==' ')
+        while(start<end&&s.charAt(end)==' ')
             end--;
         if(end-start==0&&(s.charAt(start)>'9'||s.charAt(start)<'0')) return false;
         if(s.charAt(start)=='+'||s.charAt(start)=='-'){
-            if(s.charAt(start+1)=='.'&&end-start==1)
+            if(end-start==1&&s.charAt(end)=='.')
                 return false;
             start++;
         }
@@ -23,14 +23,14 @@ public class Solution {
                     e=i;
                 else return false;
             }
-            if(e==start||e==end) return false;
+            if(start==e||end==e) return false;
             if(point>e&&e!=-1) return false;
-            if(point==start&&e==start+1) return false;
-            if((s.charAt(i) < '0' || s.charAt(i) > '9')  && s.charAt(i) !='.' && s.charAt(i) != 'e' ){
-			    if((s.charAt(i)=='+'||s.charAt(i)=='-')&&e==i-1&&i!=end){}
-			    else return false;
+            if(start==point&&start+1==e) return false;
+            if((s.charAt(i)>'9'||s.charAt(i)<'0')&&s.charAt(i)!='.'&&s.charAt(i)!='e'){
+                if((s.charAt(i)=='+'||s.charAt(i)=='-')&&i-1==e&&i!=end){}
+                else return false;
             }
-		}
-		return true;
         }
+        return true;
+    }
 }
