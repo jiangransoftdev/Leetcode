@@ -1,29 +1,28 @@
 public class Solution {
     public int[] maxNumber(int[] nums1, int[] nums2, int k) {
-     int n=nums1.length;
-     int m=nums2.length;
-     int[] ans=new int[k];
-     for(int i=Math.max(0,k-m);i<=n&&i<=k;i++){
-        int[] sub=merge(maxArray(nums1,i),maxArray(nums2,k-i),k);
-        if(greater(sub,0,ans,0)) ans=sub;
+        int m=nums1.length,n=nums2.length;
+        int[] res=new int[k];
+        for(int i=Math.max(0,k-n);i<=k&&i<=m;i++){
+            int[] sub=merge(maxArray(nums1,i),maxArray(nums2,k-i),k);
+            res=greater(sub,0,res,0)?sub:res;
         }
-    return ans;
+        return res;
     }
     public int[] maxArray(int[] nums,int k){
         int n=nums.length;
-        int[] ans=new int[k];
+        int[] res=new int[k];
         for(int i=0,j=0;i<n;i++){
-            while(j>0&&n-i>k-j&&nums[i]>ans[j-1]) j--;
-            if(j<k) ans[j++]=nums[i];
+            while(n-i>k-j&&j>0&&nums[i]>res[j-1]) j--;
+            if(j<k) res[j++]=nums[i];
         }
-        return ans;
+        return res;
     }
-    public boolean greater(int[] sub,int i,int[] num,int j){
-        while(i<sub.length&&j<num.length&&sub[i]==num[j]){
+    public boolean greater(int[] nums1,int i,int[] nums2,int j){
+        while(i<nums1.length&&j<nums2.length&&nums1[i]==nums2[j]){
             i++;
             j++;
         }
-        return j==num.length||(i<sub.length&&sub[i]>num[j]);
+        return j==nums2.length||(i<nums1.length&&nums1[i]>nums2[j]);
     }
     public int[] merge(int[] nums1,int[] nums2,int k){
         int[] ans=new int[k];
