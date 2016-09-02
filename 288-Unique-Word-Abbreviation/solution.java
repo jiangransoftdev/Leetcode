@@ -4,8 +4,6 @@ public class ValidWordAbbr {
         map = new HashMap<String, String>();
         for(String str:dictionary){
             String key = getKey(str);
-            // If there is more than one string belong to the same key
-            // then the key will be invalid, we set the value to ""
             if(map.containsKey(key)){
                 if(!map.get(key).equals(str)){
                     map.put(key, "");
