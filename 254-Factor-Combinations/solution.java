@@ -1,21 +1,24 @@
 public class Solution {
     public List<List<Integer>> getFactors(int n) {
-        List<List<Integer>> res=new ArrayList<>();
-        if(n<=2) return res;
-        helper(n,n,2,new ArrayList<>(),res);
-        return res;
-    }
-    public void helper(int n,int origin,int j,List<Integer> solu,List<List<Integer>> res){
-        if(n==1){
-            res.add(new ArrayList(solu));
-            return;
+    List<List<Integer>> result = new ArrayList<List<Integer>>();
+    helper(result, new ArrayList<Integer>(), n, 2);
+    return result;
+}
+
+public void helper(List<List<Integer>> result, List<Integer> item, int n, int start){
+    if (n <= 1) {
+        if (item.size() > 1) {
+            result.add(new ArrayList<Integer>(item));
         }
-        for(int i=j;i<=n;i++){
-            if(n%i==0&&i!=origin){
-                solu.add(i);
-                helper(n/i,origin,i,solu,res);
-                solu.remove(solu.size()-1);
-            }
+        return;
+    }
+    
+    for (int i = start; i <= n; ++i) {
+        if (n % i == 0) {
+            item.add(i);
+            helper(result, item, n/i, i);
+            item.remove(item.size()-1);
         }
     }
+}
 }
