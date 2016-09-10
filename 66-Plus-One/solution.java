@@ -1,6 +1,5 @@
 public class Solution {
     public int[] plusOne(int[] digits) {
-        if(digits.length==0) return new int[]{1};
         int add=1;
         for(int i=digits.length-1;i>=0;i--){
             int digit=(digits[i]+add)%10;
