@@ -1,60 +1,31 @@
-class Event implements Comparable<Event> {
-	int time;
-	int[] rect;
-
-	public Event(int time, int[] rect) {
-		this.time = time;
-		this.rect = rect;
-	}
-	
-	public int compareTo(Event that) {
-		if (this.time != that.time) return this.time - that.time;
-		else return this.rect[0] - that.rect[0];
-	}
-}
 public class Solution {
     public boolean isRectangleCover(int[][] rectangles) {
-        PriorityQueue<Event> pq = new PriorityQueue<Event> ();
-	        // border of y-intervals
-		int[] border= {Integer.MAX_VALUE, Integer.MIN_VALUE};
-		for (int[] rect : rectangles) {
-			Event e1 = new Event(rect[0], rect);
-			Event e2 = new Event(rect[2], rect);
-			pq.add(e1);
-			pq.add(e2);
-			if (rect[1] < border[0]) border[0] = rect[1];
-			if (rect[3] > border[1]) border[1] = rect[3];
-		}
-		TreeSet<int[]> set = new TreeSet<int[]> (new Comparator<int[]> () {
-			@Override
-	                // if two y-intervals intersects, return 0
-			public int compare (int[] rect1, int[] rect2) {
-				if (rect1[3] <= rect2[1]) return -1;
-				else if (rect2[3] <= rect1[1]) return 1;
-				else return 0;
-			}
-		});
-		int yRange = 0;
-		while (!pq.isEmpty()) {
-			int time = pq.peek().time;
-			while (!pq.isEmpty() && pq.peek().time == time) {
-				Event e = pq.poll();
-				int[] rect = e.rect;
-				if (time == rect[2]) {
-					set.remove(rect);
-					yRange -= rect[3] - rect[1];
-				} else {
-					if (!set.add(rect)) return false;
-					yRange += rect[3] - rect[1];
-				}
-			}
-	                // check intervals' range
-			if (!pq.isEmpty() && yRange != border[1] - border[0]) {
-	                        return false;
-				//if (set.isEmpty()) return false;
-				//if (yRange != border[1] - border[0]) return false;
-			}
-		}
-		return true;
+        Set<String> set=new HashSet<>();
+        int area=0,minx=Integer.MAX_VALUE,maxx=Integer.MIN_VALUE,miny=Integer.MAX_VALUE,maxy=Integer.MIN_VALUE;
+        for(int[] rect:rectangles){
+            minx=Math.min(minx,rect[0]);
+            maxx=Math.max(maxx,rect[2]);
+            miny=Math.min(miny,rect[1]);
+            maxy=Math.max(maxy,rect[3]);
+            area+=(rect[2]-rect[0])*(rect[3]-rect[1]);
+            String t1=rect[0]+","+rect[1];
+            String t2=rect[2]+","+rect[1];
+            String t3=rect[0]+","+rect[3];
+            String t4=rect[2]+","+rect[3];
+            if(set.contains(t1)) set.remove(t1);
+            else set.add(t1);
+            if(set.contains(t2)) set.remove(t2);
+            else set.add(t2);
+            if(set.contains(t3)) set.remove(t3);
+            else set.add(t3);
+            if(set.contains(t4)) set.remove(t4);
+            else set.add(t4);
+        }
+        String t1=minx+","+miny;
+        String t2=minx+","+maxy;
+        String t3=maxx+","+miny;
+        String t4=maxx+","+maxy;
+        if(!set.contains(t1)||!set.contains(t2)||!set.contains(t3)||!set.contains(t4)||set.size()!=4) return false;
+        return (maxx-minx)*(maxy-miny)==area;
     }
 }
