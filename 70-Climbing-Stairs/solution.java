@@ -1,12 +1,13 @@
 public class Solution {
     public int climbStairs(int n) {
-        int one=1,two=1,total=0;
-        if(n<=1) return n;
-        for(int i=2;i<=n;i++){
-            total=one+two;
+        if(n==1) return 1;
+        if(n==2) return 2;
+        int one=1,two=2,res=0;
+        for(int i=3;i<=n;i++){
+            res=one+two;
             one=two;
-            two=total;
+            two=res;
         }
-        return total;
+        return res;
     }
 }
