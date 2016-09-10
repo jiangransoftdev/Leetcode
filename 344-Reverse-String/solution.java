@@ -1,15 +1,15 @@
 public class Solution {
     public String reverseString(String s) {
-        if(s.length()==0) return "";
-        char[] c=s.toCharArray();
         int i=0,j=s.length()-1;
-        while(i<j)
-            swap(c,i++,j--);
-        return new String(c);
+        char[] str=s.toCharArray();
+        while(i<j){
+            swap(str,i++,j--);
+        }
+        return new String(str);
     }
-    public void swap(char[] c,int i,int j){
-        char tmp=c[i];
-        c[i]=c[j];
-        c[j]=tmp;
+    public void swap(char[] str,int i,int j){
+        char tmp=str[i];
+        str[i]=str[j];
+        str[j]=tmp;
     }
 }
