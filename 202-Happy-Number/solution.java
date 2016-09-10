@@ -3,13 +3,13 @@ public class Solution {
         Set<Integer> set=new HashSet<>();
         while(!set.contains(n)){
             set.add(n);
-            int num=0;
+            int sum=0;
             while(n>0){
                 int digit=n%10;
-                num+=digit*digit;
+                sum+=digit*digit;
                 n/=10;
             }
-            n=num;
+            n=sum;
         }
         return n==1;
     }
