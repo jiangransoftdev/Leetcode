@@ -1,22 +1,19 @@
 public class Solution {
     public int threeSumSmaller(int[] nums, int target) {
-        if(nums.length<=2) return 0;
-        int res=0,i=0;
+        int count=0;
         Arrays.sort(nums);
-        while(i<nums.length-2){
-            int start=i+1,end=nums.length-1;
-            while(start<end){
-                if(nums[i]+nums[start]+nums[end]<target){
-                    res+=end-start;
-                    start++;
-                    
-                }
-                else{
-                    end--;
-                }
+        for(int i=0;i<nums.length-2;i++){
+            int l=i+1,h=nums.length-1;
+            while(l<h){
+                int sum=nums[i]+nums[l]+nums[h];
+                if(sum<target){
+                    count+=h-l;
+                    l++;
+                } 
+                else
+                    h--;
             }
-            i++;
         }
-        return res;
+        return count;
     }
 }
