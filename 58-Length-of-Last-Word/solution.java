@@ -1,10 +1,10 @@
 public class Solution {
     public int lengthOfLastWord(String s) {
         String another=s.trim();
-        if(another.length()==0) return 0;
-        int i=0;
-        for(i=another.length()-1;i>=0;i--){
-            if(another.charAt(i)==' ') break;
+        int i=another.length()-1;
+        while(i>=0){
+            if(another.charAt(i)!=' ') i--;
+            else break;
         }
         return another.length()-i-1;
     }
