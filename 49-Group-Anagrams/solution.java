@@ -3,17 +3,13 @@ public class Solution {
         List<List<String>> res=new ArrayList<>();
         if(strs.length==0) return res;
         Map<String,List<String>> map=new HashMap<>();
-        for(String str:strs){
-            char[] c=str.toCharArray();
+        for(String s:strs){
+            char[] c=s.toCharArray();
             Arrays.sort(c);
-            String newstr=new String(c);
-            if(map.containsKey(newstr))
-                map.get(newstr).add(str);
-            else{
-                List<String> list=new ArrayList<>();
-                list.add(str);
-                map.put(newstr,list);
-            }
+            String str=new String(c);
+            if(!map.containsKey(str))
+                map.put(str,new ArrayList<String>());
+            map.get(str).add(s);
         }
         return new ArrayList<List<String>>(map.values());
     }
