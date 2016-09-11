@@ -11,20 +11,20 @@ public class Solution {
         if(l1==null) return l2;
         if(l2==null) return l1;
         ListNode dummy=new ListNode(0);
-        ListNode index=dummy,index1=l1,index2=l2;
-        while(index1!=null&&index2!=null){
-            if(index1.val<=index2.val){
-                index.next=index1;
-                index1=index1.next;
+        ListNode index=dummy;
+        while(l1!=null&&l2!=null){
+            if(l1.val<=l2.val){
+                index.next=l1;
+                l1=l1.next;
             }
             else{
-                index.next=index2;
-                index2=index2.next;
+                index.next=l2;
+                l2=l2.next;
             }
             index=index.next;
         }
-        if(index1!=null) index.next=index1;
-        if(index2!=null) index.next=index2;
+        if(l1!=null) index.next=l1;
+        if(l2!=null) index.next=l2;
         return dummy.next;
     }
 }
