@@ -1,22 +1,22 @@
 public class Solution {
     public int trap(int[] height) {
-        if(height.length==0) return 0;
-        int[] maxl=new int[height.length],maxr=new int[height.length];
-        int max=0,res=0;
-        for(int i=0;i<height.length;i++){
+        int n=height.length,max=0;
+        int[] maxl=new int[n];
+        int[] maxr=new int[n];
+        for(int i=0;i<n;i++){
             maxl[i]=max;
-            max=Math.max(height[i],max);
+            max=Math.max(max,height[i]);
         }
         max=0;
-        for(int i=height.length-1;i>=0;i--){
+        for(int i=n-1;i>=0;i--){
             maxr[i]=max;
-            max=Math.max(height[i],max);
+            max=Math.max(max,height[i]);
         }
-        for(int i=0;i<height.length;i++){
-            int tap=Math.min(maxl[i],maxr[i])-height[i];
-            if(tap>0)
-                res+=tap;
+        int total=0;
+        for(int i=0;i<n;i++){
+            int tapping=Math.min(maxl[i],maxr[i])-height[i];
+            if(tapping>0) total+=tapping; 
         }
-        return res;
+        return total;
     }
 }
