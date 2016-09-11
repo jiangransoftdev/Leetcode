@@ -13,21 +13,18 @@ public class Solution {
         if(intervals.size()==0) return res;
         Collections.sort(intervals,new Comparator<Interval>(){
             public int compare(Interval a,Interval b){
-                if(a.start!=b.start) return a.start-b.start;
-                return a.end-b.end;
+                return a.start-b.start;
             }
         });
         int start=intervals.get(0).start,end=intervals.get(0).end;
         for(int i=1;i<intervals.size();i++){
-            int tmps=intervals.get(i).start;
-            int tmpe=intervals.get(i).end;
-            if(tmps<=end&&tmpe>end){
-                end=tmpe;
-            }
-            else if(tmps>end){
+            int tstart=intervals.get(i).start,tend=intervals.get(i).end;
+            if(tstart<=end&&tend>end)
+                end=tend;
+            else if(tstart>end){
                 res.add(new Interval(start,end));
-                start=tmps;
-                end=tmpe;
+                start=tstart;
+                end=tend;
             }
         }
         res.add(new Interval(start,end));
