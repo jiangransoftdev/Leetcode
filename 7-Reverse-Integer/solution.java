@@ -1,13 +1,14 @@
 public class Solution {
     public int reverse(int x) {
         int sign=x>0?1:-1;
-        long another=Math.abs(x),res=0;
+        long another=Math.abs(x);
+        long reverse=0;
         while(another>0){
-            res=res*10+another%10;
+            reverse=reverse*10+another%10;
             another/=10;
         }
-        res*=sign;
-        if(res>Integer.MAX_VALUE||res<Integer.MIN_VALUE) return 0;
-        return (int)res;
+        
+        if(reverse>Integer.MAX_VALUE) return 0;
+        return (int)reverse*sign;
     }
 }
