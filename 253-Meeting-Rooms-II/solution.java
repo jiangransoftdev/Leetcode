@@ -19,7 +19,7 @@ public class Solution {
         Arrays.sort(start);
         Arrays.sort(end);
         int endidx=0,room=0;
-        for(int i=0;i<intervals.length;i++){
+        for(int i=0;i<start.length;i++){
             if(start[i]<end[endidx])
                 room++;
             else endidx++;
