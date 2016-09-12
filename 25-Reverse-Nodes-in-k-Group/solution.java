@@ -11,8 +11,8 @@ public class Solution {
         int count=0;
         ListNode cur=head;
         while(cur!=null&&count<k){
-            count++;
             cur=cur.next;
+            count++;
         }
         if(count==k){
             cur=reverseKGroup(cur,k);
