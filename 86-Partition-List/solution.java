@@ -8,9 +8,8 @@
  */
 public class Solution {
     public ListNode partition(ListNode head, int x) {
-        if(head==null) return null;
-        ListNode dummy1=new ListNode(0),dummy2=new ListNode(0),index1=dummy1,index2=dummy2;
-        ListNode index=head;
+        ListNode small=new ListNode(0),large=new ListNode(0);
+        ListNode index=head,index1=small,index2=large;
         while(index!=null){
             if(index.val<x){
                 index1.next=index;
@@ -22,8 +21,8 @@ public class Solution {
             }
             index=index.next;
         }
-        index1.next=dummy2.next;
+        index1.next=large.next;
         index2.next=null;
-        return dummy1.next;
+        return small.next;
     }
 }
