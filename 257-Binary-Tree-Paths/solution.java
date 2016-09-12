@@ -13,15 +13,15 @@ public class Solution {
         helper(root,"",res);
         return res;
     }
-    public void helper(TreeNode root,String solu,List<String>res){
+    public void helper(TreeNode root,String s,List<String> res){
         if(root==null) return;
         if(root.left==null&&root.right==null){
-            solu=solu+root.val;
-            res.add(solu);
+            String another=s+root.val;
+            res.add(another);
             return;
         }
-        solu=solu+root.val+"->";
-        helper(root.left,solu,res);
-        helper(root.right,solu,res);
+        String another=s+root.val+"->";
+        helper(root.left,another,res);
+        helper(root.right,another,res);
     }
 }
