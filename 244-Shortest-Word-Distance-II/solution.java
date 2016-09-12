@@ -3,11 +3,9 @@ public class WordDistance {
     public WordDistance(String[] words) {
         map=new HashMap<>();
         for(int i=0;i<words.length;i++){
-            String str=words[i];
-            if(!map.containsKey(str)){
-                map.put(str,new ArrayList<>());
-            }
-            map.get(str).add(i);
+            if(!map.containsKey(words[i]))
+                map.put(words[i],new ArrayList<>());
+            map.get(words[i]).add(i);
         }
     }
 
@@ -18,9 +16,14 @@ public class WordDistance {
         for(int i=0,j=0;i<list1.size()&&j<list2.size();){
             int index1=list1.get(i);
             int index2=list2.get(j);
-            res=Math.min(res,Math.abs(index1-index2));
-            if(index1<index2) i++;
-            else j++;
+            if(index1<index2){
+                res=Math.min(res,index2-index1);
+                i++;
+            }
+            else{
+                res=Math.min(res,index1-index2);
+                j++;
+            }
         }
         return res;
     }
