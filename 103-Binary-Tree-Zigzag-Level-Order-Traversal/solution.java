@@ -16,19 +16,16 @@ public class Solution {
         q.offer(root);
         while(!q.isEmpty()){
             int size=q.size();
-            LinkedList<Integer> tmp=new LinkedList<>();
+            LinkedList<Integer> solu=new LinkedList<>();
             for(int i=0;i<size;i++){
                 TreeNode node=q.poll();
                 if(node.left!=null) q.offer(node.left);
                 if(node.right!=null) q.offer(node.right);
-                if(odd)
-                    tmp.add(node.val);
-                else
-                    tmp.addFirst(node.val);
+                if(odd) solu.add(node.val);
+                else solu.addFirst(node.val);
             }
-            res.add(tmp);
-            if(odd) odd=false;
-            else odd=true;
+            res.add(solu);
+            odd=!odd;
         }
         return res;
     }
