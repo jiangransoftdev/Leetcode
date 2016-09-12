@@ -17,10 +17,13 @@ public class Solution {
         });
         int start=intervals[0].start,end=intervals[0].end;
         for(int i=1;i<intervals.length;i++){
-            int tmps=intervals[i].start,tmpe=intervals[i].end;
-            if(end>tmps) return false;
-            start=tmps;
-            end=tmpe;
+            int tstart=intervals[i].start;
+            int tend=intervals[i].end;
+            if(tstart<end) return false;
+            else{
+                start=tstart;
+                end=tend;
+            }
         }
         return true;
     }
