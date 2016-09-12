@@ -9,10 +9,10 @@ public class Solution {
             if(set1.contains(num))
                 set2.add(num);
         }
-        List<Integer> list=new ArrayList<>(set2);
+        Iterator itr=set2.iterator();
         int[] res=new int[set2.size()];
         for(int i=0;i<res.length;i++)
-            res[i]=list.get(i);
+            res[i]=(int)itr.next();
         return res;
     }
 }
