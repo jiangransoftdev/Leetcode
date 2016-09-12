@@ -20,8 +20,8 @@ public class Solution {
         while(k-->0){
             cur=cur.next;
         }
-        ListNode res=cur.next;
+        head=cur.next;
         cur.next=null;
-        return res;
+        return head;
     }
 }
