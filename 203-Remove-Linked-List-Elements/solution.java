@@ -9,15 +9,13 @@
 public class Solution {
     public ListNode removeElements(ListNode head, int val) {
         if(head==null) return null;
-        ListNode dummy=new ListNode(0),slow=dummy;
+        ListNode dummy=new ListNode(0),index=dummy;
         dummy.next=head;
-        ListNode fast=head;
-        while(fast!=null){
-            if(fast.val==val){
-                slow.next=fast.next;
+        while(index.next!=null){
+            if(index.next.val==val){
+                index.next=index.next.next;
             }
-            else slow=slow.next;
-            fast=fast.next;
+            else index=index.next;
         }
         return dummy.next;
     }
