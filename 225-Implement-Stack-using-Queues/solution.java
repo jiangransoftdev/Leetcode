@@ -8,6 +8,7 @@ class MyStack {
         q.offer(x);
         while(!tmp.isEmpty())
             q.offer(tmp.poll());
+        
     }
 
     // Removes the element on top of the stack.
