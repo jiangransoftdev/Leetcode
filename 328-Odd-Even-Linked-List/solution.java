@@ -8,13 +8,11 @@
  */
 public class Solution {
     public ListNode oddEvenList(ListNode head) {
-        if(head==null||head.next==null) return head;
-        ListNode dummy1=new ListNode(0);
-        ListNode dummy2=new ListNode(0);
-        ListNode index1=dummy1,index2=dummy2,index=head;
-        int count=0;
+        ListNode odd=new ListNode(0),even=new ListNode(0);
+        ListNode index=head,index1=odd,index2=even;
+        int count=1;
         while(index!=null){
-            if(count%2==0){
+            if(count%2!=0){
                 index1.next=index;
                 index1=index1.next;
             }
@@ -25,8 +23,8 @@ public class Solution {
             index=index.next;
             count++;
         }
+        index1.next=even.next;
         index2.next=null;
-        index1.next=dummy2.next;
-        return dummy1.next;
+        return odd.next;
     }
 }
