@@ -14,16 +14,15 @@ public class Solution {
             slow=slow.next;
             fast=fast.next.next;
         }
-        ListNode another=reverse(slow.next);
+        ListNode r=reverse(slow.next);
         slow=head;
-        fast=another;
+        fast=r;
         while(slow!=null&&fast!=null){
             if(slow.val!=fast.val) return false;
             slow=slow.next;
             fast=fast.next;
         }
         return true;
-        
     }
     public ListNode reverse(ListNode head){
         if(head==null||head.next==null) return head;
