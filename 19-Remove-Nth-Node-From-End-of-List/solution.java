@@ -7,19 +7,21 @@
  * }
  */
 public class Solution {
-    int count;
+    int i=0;
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        count=0;
         ListNode dummy=new ListNode(0);
         dummy.next=head;
         helper(dummy,n);
         return dummy.next;
     }
-    public void helper(ListNode head,int n){
-        if(head==null) return;
+    public void helper(ListNode head, int n){
+        if(head==null){
+            i=0;
+            return;
+        }
         helper(head.next,n);
-        count++;
-        if(count==n+1){
+        i++;
+        if(i==n+1){
             head.next=head.next.next;
         }
     }
