@@ -2,19 +2,17 @@ public class Solution {
     public List<List<String>> solveNQueens(int n) {
         List<List<String>> res=new ArrayList<>();
         if(n==0) return res;
-        int[] rows=new int[n];
-        helper(n,0,rows,res);
+        int[] row=new int[n];
+        helper(n,0,row,res);
         return res;
     }
-    public void helper(int n,int row,int[] rows,List<List<String>> res){
-        if(row==n){
+    public void helper(int n,int index,int[] row,List<List<String>> res){
+        if(index==n){
             List<String> solu=new ArrayList<>();
             for(int i=0;i<n;i++){
                 StringBuilder sb=new StringBuilder();
-                int index=rows[i];
                 for(int j=0;j<n;j++){
-                    if(index==j)
-                        sb.append("Q");
+                    if(row[i]==j) sb.append("Q");
                     else sb.append(".");
                 }
                 solu.add(sb.toString());
@@ -23,14 +21,15 @@ public class Solution {
             return;
         }
         for(int i=0;i<n;i++){
-            rows[row]=i;
-            if(isValid(rows,row))
-                helper(n,row+1,rows,res);
+            if(isValid(row,index,i)){
+                row[index]=i;
+                helper(n,index+1,row,res);
+            }
         }
     }
-    public boolean isValid(int[] rows,int row){
-        for(int i=0;i<row;i++)
-            if(rows[row]==rows[i]||row-i==Math.abs(rows[row]-rows[i])) return false;
+    public boolean isValid(int[] row,int index,int i){
+        for(int k=0;k<index;k++)
+            if(row[k]==i||index-k==Math.abs(row[k]-i)) return false;
         return true;
     }
 }
