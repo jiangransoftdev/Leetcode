@@ -7,7 +7,7 @@ public class Solution {
         return res;
     }
     public void helper(int[] nums,int index,List<Integer> solu,List<List<Integer>> res){
-        res.add(new ArrayList<>(solu));
+        res.add(new ArrayList(solu));
         for(int i=index;i<nums.length;i++){
             if(i>index&&nums[i]==nums[i-1]) continue;
             solu.add(nums[i]);
