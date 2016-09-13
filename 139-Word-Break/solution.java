@@ -5,7 +5,7 @@ public class Solution {
             String sub=s.substring(0,i);
             if(wordDict.contains(sub)) dp[i]=true;
             else{
-                for(int j=1;j<i;j++){
+                for(int j=1;j<=i;j++){
                     if(dp[j]&&wordDict.contains(s.substring(j,i))){
                         dp[i]=true;
                         break;
