@@ -16,10 +16,10 @@ public class Solution {
     }
     public void helper(TreeNode root,double target){
         if(root==null) return;
-        if(diff>Math.abs(target-(double)root.val)){
+        if(Math.abs(root.val-target)<diff){
+            diff=Math.abs(root.val-target);
             res=root.val;
-            diff=Math.abs(target-(double)root.val);
-        } 
+        }
         if(root.val==target) return;
         else if(root.val<target) helper(root.right,target);
         else helper(root.left,target);
