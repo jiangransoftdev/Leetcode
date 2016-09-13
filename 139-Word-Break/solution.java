@@ -1,17 +1,19 @@
 public class Solution {
+    Map<String,Boolean> map=new HashMap<>();
     public boolean wordBreak(String s, Set<String> wordDict) {
-        boolean[] dp=new boolean[s.length()+1];
-        for(int i=1;i<=s.length();i++){
+        if(s.length()==0) return true;
+        if(map.containsKey(s)) return map.get(s);
+        for(int i=0;i<=s.length();i++){
             String sub=s.substring(0,i);
-            if(wordDict.contains(sub)) dp[i]=true;
-            else{
-                for(int j=1;j<=i;j++){
-                    if(dp[j]&&wordDict.contains(s.substring(j,i))){
-                        dp[i]=true;
-                    } 
+            if(wordDict.contains(sub)){
+                if(wordBreak(s.substring(i),wordDict)){
+                    map.put(s,true);
+                    return true;
                 }
             }
         }
-        return dp[s.length()];
+        map.put(s,false);
+        return false;
     }
+    
 }
