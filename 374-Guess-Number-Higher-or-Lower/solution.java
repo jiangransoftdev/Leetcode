@@ -5,13 +5,13 @@
 
 public class Solution extends GuessGame {
     public int guessNumber(int n) {
-        int low=1,high=n;
-        while(low<high){
-            int mid=low+(high-low)/2;
-            if(guess(mid)==0) return mid;
-            else if(guess(mid)==-1) high=mid-1;
-            else if(guess(mid)==1) low=mid+1;
+        int i=1,j=n;
+        while(i<j){
+            int m=i+(j-i)/2;
+            if(guess(m)==0) return m;
+            else if(guess(m)==1) i=m+1;
+            else j=m;
         }
-        return low;
+        return i;
     }
 }
