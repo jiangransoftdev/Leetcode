@@ -6,11 +6,13 @@ public class Solution {
         return res;
     }
     public void helper(int[] nums,int index,List<Integer> solu,List<List<Integer>> res){
-        res.add(new ArrayList<>(solu));
-        for(int i=index;i<nums.length;i++){
-            solu.add(nums[i]);
-            helper(nums,i+1,solu,res);
-            solu.remove(solu.size()-1);
+        if(index==nums.length){
+            res.add(new ArrayList(solu));
+            return;
         }
+        solu.add(nums[index]);
+        helper(nums,index+1,solu,res);
+        solu.remove(solu.size()-1);
+        helper(nums,index+1,solu,res);
     }
 }
