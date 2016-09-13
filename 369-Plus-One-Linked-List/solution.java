@@ -9,7 +9,7 @@
 public class Solution {
     int add=1;
     public ListNode plusOne(ListNode head) {
-        helper(head);
+        head=helper(head);
         if(add==1){
             ListNode dummy=new ListNode(1);
             dummy.next=head;
@@ -17,11 +17,13 @@ public class Solution {
         }
         return head;
     }
-    public void helper(ListNode head){
-        if(head==null) return;
+    public ListNode helper(ListNode head){
+        if(head==null) return null;
         helper(head.next);
-        int tmp=head.val;
-        head.val=(tmp+add)%10;
-        add=(tmp+add)/10;
+        int digit=(head.val+add)%10;
+        add=(head.val+add)/10;
+        head.val=digit;
+        return head;
     }
+    
 }
