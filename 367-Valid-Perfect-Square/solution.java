@@ -1,16 +1,17 @@
 public class Solution {
     public boolean isPerfectSquare(int num) {
-        return sqrt(num)*sqrt(num)==num;
+        int root=mySqrt(num);
+        return root*root==num;
     }
-    public int sqrt(int num){
-        if(num==0) return 0;
-        int low=1,high=num;
-        while(low<high){
-            int mid=low+(high-low)/2+1;
-            if(num/mid==mid) return mid;
-            else if(num/mid>mid) low=mid;
-            else high=mid-1;
+    public int mySqrt(int x) {
+        if(x==0) return 0;
+        int l=1,h=x;
+        while(l<=h){
+            int m=l+(h-l)/2;
+            if(m==x/m) return m;
+            else if(m>x/m) h=m-1;
+            else l=m+1;
         }
-        return high;
+        return h;
     }
 }
