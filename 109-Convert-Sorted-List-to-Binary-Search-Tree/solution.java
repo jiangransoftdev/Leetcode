@@ -19,21 +19,26 @@ public class Solution {
     ListNode node;
     public TreeNode sortedListToBST(ListNode head) {
         node=head;
-        ListNode another=head;
-        int count=0;
-        while(another!=null){
-            count++;
-            another=another.next;
+        int size=0;
+        ListNode cur=head;
+        while(cur!=null){
+            cur=cur.next;
+            size++;
         }
-        return helper(0,count-1);
+        return traverse(0,size-1);
     }
-    public TreeNode helper(int s,int e){
-        if(s>e) return null;
-        int m=s+(e-s)/2;
-        TreeNode left=helper(s,m-1);
+    public TreeNode traverse(int start,int end){
+        if(start>end) return null;
+        if(start==end){
+            TreeNode tnode=new TreeNode(node.val);
+            node=node.next;
+            return tnode;
+        }
+        int mid=start+(end-start)/2;
+        TreeNode left=traverse(start,mid-1);
         TreeNode root=new TreeNode(node.val);
         node=node.next;
-        TreeNode right=helper(m+1,e);
+        TreeNode right=traverse(mid+1,end);
         root.left=left;
         root.right=right;
         return root;
