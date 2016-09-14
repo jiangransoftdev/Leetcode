@@ -9,13 +9,14 @@
  */
 public class Solution {
     public int sumNumbers(TreeNode root) {
-        return sum(root,0);
+        return helper(root,0);
     }
-    public int sum(TreeNode root,int res){
+    public int helper(TreeNode root,int sum){
         if(root==null) return 0;
-        if(root.left==null&&root.right==null)
-            return res*10+root.val;
-        int newres=res*10+root.val;
-        return sum(root.left,newres)+sum(root.right,newres);
+        if(root.left==null&&root.right==null) return sum*10+root.val;
+        sum=sum*10+root.val;
+        int left=helper(root.left,sum);
+        int right=helper(root.right,sum);
+        return left+right;
     }
 }
