@@ -1,19 +1,20 @@
 public class Solution {
     public List<Integer> majorityElement(int[] nums) {
+        int a=0,b=1;
+        int counta=0,countb=0;
         List<Integer> res=new ArrayList<>();
-        int a=0,b=1,counta=0,countb=0;
-        for(int i:nums){
-            if(a==i)
+        for(int num:nums){
+            if(num==a)
                 counta++;
-            else if(b==i)
+            else if(num==b)
                 countb++;
             else if(counta==0){
-                a=i;
                 counta=1;
+                a=num;
             }
             else if(countb==0){
-                b=i;
                 countb=1;
+                b=num;
             }
             else{
                 counta--;
@@ -22,9 +23,9 @@ public class Solution {
         }
         counta=0;
         countb=0;
-        for(int i:nums){
-            if(i==a) counta++;
-            if(i==b) countb++;
+        for(int num:nums){
+            if(a==num) counta++;
+            if(b==num) countb++;
         }
         if(counta>nums.length/3) res.add(a);
         if(countb>nums.length/3) res.add(b);
