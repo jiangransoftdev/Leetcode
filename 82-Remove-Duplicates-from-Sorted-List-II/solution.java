@@ -12,21 +12,18 @@ public class Solution {
         ListNode dummy=new ListNode(0);
         ListNode index=dummy,slow=head,fast=head.next;
         while(fast!=null){
-            if(slow.val==fast.val)
-                fast=fast.next;
-            else{
+            if(slow.val!=fast.val){
                 if(slow.next==fast){
                     index.next=slow;
                     slow=fast;
-                    fast=fast.next;
                     index=index.next;
                 }
                 else{
                     index.next=fast;
                     slow=fast;
-                    fast=fast.next;
                 }
             }
+            fast=fast.next;
         }
         if(slow.next!=fast) index.next=null;
         return dummy.next;
