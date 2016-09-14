@@ -1,7 +1,8 @@
+
 class TrieNode {
-    // Initialize your data structure here.
     TrieNode[] child;
     boolean isEnd;
+    // Initialize your data structure here.
     public TrieNode() {
         child=new TrieNode[26];
         isEnd=false;
@@ -20,9 +21,8 @@ public class Trie {
         TrieNode p=root;
         for(int i=0;i<word.length();i++){
             int index=word.charAt(i)-'a';
-            if(p.child[index]==null){
+            if(p.child[index]==null)
                 p.child[index]=new TrieNode();
-            }
             p=p.child[index];
         }
         p.isEnd=true;
@@ -30,28 +30,27 @@ public class Trie {
 
     // Returns if the word is in the trie.
     public boolean search(String word) {
-        TrieNode p=searchNode(word);
+        TrieNode p=searchNode(word,root);
         if(p!=null){
             if(p.isEnd)
                 return true;
         }
         return false;
     }
-    public TrieNode searchNode(String word){
-        TrieNode p=root;
+
+    // Returns if there is any word in the trie
+    // that starts with the given prefix.
+    public boolean startsWith(String prefix) {
+        TrieNode p=searchNode(prefix,root);
+        return p!=null;
+    }
+    public TrieNode searchNode(String word,TrieNode p){
         for(int i=0;i<word.length();i++){
             int index=word.charAt(i)-'a';
             if(p.child[index]==null) return null;
             p=p.child[index];
         }
         return p;
-    }
-    // Returns if there is any word in the trie
-    // that starts with the given prefix.
-    public boolean startsWith(String prefix) {
-        TrieNode p=searchNode(prefix);
-        if(p!=null) return true;
-        return false;
     }
 }
 
