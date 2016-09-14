@@ -1,23 +1,25 @@
 public class Solution {
-    int start=-1;
-    int end=-1;
+    int[] res={-1,-1};
     public int[] searchRange(int[] nums, int target) {
-        if(nums.length==0) return new int[0];
-        helper(nums,target,0,nums.length-1);
-        return new int[]{start,end};
+        helper(nums,0,nums.length-1,target);
+        return res;
     }
-    public void helper(int[] nums,int target,int s,int e){
-        if(s>e) return;
-        if(s==e){
-            if(nums[e]==target){
-                if(start==-1) start=e;
-                else start=Math.min(start,e);
-                end=Math.max(end,e);
+    public void helper(int[] nums,int l,int h,int target){
+        if(l>h) return;
+        int m=l+(h-l)/2;
+        if(target==nums[m]){
+            if(res[0]==-1&&res[1]==-1){
+                res[0]=m;
+                res[1]=m;
             }
-            return;
+            else{
+                res[0]=Math.min(res[0],m);
+                res[1]=Math.max(res[1],m);
+            }
+            helper(nums,l,m-1,target);
+            helper(nums,m+1,h,target);
         }
-        int m=s+(e-s)/2;
-        helper(nums,target,s,m);
-        helper(nums,target,m+1,e);
+        else if(target>nums[m]) helper(nums,m+1,h,target);
+        else helper(nums,l,m-1,target);
     }
 }
