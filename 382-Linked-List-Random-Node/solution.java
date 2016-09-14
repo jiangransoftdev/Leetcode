@@ -7,26 +7,21 @@
  * }
  */
 public class Solution {
-    ListNode head;
-    /** @param head The linked list's head. Note that the head is guanranteed to be not null, so it contains at least one node. */
+    List<Integer> list;
+    /** @param head The linked list's head.
+        Note that the head is guaranteed to be not null, so it contains at least one node. */
     public Solution(ListNode head) {
-        this.head=head;
+        list=new ArrayList<>();
+        while(head!=null){
+            list.add(head.val);
+            head=head.next;
+        }
     }
     
     /** Returns a random node's value. */
     public int getRandom() {
-        int res=head.val;
-        ListNode p=head.next;
-        int len=1;
-        Random r=new Random();
-        int ran=0;
-        while(p!=null){
-            ran=r.nextInt(++len);
-            if(ran==0)
-                res=p.val;
-            p=p.next;
-        }
-        return res;
+        Random rm=new Random();
+        return list.get(rm.nextInt(list.size()));
     }
 }
 
