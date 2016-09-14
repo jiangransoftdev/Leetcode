@@ -1,13 +1,13 @@
 public class PhoneDirectory {
-    Queue<Integer> available;
     Set<Integer> used;
-    int max;
+    Queue<Integer> available;
+    int maxNumbers;
     /** Initialize your data structure here
         @param maxNumbers - The maximum numbers that can be stored in the phone directory. */
     public PhoneDirectory(int maxNumbers) {
-        max=maxNumbers;
-        available=new LinkedList<>();
+        this.maxNumbers=maxNumbers;
         used=new HashSet<>();
+        available=new LinkedList<>();
         for(int i=0;i<maxNumbers;i++)
             available.offer(i);
     }
@@ -15,16 +15,15 @@ public class PhoneDirectory {
     /** Provide a number which is not assigned to anyone.
         @return - Return an available number. Return -1 if none is available. */
     public int get() {
-        Integer res=available.poll();
-        if(res==null)
-            return -1;
-        used.add(res);
-        return res;
+        Integer x=available.poll();
+        if(x==null) return -1;
+        used.add(x);
+        return x;
     }
     
     /** Check if a number is available or not. */
     public boolean check(int number) {
-        if(number>=max||number<0) return false;
+        if(number>=maxNumbers||number<0) return false;
         return !used.contains(number);
     }
     
