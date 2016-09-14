@@ -11,9 +11,9 @@ public class Solution {
         if(head==null) return null;
         RandomListNode index=head;
         while(index!=null){
-            RandomListNode dup=new RandomListNode(index.label);
-            dup.next=index.next;
-            index.next=dup;
+            RandomListNode copy=new RandomListNode(index.label);
+            copy.next=index.next;
+            index.next=copy;
             index=index.next.next;
         }
         index=head;
@@ -23,15 +23,13 @@ public class Solution {
         }
         index=head;
         RandomListNode dup=index.next;
-        
         while(index!=null){
-            RandomListNode tmp=index.next;
-            index.next=tmp.next;
-            if(tmp.next!=null)
-                tmp.next=index.next.next;
-            index=index.next;
+            RandomListNode tmp=index.next.next;
+            if(tmp!=null)
+                index.next.next=tmp.next;
+            index.next=tmp;
+            index=tmp;
         }
         return dup;
-        
     }
 }
