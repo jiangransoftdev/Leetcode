@@ -10,16 +10,16 @@
 public class Solution {
     int res=Integer.MIN_VALUE;
     public int maxPathSum(TreeNode root) {
-        sum(root);
+        helper(root);
         return res;
     }
-    public int sum(TreeNode root){
-        if(root==null) return 0;
-        int left=sum(root.left);
-        int right=sum(root.right);
+    public int helper(TreeNode root){
+        if(root==null) return Integer.MIN_VALUE;
+        int left=helper(root.left);
+        int right=helper(root.right);
         left=left<0?0:left;
         right=right<0?0:right;
         res=Math.max(res,root.val+left+right);
-        return root.val+Math.max(left,right);
+        return Math.max(left,right)+root.val;
     }
 }
