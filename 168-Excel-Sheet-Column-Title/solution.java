@@ -1,11 +1,11 @@
 public class Solution {
     public String convertToTitle(int n) {
-        String res="";
+        StringBuilder sb=new StringBuilder();
         while(n>0){
-            int digit=(n-1)%26+65;
-            res=(char)digit+res;
+            char digit=(char)('A'+(n-1)%26);
+            sb.insert(0,digit);
             n=(n-1)/26;
         }
-        return res;
+        return sb.toString();
     }
 }
