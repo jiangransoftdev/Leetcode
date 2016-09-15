@@ -2,7 +2,7 @@ public class Solution {
     public int singleNumber(int[] nums) {
         int one=0,two=0,three=0;
         for(int num:nums){
-            two|=one&num;
+            two^=one&num;
             one^=num;
             three=~(one&two);
             one&=three;
