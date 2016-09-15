@@ -15,5 +15,7 @@ public class Solution extends Reader4 {
             if(len<4) return Math.min(n,i+len);
         }
         return n;
+        
+        
     }
 }
