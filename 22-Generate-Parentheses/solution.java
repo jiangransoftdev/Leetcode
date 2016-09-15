@@ -1,6 +1,7 @@
 public class Solution {
     public List<String> generateParenthesis(int n) {
         List<String> res=new ArrayList<>();
+        if(n==0) return res;
         helper(n,0,0,"",res);
         return res;
     }
@@ -13,7 +14,7 @@ public class Solution {
             String another=solu+"(";
             helper(n,l+1,r,another,res);
         }
-        if(l>r){
+        if(r<l){
             String another=solu+")";
             helper(n,l,r+1,another,res);
         }
