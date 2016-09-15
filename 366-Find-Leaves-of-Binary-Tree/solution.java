@@ -15,9 +15,9 @@ public class Solution {
     }
     public int helper(TreeNode root,List<List<Integer>> res){
         if(root==null) return -1;
-        int level=1+Math.max(helper(root.left,res),helper(root.right,res));
-        if(level>res.size()-1) res.add(new ArrayList<>());
-        res.get(level).add(root.val);
-        return level;
+        int h=1+Math.max(helper(root.left,res),helper(root.right,res));
+        if(h>res.size()-1) res.add(new ArrayList<>());
+        res.get(h).add(root.val);
+        return h;
     }
 }
