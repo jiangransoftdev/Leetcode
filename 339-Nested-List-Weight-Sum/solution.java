@@ -19,12 +19,14 @@ public class Solution {
     public int depthSum(List<NestedInteger> nestedList) {
         return helper(nestedList,1);
     }
-    public int helper(List<NestedInteger> nestedList,int co){
-        int res=0;
-        for(NestedInteger i:nestedList){
-            int tmp=i.isInteger()?i.getInteger()*co:helper(i.getList(),co+1);
-            res+=tmp;
+    public int helper(List<NestedInteger> nestedList,int level){
+        int sum=0;
+        for(int i=0;i<nestedList.size();i++){
+            if(nestedList.get(i).isInteger())
+                sum+=nestedList.get(i).getInteger()*level;
+            else
+                sum+=helper(nestedList.get(i).getList(),level+1);
         }
-        return res;
+        return sum;
     }
 }
