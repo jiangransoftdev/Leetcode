@@ -3,7 +3,7 @@ public class Solution {
         int g=gcd(x,y);
         if(g==0){
             if(z==x||z==y) return true;
-            return false;
+            else return false;
         }
         if(x+y<z) return false;
         return z%g==0;
