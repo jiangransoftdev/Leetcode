@@ -8,18 +8,13 @@
  * }
  */
 public class Solution {
-    TreeNode prev=null;
+    TreeNode pre=null;
     public void flatten(TreeNode root) {
         if(root==null) return;
-        if(root.left==null&&root.right==null){
-            root.right=prev;
-            prev=root;
-            return;
-        }
         flatten(root.right);
         flatten(root.left);
-        root.right=prev;
+        root.right=pre;
         root.left=null;
-        prev=root;
+        pre=root;
     }
 }
