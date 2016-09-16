@@ -8,22 +8,17 @@
  * }
  */
 public class Solution {
+    Long pre=Long.MIN_VALUE;
     boolean res=true;
-    long pre=Long.MIN_VALUE;
     public boolean isValidBST(TreeNode root) {
         helper(root);
         return res;
     }
     public void helper(TreeNode root){
         if(root==null) return;
-        if(root.left==null&&root.right==null){
-            if(root.val<=pre) res=false;
-            pre=root.val;
-            return;
-        } 
         helper(root.left);
         if(root.val<=pre) res=false;
-        pre=root.val;
+        pre=(long)root.val;
         helper(root.right);
     }
 }
