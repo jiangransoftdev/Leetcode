@@ -1,17 +1,18 @@
 public class Solution {
     public int[] singleNumber(int[] nums) {
-        int res=0,res2=0;
+        int res=0;
+        int[] ans=new int[2];
         for(int num:nums)
             res^=num;
         int i=0;
-        while(i<32){
+        for(;i<32;i++)
             if(((res>>i)&1)==1) break;
-            i++;
-        }
+        int another=0;
         for(int num:nums){
-            if(((num>>i)&1)==1) res2^=num;
+            if(((num>>i)&1)==1) another^=num;
         }
-        res^=res2;
-        return new int[]{res,res2};
+        ans[0]=another;
+        ans[1]=res^another;
+        return ans;
     }
 }
