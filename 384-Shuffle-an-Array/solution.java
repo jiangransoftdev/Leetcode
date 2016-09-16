@@ -11,18 +11,18 @@ public class Solution {
     
     /** Returns a random shuffling of the array. */
     public int[] shuffle() {
-        Random rm=new Random();
         int[] a=origin.clone();
+        Random rm=new Random();
         for(int i=a.length-1;i>=0;i--){
             int j=rm.nextInt(i+1);
             swap(a,i,j);
         }
         return a;
     }
-    public void swap(int[] a,int i,int j){
-        int tmp=a[i];
-        a[i]=a[j];
-        a[j]=tmp;
+    public void swap(int[] nums,int i,int j){
+        int tmp=nums[i];
+        nums[i]=nums[j];
+        nums[j]=tmp;
     }
 }
 
