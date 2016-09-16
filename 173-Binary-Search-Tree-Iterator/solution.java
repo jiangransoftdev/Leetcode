@@ -12,12 +12,9 @@ public class BSTIterator {
     Stack<TreeNode> s;
     public BSTIterator(TreeNode root) {
         s=new Stack<>();
-        TreeNode cur=root;
-        while(cur!=null){
-            s.push(cur);
-            if(cur.left!=null)
-                cur=cur.left;
-            else break;
+        while(root!=null){
+            s.push(root);
+            root=root.left;
         }
     }
 
@@ -29,17 +26,13 @@ public class BSTIterator {
     /** @return the next smallest number */
     public int next() {
         TreeNode node=s.pop();
-        TreeNode cur=node;
-        if(cur.right!=null){
-            cur=cur.right;
-            while(cur!=null){
-                s.push(cur);
-                if(cur.left!=null)
-                    cur=cur.left;
-                else break;
-            }
+        int res=node.val;
+        node=node.right;
+        while(node!=null){
+            s.push(node);
+            node=node.left;
         }
-        return node.val;
+        return res;
     }
 }
 
