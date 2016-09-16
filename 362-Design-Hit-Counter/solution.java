@@ -14,8 +14,7 @@ public class HitCounter {
     /** Return the number of hits in the past 5 minutes.
         @param timestamp - The current timestamp (in seconds granularity). */
     public int getHits(int timestamp) {
-        while(!q.isEmpty()&&timestamp-q.peek()>=300)
-            q.poll();
+        while(!q.isEmpty()&&q.peek()<=timestamp-300) q.poll();
         return q.size();
     }
 }
