@@ -1,9 +1,10 @@
 public class Solution {
     public int romanToInt(String s) {
-        int last=0,cur=0,res=0;
+        int res=0,pre=0;
         for(int i=s.length()-1;i>=0;i--){
-            char c=s.charAt(i);
-            switch(c){
+            char num=s.charAt(i);
+            int cur=0;
+            switch(num){
                 case 'I':cur=1;break;
                 case 'V':cur=5;break;
                 case 'X':cur=10;break;
@@ -13,9 +14,9 @@ public class Solution {
                 case 'M':cur=1000;break;
                 default:
             }
-            if(cur<last) res-=cur;
+            if(cur<pre) res-=cur;
             else res+=cur;
-            last=cur;
+            pre=cur;
         }
         return res;
     }
