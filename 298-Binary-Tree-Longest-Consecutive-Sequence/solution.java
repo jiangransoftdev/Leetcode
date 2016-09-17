@@ -10,16 +10,22 @@
 public class Solution {
     int res=0;
     public int longestConsecutive(TreeNode root) {
-        helper(root);
+        helper(root,Integer.MIN_VALUE,0);
         return res;
     }
-    public int helper(TreeNode root){
-        if(root==null) return 0;
-        int left=helper(root.left);
-        int right=helper(root.right);
-        int llen=left==0?1:root.val+1==root.left.val?left+1:1;
-        int rlen=right==0?1:root.val+1==root.right.val?right+1:1;
-        res=Math.max(res,Math.max(llen,rlen));
-        return Math.max(llen,rlen);
+    public void helper(TreeNode root,int pre,int len){
+        if(root==null){
+            res=Math.max(res,len);
+            return;
+        } 
+        if(pre+1==root.val){
+            len++;
+        }
+        else{
+            res=Math.max(res,len);
+            len=1;
+        }
+        helper(root.left,root.val,len);
+        helper(root.right,root.val,len);
     }
 }
