@@ -7,9 +7,9 @@ public class ZigzagIterator {
     }
 
     public int next() {
-        Iterator iter=q.poll();
-        int res=(int)iter.next();
-        if(iter.hasNext()) q.offer(iter);
+        Iterator itr=q.poll();
+        int res=(int)itr.next();
+        if(itr.hasNext()) q.offer(itr);
         return res;
     }
 
