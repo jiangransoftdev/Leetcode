@@ -1,26 +1,26 @@
 public class ValidWordAbbr {
-    HashMap<String, String> map;
+    Map<String,String> map;
     public ValidWordAbbr(String[] dictionary) {
-        map = new HashMap<String, String>();
-        for(String str:dictionary){
-            String key = getKey(str);
-            if(map.containsKey(key)){
-                if(!map.get(key).equals(str)){
-                    map.put(key, "");
-                }
+        map=new HashMap<>();
+        for(String word:dictionary){
+            String s=generate(word);
+            if(map.containsKey(s)){
+                if(!map.get(s).equals(word))
+                    map.put(s,"");
             }
-            else{
-                map.put(key, str);
-            }
+            else map.put(s,word);
         }
     }
 
     public boolean isUnique(String word) {
-        return !map.containsKey(getKey(word))||map.get(getKey(word)).equals(word);
+        return !map.containsKey(generate(word))||map.get(generate(word)).equals(word);
     }
-    public String getKey(String str){
-        if(str.length()<=2) return str;
-        return str.charAt(0)+Integer.toString(str.length()-2)+str.charAt(str.length()-1);
+    public String generate(String s){
+        if(s.length()<=2) return s;
+        else{
+                String a=s.substring(0,1)+(s.length()-2)+s.substring(s.length()-1,s.length());
+                return a;
+        }
     }
 }
 
