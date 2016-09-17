@@ -9,18 +9,19 @@
  */
 public class Solution {
     public List<TreeNode> generateTrees(int n) {
-        if(n==0) return new ArrayList<>();
+        List<TreeNode> res=new ArrayList<>();
+        if(n==0) return res;
         return helper(1,n);
     }
-    public List<TreeNode> helper(int start,int end){
+    public List<TreeNode> helper(int s,int e){
         List<TreeNode> res=new ArrayList<>();
-        if(start>end){
+        if(s>e){
             res.add(null);
             return res;
         }
-        for(int i=start;i<=end;i++){
-            List<TreeNode> left=helper(start,i-1);
-            List<TreeNode> right=helper(i+1,end);
+        for(int i=s;i<=e;i++){
+            List<TreeNode> left=helper(s,i-1);
+            List<TreeNode> right=helper(i+1,e);
             for(TreeNode l:left){
                 for(TreeNode r:right){
                     TreeNode root=new TreeNode(i);
