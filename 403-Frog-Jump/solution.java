@@ -1,17 +1,16 @@
 public class Solution {
     public boolean canCross(int[] stones) {
-        if(stones[1] > 1) return false;
-        if(stones.length == 2) return true;
-        return helper(stones, 1, 1);
+        if(stones[1]>1) return false;
+        if(stones.length==2) return true;
+        return helper(stones,1,1);
     }
-    private boolean helper(int[] arr, int i, int step){
-        boolean pass = false;
-        if(i == arr.length-1) return true;
-        for(int j = i+1; j < arr.length; j++){
-            if(arr[j] <= arr[i] + step + 1 && arr[j] >= arr[i]+step-1){
-                pass = pass || helper(arr, j, arr[j] - arr[i]);
-            }
+    public boolean helper(int[] stones,int i,int speed){
+        boolean res=false;
+        if(i==stones.length-1) return true;
+        for(int j=i+1;j<stones.length;j++){
+            if(stones[j]<=stones[i]+speed+1&&stones[j]>=stones[i]+speed-1)
+                res=res||helper(stones,j,stones[j]-stones[i]);
         }
-        return pass;
+        return res;
     }
 }
