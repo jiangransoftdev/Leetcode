@@ -1,6 +1,6 @@
 public class Solution {
-    Map<Integer,Integer> map=new HashMap<>();
     public boolean canCross(int[] stones) {
+        Map<Integer,Integer> map=new HashMap<>();
         if(stones.length<=1) return true;
         int n=stones.length;
         boolean[][] dp=new boolean[n][n];
