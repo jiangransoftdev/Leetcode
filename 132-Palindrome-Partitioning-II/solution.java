@@ -1,17 +1,20 @@
 public class Solution {
     public int minCut(String s) {
+        if(s.length()==0) return 0;
         int l=s.length();
-        int[] dp=new int[l+1];
-        boolean[][] p=new boolean[s.length()][s.length()];
-        for(int i=0;i<=l;i++) dp[i]=l-i;
+        boolean[][] p=new boolean[l][l];
+        int[] len=new int[l+1];
+        for(int i=0;i<=l;i++)
+            len[i]=l-i;
         for(int i=l-1;i>=0;i--){
             for(int j=i;j<l;j++){
                 if(s.charAt(i)==s.charAt(j)&&(j-i<=2||p[i+1][j-1])){
                     p[i][j]=true;
-                    dp[i]=Math.min(dp[i],dp[j+1]+1);
+                    len[i]=Math.min(len[i],len[j+1]+1);
                 }
+                    
             }
         }
-        return dp[0]-1;
+        return len[0]-1;
     }
 }
