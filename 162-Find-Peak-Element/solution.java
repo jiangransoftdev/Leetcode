@@ -1,19 +1,17 @@
 public class Solution {
     public int findPeakElement(int[] nums) {
-        return helper(nums,0,nums.length-1);
+        int l=0,h=nums.length-1;
+        return helper(nums,l,h);
     }
-    public int helper(int[] nums,int start,int end){
-        if(start==end)
-            return start;
-        else if(start+1==end){
-            if(nums[start]>nums[end]) return start;
-            return end;
-        }
-        else{
-            int mid=start+(end-start)/2;
-            if(nums[mid]>nums[mid-1]&&nums[mid]>nums[mid+1]) return mid;
-            else if(nums[mid-1]<nums[mid]&&nums[mid]<nums[mid+1]) return helper(nums,mid+1,end);
-            else return helper(nums,start,mid-1);
-        }
+    public int helper(int[] nums,int l,int h){
+        if(l==h) return l;
+        if(l+1==h){
+            if(nums[l]>nums[h]) return l;
+            else return h;
+        };
+        int m=l+(h-l)/2;
+        if(nums[m]>nums[m-1]&&nums[m]>nums[m+1]) return m;
+        else if(nums[m]>nums[m-1]&&nums[m]<nums[m+1]) return helper(nums,m+1,h);
+        else return helper(nums,l,m-1);
     }
 }
