@@ -1,26 +1,26 @@
 public class Solution {
     int index;
     public int[] findOrder(int numCourses, int[][] prerequisites) {
+        int[] res=new int[numCourses],visit=new int[numCourses];
         index=numCourses-1;
-        int[] visit=new int[numCourses];
-        List<List<Integer>> graph=new ArrayList<>();
-        for(int i=0;i<numCourses;i++)
-            graph.add(new ArrayList<>());
-        for(int i=0;i<prerequisites.length;i++)
-            graph.get(prerequisites[i][1]).add(prerequisites[i][0]);
-        int[] res=new int[numCourses];
-        for(int i=0;i<numCourses;i++)
-            if(visit[i]==0&&dfs(i,graph,visit,res)) return new int[0];
+        Map<Integer,List<Integer>> map=new HashMap<>();
+        for(int i=0;i<numCourses;i++) map.put(i,new ArrayList<>());
+        for(int i=0;i<prerequisites.length;i++) map.get(prerequisites[i][1]).add(prerequisites[i][0]);
+        for(int i=0;i<numCourses;i++){
+            if(visit[i]==0&&!helper(i,visit,map,res)) return new int[0];
+        }
         return res;
     }
-    public boolean dfs(int courses,List<List<Integer>> graph,int[] visit,int[] res){
-        visit[courses]=-1;
-        for(int course:graph.get(courses)){
-            if(visit[course]==-1) return true;
-            else if(visit[course]==0&&dfs(course,graph,visit,res)) return true;
+    public boolean helper(int course,int[] visit,Map<Integer,List<Integer>> map,int[] res){
+        if(visit[course]==-1) return false;
+        visit[course]=-1;
+        List<Integer> list=map.get(course);
+        for(int c:list){
+            if(visit[c]==-1) return false;
+            if(visit[c]==0&&!helper(c,visit,map,res)) return false;
         }
-        visit[courses]=1;
-        res[index--]=courses;
-        return false;
+        visit[course]=1;
+        res[index--]=course;
+        return true;
     }
 }
