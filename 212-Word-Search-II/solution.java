@@ -30,7 +30,6 @@ public class Solution {
             if(p.word!=null){
             res.add(p.word);
             p.word=null;
-            // return;
         }
         }
         helper(board,i-1,j,p,res);
