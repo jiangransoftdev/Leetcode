@@ -4,7 +4,7 @@ public class MedianFinder {
     boolean even=true;
     // Adds a number into the data structure.
     public void addNum(int num) {
-        if(!even){
+        if(even){
             small.offer(num);
             large.offer(small.poll());
         }
@@ -17,10 +17,8 @@ public class MedianFinder {
 
     // Returns the median of current data stream
     public double findMedian() {
-        if(!even) return small.peek();
-        else{
-            return (small.peek()+large.peek())/2.0;
-        }
+        if(!even) return large.peek();
+        return (small.peek()+large.peek())/2.0;
     }
 };
 
