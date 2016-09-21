@@ -8,14 +8,6 @@ class UF{
         this.m=m;
         this.n=n;
         count=0;
-        
-    }
-    public int find(int p){
-        while(id[p]!=p){
-            id[p]=id[id[p]];
-            p=id[p];
-        }
-        return p;
     }
     public int add(int i,int j){
         int x=index(i,j);
@@ -27,8 +19,12 @@ class UF{
     public int index(int i,int j){
         return i*n+j+1;
     }
-    public int getSize(){
-        return this.count;
+    public int find(int p){
+        while(p!=id[p]){
+            id[p]=id[id[p]];
+            p=id[p];
+        }
+        return p;
     }
     public int getId(int x,int y){
         if(x>=0&&x<m&&y>=0&&y<n)
@@ -41,31 +37,31 @@ class UF{
     public void union(int p,int q){
         int rootp=find(p);
         int rootq=find(q);
-        if(sz[rootp]<sz[rootq]){
+        if(rootp==rootq) return;
+        if(sz[rootp]>sz[rootq]){
+            id[rootq]=rootp;
+            sz[rootp]+=sz[rootq];
+        }
+        else{
             id[rootp]=rootq;
             sz[rootq]+=sz[rootp];
         }
-        else{
-            id[rootq]=rootp;
-            sz[rootp]+=sz[rootq];
-        } 
         count--;
     }
 }
 public class Solution {
-    private int[][] dir = {{0, 1}, {0, -1}, {-1, 0}, {1, 0}};
+    int[] d={0,1,0,-1,0};
     public List<Integer> numIslands2(int m, int n, int[][] positions) {
         List<Integer> res=new ArrayList<>();
         UF uf=new UF(m,n);
-        for(int[] position:positions){
-            int x=position[0],y=position[1];
+        for(int[] pos:positions){
+            int x=pos[0],y=pos[1];
             int p=uf.add(x,y);
-            for(int[] d:dir){
-                int q=uf.getId(x+d[0],y+d[1]);
-                if(q>0&&!uf.connect(p,q))
-                    uf.union(p,q);
+            for(int k=0;k<4;k++){
+                int q=uf.getId(x+d[k],y+d[k+1]);
+                if(q>0&&!uf.connect(p,q)) uf.union(p,q);
             }
-            res.add(uf.getSize());
+            res.add(uf.count);
         }
         return res;
     }
