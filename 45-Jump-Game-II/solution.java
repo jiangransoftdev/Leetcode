@@ -1,14 +1,14 @@
 public class Solution {
     public int jump(int[] nums) {
-        if(nums.length==0) return 0;
-        int curReach=0,curMax=0,jump=0;
+        int curreach=0,curmax=nums[0];
+        int step=0;
         for(int i=0;i<nums.length;i++){
-            if(i>curReach){
-                jump++;
-                curReach=curMax;
+            if(i>curreach){
+                curreach=curmax;
+                step++;
             }
-            curMax=Math.max(curMax,i+nums[i]);
+            curmax=Math.max(curmax,i+nums[i]);
         }
-        return jump;
+        return step;
     }
 }
