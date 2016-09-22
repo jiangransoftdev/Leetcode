@@ -5,8 +5,7 @@ public class Solution {
     }
     public int getCommonLength(String s){
         StringBuilder sb=new StringBuilder(s);
-        String rev=new StringBuilder(s).reverse().toString();
-        sb.append("#").append(rev);
+        sb.append("#").append(new StringBuilder(s).reverse().toString());
         int[] p=new int[sb.length()];
         for(int i=1;i<sb.length();i++){
             int j=p[i-1];
