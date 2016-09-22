@@ -8,7 +8,7 @@
  * }
  */
 public class Solution {
-    TreeNode next=null,res=null;
+    TreeNode res=null,prev=null;
     public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
         helper(root,p);
         return res;
@@ -16,8 +16,8 @@ public class Solution {
     public void helper(TreeNode root,TreeNode p){
         if(root==null) return;
         helper(root.right,p);
-        if(root==p) res=next;
-        next=root;
+        if(root==p) res=prev;
+        prev=root;
         helper(root.left,p);
     }
 }
