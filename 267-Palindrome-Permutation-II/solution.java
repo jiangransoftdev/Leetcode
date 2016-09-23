@@ -1,42 +1,52 @@
 public class Solution {
     public List<String> generatePalindromes(String s) {
         List<String> res=new ArrayList<>();
-        List<Character> list=new ArrayList<>();
-        String mid="";
-        if(s.length()==0) return res;
         Map<Character,Integer> map=new HashMap<>();
+        StringBuilder sb=new StringBuilder();
+        String mid="";
         int odd=0;
         for(int i=0;i<s.length();i++){
-            char c=s.charAt(i);
-            map.put(c,map.containsKey(c)?map.get(c)+1:1);
-            odd+=(map.get(c)%2==0)?-1:1;
+            if(!map.containsKey(s.charAt(i)))
+                map.put(s.charAt(i),1);
+            else map.put(s.charAt(i),map.get(s.charAt(i))+1);
+            odd+=(map.get(s.charAt(i))%2==0)?-1:1;
         }
         if(odd>1) return res;
-        for(Map.Entry<Character, Integer> entry : map.entrySet()){
+        for(Map.Entry<Character,Integer> entry:map.entrySet()){
             char key=entry.getKey();
             int val=entry.getValue();
             if(val%2!=0) mid+=key;
-            for(int i=0;i<val/2;i++) list.add(key);
+            for(int i=0;i<val/2;i++)
+                sb.append(key);
         }
-        helper(list,mid,new boolean[list.size()],new StringBuilder(),res);
+        char[] c=sb.toString().toCharArray();
+        helper(c,mid,0,res);
         return res;
     }
-    public void helper(List<Character> list,String mid,boolean[] used,StringBuilder sb,List<String> res){
-        if(sb.length()==list.size()){
+    public void helper(char[] c,String mid,int index,List<String> res){
+        if(index==c.length){
+            StringBuilder sb=new StringBuilder();
+            for(int i=0;i<c.length;i++)
+                sb.append(c[i]);
             res.add(sb.toString()+mid+sb.reverse().toString());
             sb.reverse();
             return;
         }
-        for(int i=0;i<list.size();i++){
-            if(i>0&&list.get(i)==list.get(i-1)&&!used[i-1]) continue;
-            if(!used[i]){
-                used[i]=true;
-                sb.append(list.get(i));
-                helper(list,mid,used,sb,res);
-                sb.deleteCharAt(sb.length()-1);
-                used[i]=false;
-            }
+        for(int i=index;i<c.length;i++){
+            if(isUsed(c,index,i)) continue;
+            swap(c,index,i);
+            helper(c,mid,index+1,res);
+            swap(c,index,i);
         }
     }
-    
+    public boolean isUsed(char[] c,int i,int j){
+        for(int a=i;a<j;a++)
+            if(c[i]==c[j]) return true;
+        return false;
+    }
+    public void swap(char[] c,int i,int j){
+        char tmp=c[i];
+        c[i]=c[j];
+        c[j]=tmp;
+    }
 }
