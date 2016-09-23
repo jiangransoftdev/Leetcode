@@ -1,7 +1,6 @@
 public class Solution {
     public String decodeString(String s) {
         if(s.length()==0) return "";
-        Stack<Integer> count=new Stack<>();
         Stack<String> res=new Stack<>();
         res.push("");
         int i=0;
@@ -12,15 +11,15 @@ public class Solution {
                     num=num*10+s.charAt(i+1)-'0';
                     i++;
                 }
-                count.push(num);
+                res.push(String.valueOf(num));
             }
             else if(s.charAt(i)=='['){
                 res.push("");
             }
             else if(s.charAt(i)==']'){
                 StringBuilder sb=new StringBuilder();
-                int time=count.pop();
                 String tmp=res.pop();
+                int time=Integer.parseInt(res.pop());
                 for(int j=0;j<time;j++)
                     sb.append(tmp);
                 res.push(res.pop()+sb.toString());
