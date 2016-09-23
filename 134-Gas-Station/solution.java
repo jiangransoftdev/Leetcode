@@ -9,9 +9,7 @@ public class Solution {
             }
             tmp+=gas[i]-cost[i];
         }
-        if(tmp+total>=0){
-            return start;
-        }
+        if(total+tmp>=0) return start;
         return -1;
     }
 }
