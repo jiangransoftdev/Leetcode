@@ -1,22 +1,25 @@
+class Item{
+    int row,col,val;
+    public Item(int row,int col,int val){
+        this.row=row;
+        this.col=col;
+        this.val=val;
+    }
+}
 public class Solution {
     public int kthSmallest(int[][] matrix, int k) {
-        if(matrix.length==0) return 0;
-        PriorityQueue<int[]> pq=new PriorityQueue<>(new Comparator<int[]>(){
-            public int compare(int[] a,int[] b){
-                return a[0]-b[0];
+        PriorityQueue<Item> pq=new PriorityQueue<>(new Comparator<Item>(){
+            public int compare(Item a,Item b){
+                return a.val-b.val;
             }
         });
         for(int i=0;i<matrix[0].length;i++)
-            pq.offer(new int[]{matrix[0][i],0,i});
-        int[] cur=new int[3];
-        while(k>0&&!pq.isEmpty()){
-            cur=pq.poll();
-            int row=cur[1];
-            int col=cur[2];
-            if(row<matrix.length-1)
-                pq.offer(new int[]{matrix[row+1][col],row+1,col});
-            k--;
+            pq.offer(new Item(0,i,matrix[0][i]));
+        while(--k>0){
+            Item cur=pq.poll();
+            int row=cur.row,col=cur.col;
+            if(row+1<matrix.length) pq.offer(new Item(row+1,col,matrix[row+1][col]));
         }
-        return cur[0];
+        return pq.peek().val;
     }
 }
