@@ -1,11 +1,12 @@
 public class TicTacToe {
-    int[] rows,cols;
-    int dia,anti;
+    int[] r,c;
+    int diag,anti,n;
     /** Initialize your data structure here. */
     public TicTacToe(int n) {
-        rows=new int[n];
-        cols=new int[n];
-        dia=0;
+        this.n=n;
+        r=new int[n];
+        c=new int[n];
+        diag=0;
         anti=0;
     }
     
@@ -18,14 +19,20 @@ public class TicTacToe {
                 1: Player 1 wins.
                 2: Player 2 wins. */
     public int move(int row, int col, int player) {
-        int add=player==1?1:-1;
-        rows[row]+=add;
-        cols[col]+=add;
-        if(row==col) dia+=add;
-        if(col==rows.length-row-1) anti+=add;
-        int size=rows.length;
-        if(Math.abs(rows[row])==size||Math.abs(cols[col])==size||Math.abs(dia)==size||Math.abs(anti)==size)
-            return player;
+        if(player==1){
+            r[row]++;
+            c[col]++;
+            if(row==col) diag++;
+            if(row==n-1-col) anti++;
+        }
+        else if(player==2){
+            r[row]--;
+            c[col]--;
+            if(row==col) diag--;
+            if(row==n-1-col) anti--;
+        }
+        if(r[row]==n||c[col]==n||diag==n||anti==n) return 1;
+        if(r[row]==-n||c[col]==-n||diag==-n||anti==-n) return 2;
         return 0;
     }
 }
