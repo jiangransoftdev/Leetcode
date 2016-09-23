@@ -9,8 +9,8 @@
  */
 public class Solution {
     public int maxPoints(Point[] points) {
-        if(points.length<=2) return points.length;
-        int res=0;
+        if(points.length<2) return points.length;
+        int max=0;
         for(int i=0;i<points.length;i++){
             Point p=points[i];
             int count=0,dup=0;
@@ -18,22 +18,20 @@ public class Solution {
                 Point q=points[j];
                 if(p.x==q.x&&p.y==q.y){
                     dup++;
-                    res=Math.max(res,dup+1);
+                    max=Math.max(max,dup+1);
                     continue;
-                }
+                } 
                 count=1;
                 for(int k=j+1;k<points.length;k++){
                     Point r=points[k];
-                    if(isColinear(p,q,r))
-                        count++;
+                    if(isColinear(p,q,r)) count++;
                 }
-                res=Math.max(res,count+dup+1);
+                max=Math.max(max,dup+count+1);
             }
         }
-        return res;
+        return max;
     }
     public boolean isColinear(Point p,Point q,Point r){
-        int val=(q.y-r.y)*(p.x-q.x)-(q.x-r.x)*(p.y-q.y);
-        return val==0;
+        return (p.y-q.y)*(q.x-r.x)==(q.y-r.y)*(p.x-q.x);
     }
 }
