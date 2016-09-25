@@ -1,65 +1,65 @@
-class ListNode{
-    int value;
-    int key;
-    ListNode prev;
-    ListNode next;
-    public ListNode(int key,int value){
+class Node{
+    int key,val;
+    Node prev,next;
+    public Node(int key,int val){
         this.key=key;
-        this.value=value;
+        this.val=val;
+        prev=null;
+        next=null;
     }
 }
 public class LRUCache {
-    ListNode head,tail;
-    int count,capacity;
-    Map<Integer,ListNode> map;
+    int capacity,count;
+    Map<Integer,Node> map=new HashMap<>();
+    Node head,tail;
     public LRUCache(int capacity) {
         map=new HashMap<>();
-        head=new ListNode(0,0);
-        tail=new ListNode(0,0);
-        count=0;
         this.capacity=capacity;
+        count=0;
+        head=new Node(0,0);
+        tail=new Node(0,0);
         head.next=tail;
-        tail.prev=head;
         head.prev=null;
+        tail.prev=head;
         tail.next=null;
     }
-    public void addNode(ListNode node){
+    public void addNode(Node node){
         node.next=head.next;
         node.next.prev=node;
         head.next=node;
         node.prev=head;
     }
-    public void delete(ListNode node){
+    public void deleteNode(Node node){
         node.prev.next=node.next;
         node.next.prev=node.prev;
     }
     public int get(int key) {
-        if(map.containsKey(key)){
-            ListNode node=map.get(key);
-            delete(node);
-            addNode(node);
-            return node.value;
-        }
-        return -1;
+        if(!map.containsKey(key)) return -1;
+        Node node=map.get(key);
+        int res=node.val;
+        deleteNode(node);
+        addNode(node);
+        return res;
     }
     
     public void set(int key, int value) {
         if(map.containsKey(key)){
-            ListNode node=map.get(key);
-            node.value=value;
-            delete(node);
+            Node node=map.get(key);
+            node.val=value;
+            deleteNode(node);
             addNode(node);
+            
         }
         else{
-            ListNode node=new ListNode(key,value);
-            map.put(key,node);
-            if(count<capacity)
-                count++;
-            else{
-                map.remove(tail.prev.key);
-                delete(tail.prev);
-            }
+            Node node=new Node(key,value);
             addNode(node);
+            map.put(key,node);
+            count++;
+        }
+        if(count>capacity){
+            map.remove(tail.prev.key);
+            deleteNode(tail.prev);
+            count--;
         }
     }
 }
