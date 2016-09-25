@@ -4,7 +4,7 @@ public class NumMatrix {
     int m;
     int n;
     public NumMatrix(int[][] matrix) {
-        m=matrix.length;
+         m=matrix.length;
         if(m==0) return;
         n=matrix[0].length;
         tree=new int[m+1][n+1];
@@ -14,7 +14,7 @@ public class NumMatrix {
                 update(i,j,matrix[i][j]);
         }
     }
-
+    
     public void update(int row, int col, int val) {
         int diff=val-num[row][col];
         num[row][col]=val;
@@ -35,7 +35,6 @@ public class NumMatrix {
         }
         return sum;
     }
-    
 }
 
 
