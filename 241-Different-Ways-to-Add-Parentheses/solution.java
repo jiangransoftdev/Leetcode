@@ -1,37 +1,35 @@
 public class Solution {
-    public List<Integer> diffWaysToCompute(String input) {
-        int num=0,i=0;
-        for(;i<input.length();i++){
-            if(input.charAt(i)>='0'&&input.charAt(i)<='9')
-                num=num*10+(input.charAt(i)-'0');
-            else break;
-        }
-        if(i==input.length()){
-            List<Integer> solu=new ArrayList<>();
-            solu.add(num);
-            return solu;
-        }
-        List<Integer> left,right,res=new ArrayList<>();
-        for(int j=0;j<input.length();j++){
-            if(input.charAt(j)>='0'&&input.charAt(j)<='9') continue;
-            left=diffWaysToCompute(input.substring(0,j));
-            right=diffWaysToCompute(input.substring(j+1));
-            for(int m=0;m<left.size();m++){
-                for(int n=0;n<right.size();n++)
-                    res.add(compute(left.get(m),right.get(n),input.charAt(j)));
-            }
+    public int compute(int l,int r,char op){
+        int res=0;
+        switch(op){
+            case '+':res=l+r;break;
+            case '-':res=l-r;break;
+            case '*':res=l*r;break;
         }
         return res;
     }
-    public int compute(int a,int b,char c){
-        int sum=0;
-        switch(c){
-            case '+':sum=a+b;break;
-            case '-':sum=a-b;break;
-            case '*':sum=a*b;break;
-            case '/':sum=a/b;break;
-            default:
+    public List<Integer> diffWaysToCompute(String input) {
+        List<Integer> res=new ArrayList<>();
+        if(input.length()==0) return res;
+        int i=0,num=0;
+        while(i<input.length()&&input.charAt(i)>='0'&&input.charAt(i)<='9'){
+            num=num*10+(input.charAt(i)-'0');
+            i++;
         }
-        return sum;
+        if(i==input.length()){
+            res.add(num);
+            return res;
+        }
+        for(int j=0;j<input.length();j++){
+            if(input.charAt(j)>='0'&&input.charAt(j)<='9') continue;
+            List<Integer> left=diffWaysToCompute(input.substring(0,j));
+            List<Integer> right=diffWaysToCompute(input.substring(j+1));
+            for(int l:left){
+                for(int r:right){
+                    res.add(compute(l,r,input.charAt(j)));
+                }
+            }
+        }
+        return res;
     }
 }
