@@ -10,25 +10,26 @@
 public class Solution {
     public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
         List<Interval> res=new ArrayList<>();
-        int newstart=newInterval.start,newend=newInterval.end,l=0,h=intervals.size()-1;
+        int l=0,h=intervals.size()-1;
         while(l<=h){
             int m=l+(h-l)/2;
-            if(intervals.get(m).start<newstart)
-                l=m+1;
-            else h=m-1;
+            if(intervals.get(m).start>newInterval.start)
+                h=m-1;
+            else l=m+1;
         }
         intervals.add(l,newInterval);
         int start=intervals.get(0).start,end=intervals.get(0).end;
         for(int i=1;i<intervals.size();i++){
-            int tmps=intervals.get(i).start;
-            int tmpe=intervals.get(i).end;
-            if(tmps<=end&&tmpe>end){
-                end=tmpe;
+            int ts=intervals.get(i).start,te=intervals.get(i).end;
+            if(ts<=end&&te>end){
+                end=te;
             }
-            else if(tmps>end){
-                res.add(new Interval(start,end));
-                start=tmps;
-                end=tmpe;
+            else{
+                if(ts>end){
+                    res.add(new Interval(start,end));
+                    start=ts;
+                    end=te;
+                }
             }
         }
         res.add(new Interval(start,end));
