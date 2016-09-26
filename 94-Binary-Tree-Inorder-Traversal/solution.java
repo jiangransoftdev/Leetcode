@@ -12,17 +12,15 @@ public class Solution {
         List<Integer> res=new ArrayList<>();
         if(root==null) return res;
         Stack<TreeNode> s=new Stack<>();
-        TreeNode cur=root;
-        while(!s.isEmpty()||cur!=null){
-            while(cur!=null){
-                s.push(cur);
-                cur=cur.left;
+        while(!s.isEmpty()||root!=null){
+            while(root!=null){
+                s.push(root);
+                root=root.left;
             }
-            TreeNode node=s.pop();
-            res.add(node.val);
-            cur=node.right;
+            TreeNode cur=s.pop();
+            res.add(cur.val);
+            root=cur.right;
         }
         return res;
     }
-    
 }
