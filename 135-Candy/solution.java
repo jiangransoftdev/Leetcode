@@ -1,8 +1,6 @@
 public class Solution {
     public int candy(int[] ratings) {
-        if(ratings.length==0) return 0;
-        int n=ratings.length;
-        int total=n,i=0;
+        int n=ratings.length,i=0,total=n;
         while(i<n){
             if(i+1<n&&ratings[i]!=ratings[i+1]){
                 int increase=1;
@@ -19,8 +17,7 @@ public class Solution {
                 if(decrease>increase) total+=decrease-increase;
                 total+=(decrease-2)*(decrease-1)/2;
             }
-            else
-                i++;
+            else i++;
         }
         return total;
     }
