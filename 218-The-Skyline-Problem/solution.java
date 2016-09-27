@@ -1,8 +1,6 @@
 class Point{
-    int val;
-    int height;
-    int flag;
-    Point(int val,int height,int flag){
+    int val,height,flag;
+    public Point(int val,int height,int flag){
         this.val=val;
         this.height=height;
         this.flag=flag;
@@ -12,33 +10,32 @@ public class Solution {
     public List<int[]> getSkyline(int[][] buildings) {
         List<int[]> res=new ArrayList<>();
         List<Point> points=new ArrayList<>();
-        for(int i=0;i<buildings.length;i++){
-            points.add(new Point(buildings[i][0],buildings[i][2],0));
-            points.add(new Point(buildings[i][1],buildings[i][2],1));
+        for(int[] b:buildings){
+            points.add(new Point(b[0],b[2],0));
+            points.add(new Point(b[1],b[2],1));
         }
         Collections.sort(points,new Comparator<Point>(){
             public int compare(Point a,Point b){
                 if(a.val!=b.val) return a.val-b.val;
-                if(a.flag!=b.flag) return a.flag-b.flag;
-                if(a.flag==0&&b.flag==0) return b.height-a.height;
+                else if(a.flag!=b.flag) return a.flag-b.flag;
+                else if(a.flag==0) return b.height-a.height;
                 else return a.height-b.height;
             }
         });
-        PriorityQueue<Integer> heights=new PriorityQueue<>(Collections.reverseOrder());
-        for(Point p:points){
-            if(p.flag==0){
-                if(heights.isEmpty()||p.height>heights.peek())
-                    res.add(new int[]{p.val,p.height});
-                heights.offer(p.height);
+        PriorityQueue<Integer> pq=new PriorityQueue<>(Collections.reverseOrder());
+        for(Point point:points){
+            if(point.flag==0){
+                if(pq.isEmpty()||point.height>pq.peek()){
+                    int[] ans={point.val,point.height};
+                    res.add(ans);
+                }
+                pq.offer(point.height);
             }
             else{
-                if(p.height==heights.peek()){
-                    heights.poll();
-                    if(heights.isEmpty()||p.height>heights.peek())
-                        res.add(new int[]{p.val,heights.isEmpty()?0:heights.peek()});
-                }
-                else{
-                    heights.remove(p.height);
+                pq.remove(point.height);
+                if(pq.isEmpty()||point.height>pq.peek()){
+                    int[] ans={point.val,pq.isEmpty()?0:pq.peek()};
+                    res.add(ans);
                 }
             }
         }
