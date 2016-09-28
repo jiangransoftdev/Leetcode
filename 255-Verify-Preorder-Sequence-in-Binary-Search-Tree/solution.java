@@ -1,12 +1,12 @@
 public class Solution {
     public boolean verifyPreorder(int[] preorder) {
+        int n=preorder.length,low=Integer.MIN_VALUE;
         Stack<Integer> s=new Stack<>();
-        int low=Integer.MIN_VALUE;
-        for(int pre:preorder){
-            if(pre<low) return false;
-            while(!s.isEmpty()&&pre>s.peek())
+        for(int p:preorder){
+            if(p<low) return false;
+            while(!s.isEmpty()&&p>s.peek())
                 low=s.pop();
-            s.push(pre);
+            s.push(p);
         }
         return true;
     }
