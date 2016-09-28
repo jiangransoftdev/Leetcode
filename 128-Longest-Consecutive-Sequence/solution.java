@@ -21,17 +21,19 @@ class UF{
     public void union(int p,int q){
         int rootp=find(p),rootq=find(q);
         if(rootp==rootq) return;
-        if(sz[rootp]>sz[rootq]){
-            id[rootq]=rootp;
+        // if(sz[rootp]>sz[rootq]){
+        //     id[rootq]=rootp;
+        //     sz[rootp]+=sz[rootq];
+        //     max=Math.max(max,sz[rootp]);
+        // }
+        // else{
+        //     id[rootp]=rootq;
+        //     sz[rootq]+=sz[rootp];
+        //     max=Math.max(max,sz[rootq]);
+        // }
+       id[rootq]=rootp;
             sz[rootp]+=sz[rootq];
             max=Math.max(max,sz[rootp]);
-        }
-        else{
-            id[rootp]=rootq;
-            sz[rootq]+=sz[rootp];
-            max=Math.max(max,sz[rootq]);
-        }
-       
         
     }
 }
