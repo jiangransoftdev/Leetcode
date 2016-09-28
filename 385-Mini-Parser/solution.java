@@ -28,32 +28,33 @@
  */
 public class Solution {
     public NestedInteger deserialize(String s) {
-        Stack<NestedInteger> stack=new Stack<>();
-        String tokenNum="";
+        int i=0;
+        Stack<NestedInteger> sta=new Stack<>();
+        String num="";
         for(char c:s.toCharArray()){
             switch(c){
                 case '[':
-                        stack.push(new NestedInteger());break;
+                        sta.push(new NestedInteger());
+                        break;
                 case ']':
-                        if(!tokenNum.equals(""))
-                            stack.peek().add(new NestedInteger(Integer.parseInt(tokenNum)));
-                        NestedInteger ni=stack.pop();
-                        tokenNum="";
-                        if(!stack.isEmpty())
-                            stack.peek().add(ni);
+                        if(!num.equals(""))
+                            sta.peek().add(new NestedInteger(Integer.parseInt(num)));
+                        NestedInteger ni=sta.pop();
+                        num="";
+                        if(!sta.isEmpty())
+                            sta.peek().add(ni);
                         else return ni;
                         break;
                 case ',':
-                        if(!tokenNum.equals(""))
-                            stack.peek().add(new NestedInteger(Integer.parseInt(tokenNum)));
-                        tokenNum="";
+                        if(!num.equals(""))
+                            sta.peek().add(new NestedInteger(Integer.parseInt(num)));
+                        num="";
                         break;
-                default:
-                        tokenNum+=c;
+                default:num+=c;
             }
         }
-        if(!tokenNum.equals(""))
-            return new NestedInteger(Integer.parseInt(tokenNum));
+        if(!num.equals(""))
+            return new NestedInteger(Integer.parseInt(num));
         return null;
     }
 }
