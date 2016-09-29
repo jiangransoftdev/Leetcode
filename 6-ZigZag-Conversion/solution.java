@@ -1,17 +1,19 @@
 public class Solution {
     public String convert(String s, int numRows) {
-        char[] str=s.toCharArray();
-        StringBuilder[] sb=new StringBuilder[numRows];
-        for(int i=0;i<numRows;i++) sb[i]=new StringBuilder();
-        int i=0;
-        while(i<s.length()){
-            for(int index=0;index<numRows&&i<s.length();index++)
-                sb[index].append(str[i++]);
-            for(int index=numRows-2;index>=1&&i<s.length();index--)
-                sb[index].append(str[i++]);
+        if(s.length()==0) return "";
+        if(numRows==1) return s;
+        StringBuffer[] sb=new StringBuffer[numRows];
+        for(int i=0;i<numRows;i++) sb[i]=new StringBuffer();
+        for(int i=0;i<s.length();i++){
+            int index=i%(numRows*2-2);
+            if(index<numRows)
+                sb[index].append(s.charAt(i));
+            else
+                sb[2*numRows-2-index].append(s.charAt(i));
         }
-        for(int j=1;j<numRows;j++)
-            sb[0].append(sb[j]);
+        for(int k=1;k<sb.length;k++){
+        	sb[0].append(sb[k]);
+        }
         return sb[0].toString();
     }
 }
