@@ -1,52 +1,27 @@
-class TrieNode{
-    TrieNode[] child;
-    int index;
-    List<Integer> list;
-    public TrieNode(){
-        child=new TrieNode[26];
-        index=-1;
-        list=new ArrayList<>();
-    }
-}
 public class Solution {
     public List<List<Integer>> palindromePairs(String[] words) {
         List<List<Integer>> res=new ArrayList<>();
-        if(words.length==0) return res;
-        TrieNode root=new TrieNode();
+        Map<String,Integer> map=new HashMap<>();
         for(int i=0;i<words.length;i++)
-            addNode(words,i,root);
-        for(int i=0;i<words.length;i++)
-            searchNode(words,i,root,res);
+            map.put(words[i],i);
+        for(int i=0;i<words.length;i++){
+            int l=0,r=0;
+            while(l<=r){
+                String s=words[i].substring(l,r);
+                Integer j=map.get(new StringBuilder(s).reverse().toString());
+                if(j!=null&&i!=j&&isPalindrome(words[i].substring(l==0?r:0,l==0?words[i].length():l)))
+                    res.add(Arrays.asList(l==0?new Integer[]{i,j}:new Integer[]{j,i}));
+                if(r<words[i].length())
+                    r++;
+                else l++;
+            }
+        }
         return res;
     }
-    public void addNode(String[] words,int index,TrieNode root){
-        for(int i=words[index].length()-1;i>=0;i--){
-            int idx=words[index].charAt(i)-'a';
-            if(root.child[idx]==null)
-                root.child[idx]=new TrieNode();
-            if(isPanlindrome(words[index],0,i))
-                root.list.add(index);
-            root=root.child[idx];
-        }
-        root.index=index;
-        root.list.add(index);
-    }
-    public void searchNode(String[] words,int index,TrieNode root,List<List<Integer>> res){
-        for(int i=0;i<words[index].length();i++){
-            if(root.index>=0&&root.index!=index&&isPanlindrome(words[index],i,words[index].length()-1))
-                res.add(Arrays.asList(index,root.index));
-            root=root.child[words[index].charAt(i)-'a'];
-            if(root==null) return;
-        }
-        for(int i:root.list){
-            if(i==index) continue;
-            res.add(Arrays.asList(index,i));
-        }
-    }
-    public boolean isPanlindrome(String s,int i,int j){
-        while(i<=j){
-            if(s.charAt(i++)!=s.charAt(j--))
-                return false;
+    public boolean isPalindrome(String s){
+        int i=0,j=s.length()-1;
+        while(i<j){
+            if(s.charAt(i++)!=s.charAt(j--)) return false;
         }
         return true;
     }
