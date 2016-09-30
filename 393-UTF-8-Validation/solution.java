@@ -9,7 +9,7 @@ public class Solution {
                 else if(d>>7==1) return false;
             }
             else{
-                if((d>>6)!=0b10) return false;
+                if(d>>6!=0b10) return false;
                 count--;
             }
         }
