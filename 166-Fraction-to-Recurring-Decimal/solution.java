@@ -1,22 +1,22 @@
 public class Solution {
     public String fractionToDecimal(int numerator, int denominator) {
-        int sign=1,index=0;
-    if((numerator<0)^(denominator<0)) sign=-1;
-    long anumerator=Math.abs((long)numerator),adenominator=Math.abs((long)denominator);
-    long point=anumerator%adenominator,r=0;
-    String res=((sign==-1&&!(anumerator/adenominator==0&&point==0))?"-":"")+anumerator/adenominator+"";
-    if(point==0) return res;
-    Map<Long,Integer> map=new HashMap<>();
-    StringBuilder sb=new StringBuilder();
-    point*=10;
-    while(!map.containsKey(point)){
-    	map.put(point, index++);
-    	r=point/adenominator;
-    	sb.append(r);
-    	point=point%adenominator;
-    	if(point==0) return res+"."+sb.toString();
-    	point*=10;
-    }
-    return res+"."+ sb.insert(map.get(point), "(").toString()+")";
+        if(numerator==0) return "0";
+        int sign=1,i=0;
+        if((numerator>0&&denominator<0)||(numerator<0&&denominator>0)) sign=-1;
+        long num=Math.abs((long)numerator),denom=Math.abs((long)denominator);
+        Map<Long,Integer> map=new HashMap<>();
+        if(num%denom==0) return (sign==-1?"-":"")+String.valueOf((num/denom));
+        StringBuilder sb=new StringBuilder();
+        long residue=num%denom;
+        while(!map.containsKey(residue)){
+            map.put(residue,i);
+            long digit=residue*10/denom;
+            sb.append(digit);
+            residue=residue*10-denom*digit;
+            if(residue==0) return (sign==-1?"-":"")+String.valueOf((num/denom))+"."+sb.toString();
+            i++;
+        }
+        sb.insert(map.get(residue),"(");
+        return (sign==-1?"-":"")+String.valueOf((num/denom))+"."+sb.toString()+")";
     }
 }
