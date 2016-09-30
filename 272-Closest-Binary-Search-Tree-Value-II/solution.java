@@ -12,24 +12,24 @@ public class Solution {
         List<Integer> res=new ArrayList<>();
         Stack<Integer> s1=new Stack<>();
         Stack<Integer> s2=new Stack<>();
-        inorder(root,target,false,s1);
-        inorder(root,target,true,s2);
+        inorder(root,true,target,s1);
+        inorder(root,false,target,s2);
         while(k-->0){
-            if(s1.isEmpty())
-                res.add(s2.pop());
-            else if(s2.isEmpty())
+            if(s2.isEmpty())
                 res.add(s1.pop());
-            else if(Math.abs(target-s1.peek())<Math.abs(target-s2.peek()))
+            else if(s1.isEmpty())
+                res.add(s2.pop());
+            else if(Math.abs(s1.peek()-target)<Math.abs(s2.peek()-target))
                 res.add(s1.pop());
             else res.add(s2.pop());
         }
         return res;
     }
-    public void inorder(TreeNode root,double target,boolean reverse,Stack<Integer> s){
+    public void inorder(TreeNode root,boolean r,double target,Stack<Integer> s){
         if(root==null) return;
-        inorder(reverse?root.right:root.left,target,reverse,s);
-        if((reverse&&root.val<=target)||(!reverse&&root.val>target)) return;
+        inorder(r?root.left:root.right,r,target,s);
+        if((r&&root.val>target)||(!r&&root.val<=target)) return;
         s.push(root.val);
-        inorder(reverse?root.left:root.right,target,reverse,s);
+        inorder(r?root.right:root.left,r,target,s);
     }
 }
