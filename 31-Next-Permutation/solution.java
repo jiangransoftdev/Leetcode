@@ -1,6 +1,5 @@
 public class Solution {
     public void nextPermutation(int[] nums) {
-        if(nums.length==0) return;
         int pos=-1;
         for(int i=nums.length-1;i>=1;i--){
             if(nums[i]>nums[i-1]){
@@ -8,7 +7,7 @@ public class Solution {
                 break;
             }
         }
-        if(pos<0){
+        if(pos==-1){
             reverse(nums,0,nums.length-1);
             return;
         }
@@ -21,6 +20,7 @@ public class Solution {
             }
         }
         reverse(nums,pos+1,nums.length-1);
+        return;
     }
     public void reverse(int[] nums,int i,int j){
         while(i<j){
