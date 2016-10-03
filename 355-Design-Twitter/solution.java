@@ -1,81 +1,69 @@
-class Tweets{
-    int time;
-    int id;
-    public Tweets(int time,int id){
-        this.time=time;
-        this.id=id;
+class Tweet{
+    int tweetId;
+    int timestamp;
+    public Tweet(int tweetId,int timestamp){
+        this.tweetId=tweetId;
+        this.timestamp=timestamp;
     }
 }
 public class Twitter {
-    Map<Integer,HashSet<Integer>> followmap;
-    Map<Integer,List<Tweets>> tweetmap;
-    int count;
+    Map<Integer,List<Tweet>> tweetmap;
+    Map<Integer,Set<Integer>> followmap;
+    int time;
     /** Initialize your data structure here. */
     public Twitter() {
-        count=0;
-        followmap=new HashMap<>();
         tweetmap=new HashMap<>();
+        followmap=new HashMap<>();
+        time=0;
     }
     
     /** Compose a new tweet. */
     public void postTweet(int userId, int tweetId) {
-        if(!tweetmap.containsKey(userId)){
-            List<Tweets> list=new ArrayList<>();
-            list.add(new Tweets(count,tweetId));
-            tweetmap.put(userId,list);
-        }
-        else
-            tweetmap.get(userId).add(new Tweets(count,tweetId));
-        count++;
+        Tweet twt=new Tweet(tweetId,time);
+        if(!tweetmap.containsKey(userId))
+            tweetmap.put(userId,new ArrayList<>());
+        tweetmap.get(userId).add(twt);
+        time++;
     }
     
     /** Retrieve the 10 most recent tweet ids in the user's news feed. Each item in the news feed must be posted by users who the user followed or by the user herself. Tweets must be ordered from most recent to least recent. */
     public List<Integer> getNewsFeed(int userId) {
-        LinkedList<Integer> res=new LinkedList<>();
+        List<Integer> res=new ArrayList<>();
         PriorityQueue<int[]> pq=new PriorityQueue<>(new Comparator<int[]>(){
             public int compare(int[] a,int[] b){
-                return tweetmap.get(b[0]).get(b[1]).time-tweetmap.get(a[0]).get(a[1]).time;
+                return tweetmap.get(b[0]).get(b[1]).timestamp-tweetmap.get(a[0]).get(a[1]).timestamp;
             }
         });
-        Set<Integer> followeeSet=new HashSet<>();
-        followeeSet.add(userId);
-        if(followmap.containsKey(userId))
-            followeeSet.addAll(followmap.get(userId));
-        for(int followee:followeeSet){
-            if(tweetmap.containsKey(followee)){
-                List<Tweets> t=tweetmap.get(followee);
-                if(t.size()>0)
-                    pq.offer(new int[]{followee,t.size()-1});
+        Set<Integer> followset=new HashSet<>();
+        followset.add(userId);
+        if(followmap.containsKey(userId)) followset.addAll(followmap.get(userId));
+        for(int f:followset){
+            if(tweetmap.containsKey(f)){
+                List<Tweet> tweets=tweetmap.get(f);
+                if(tweets.size()>0)
+                    pq.offer(new int[]{f,tweets.size()-1});
             }
         }
         while(res.size()<10&&pq.size()>0){
             int[] i=pq.poll();
-            res.add(tweetmap.get(i[0]).get(i[1]).id);
-            i[1]--;
-            if(i[1]>=0)
-                pq.offer(i);
+            res.add(tweetmap.get(i[0]).get(i[1]).tweetId);
+            if(i[1]>0)
+                pq.offer(new int[]{i[0],i[1]-1});
         }
         return res;
     }
     
     /** Follower follows a followee. If the operation is invalid, it should be a no-op. */
     public void follow(int followerId, int followeeId) {
-        if(!followmap.containsKey(followerId)){
-            HashSet<Integer> set=new HashSet<>();
-            set.add(followeeId);
-            followmap.put(followerId,set);
-        }
-        else followmap.get(followerId).add(followeeId);
+        if(!followmap.containsKey(followerId))
+            followmap.put(followerId,new HashSet<>());
+        followmap.get(followerId).add(followeeId);
     }
     
     /** Follower unfollows a followee. If the operation is invalid, it should be a no-op. */
     public void unfollow(int followerId, int followeeId) {
-        HashSet<Integer> follow=followmap.get(followerId);
-        if(follow==null){
-            follow=new HashSet<>();
-            followmap.put(followerId,follow);
-        }
-        follow.remove(followeeId);
+        if(!followmap.containsKey(followerId)) return;
+        followmap.get(followerId).remove(followeeId);
     }
 }
 
