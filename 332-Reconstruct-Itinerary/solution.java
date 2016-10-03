@@ -1,54 +1,42 @@
 public class Solution {
     public List<String> findItinerary(String[][] tickets) {
         List<String> res=new ArrayList<>();
-        if(tickets.length==0) return res;
+        int n=tickets.length;
         Map<String,List<String>> map=new HashMap<>();
-        int total=tickets.length+1;
-        for(int i=0;i<tickets.length;i++){
-            if(!map.containsKey(tickets[i][0])){
-                List<String> tmp=new ArrayList<>();
-                tmp.add(tickets[i][1]);
-                map.put(tickets[i][0],tmp);
-            }
-            else{
-                List<String> tmp=map.get(tickets[i][0]);
-                listadd(tickets[i][1],tmp);
-            }
+        for(int i=0;i<n;i++){
+            if(!map.containsKey(tickets[i][0]))
+                map.put(tickets[i][0],new ArrayList<>());
+            List<String> tmp=map.get(tickets[i][0]);
+            listadd(tmp,tickets[i][1]);
         }
         res.add("JFK");
-        helper("JFK",map,res,total,1);
+        helper("JFK",map,0,n,res);
         return res;
     }
-    public void listadd(String str,List<String> tmp){
-	if(tmp.size()==0){
-		tmp.add(str);
-		return;
-	}
-	int i=0;
-	while(i<tmp.size()){
-		if(str.compareTo(tmp.get(i))<=0){
-			tmp.add(i, str);
-			return;
-		}
-		i++;
-	}
-	tmp.add(str);
-	return;
-}
-    public boolean helper(String start,Map<String,List<String>> map,List<String> res,int total,int num){
-        if(num>=total)
-            return true;
-        if(!map.containsKey(start)||map.get(start).size()==0) return false;
-        List<String> list=map.get(start);
+    public void listadd(List<String> tmp,String ticket){
+        if(tmp.size()==0){
+            tmp.add(ticket);
+            return;
+        }
         int i=0;
-        while(i<list.size()){
-            String next=list.remove(i);
-            res.add(next);
-            if(helper(next,map,res,total,num+1))
-                return true;
-            res.remove(res.size()-1);
-            listadd(next,list);
+        while(i<tmp.size()){
+            if(ticket.compareTo(tmp.get(i))<=0)
+                break;
             i++;
+        }
+        tmp.add(i,ticket);
+        return;
+    }
+    public boolean  helper(String start,Map<String,List<String>> map,int n,int tickets,List<String> res){
+        if(n>=tickets) return true;
+        if(!map.containsKey(start)||map.get(start).size()==0) return false;
+        List<String> des=map.get(start);
+        for(int i=0;i<des.size();i++){
+            String next=des.remove(i);
+            res.add(next);
+            if(helper(next,map,n+1,tickets,res)) return true;
+            res.remove(res.size()-1);
+            listadd(des,next);
         }
         return false;
     }
