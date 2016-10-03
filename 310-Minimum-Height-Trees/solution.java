@@ -1,45 +1,28 @@
 public class Solution {
     public List<Integer> findMinHeightTrees(int n, int[][] edges) {
-        List<Integer> res=new ArrayList<>();
-        if(edges.length==0) {
-            res.add(0);
-            return res;
+        List<Integer> leaves=new ArrayList<>();
+        if(n==1){
+            leaves.add(0);
+            return leaves;
         }
-        boolean[] visit=new boolean[n];
-        int[] d=new int[n];
-        List[] graph=new ArrayList[n];
-        for(int i=0;i<n;i++)
-            graph[i]=new ArrayList();
+        List<Set<Integer>> adj=new ArrayList<>();
+        for(int i=0;i<n;i++) adj.add(new HashSet<>());
         for(int i=0;i<edges.length;i++){
-        	graph[edges[i][0]].add(edges[i][1]);
-        	graph[edges[i][1]].add(edges[i][0]);
-        	d[edges[i][0]]++;
-        	d[edges[i][1]]++;
+            adj.get(edges[i][0]).add(edges[i][1]);
+            adj.get(edges[i][1]).add(edges[i][0]);
         }
-        Queue<Integer> q=new LinkedList<>();
-        for(int i=0;i<d.length;i++){
-            if(d[i]==1) {
-                q.offer(i);
-                visit[i]=true;
+        for(int i=0;i<n;i++)
+            if(adj.get(i).size()==1) leaves.add(i);
+        while(n>2){
+            n-=leaves.size();
+            List<Integer> another=new ArrayList<>();
+            for(int i:leaves){
+                int j=adj.get(i).iterator().next();
+                adj.get(j).remove(i);
+                if(adj.get(j).size()==1) another.add(j);
             }
+            leaves=another;
         }
-        while(!q.isEmpty()){
-            int size=q.size();            
-            res.clear();
-            for(int i=0;i<size;i++){
-            	int node=q.poll();
-            	res.add(node);
-            	for(int j=0;j<graph[node].size();j++){
-            		if(!visit[(int)graph[node].get(j)]){
-            			d[(int)graph[node].get(j)]--;
-            			if(d[(int)graph[node].get(j)]==1){
-            				q.offer((int)graph[node].get(j));
-            				visit[(int)graph[node].get(j)]=true;
-            			}
-            		}
-            	}
-            }
-        }
-        return res;
+        return leaves;
     }
 }
