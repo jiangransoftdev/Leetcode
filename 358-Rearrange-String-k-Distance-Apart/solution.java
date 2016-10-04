@@ -1,28 +1,28 @@
 public class Solution {
     public String rearrangeString(String str, int k) {
-        int length=str.length();
-        int[] count=new int[26],valid=new int[26];
-        for(int i=0;i<length;i++)
+        int[] valid=new int[26],count=new int[26];
+        int n=str.length();
+        for(int i=0;i<n;i++)
             count[str.charAt(i)-'a']++;
         StringBuilder sb=new StringBuilder();
-        for(int index=0;index<length;index++){
-            int pos=findValidMax(count,valid,index);
-            if(pos==-1) return "";
-            count[pos]--;
-            valid[pos]=index+k;
-            sb.append((char)('a'+pos));
+        for(int i=0;i<n;i++){
+            int candidate=findValidMax(count,i,valid);
+            if(candidate==-1) return "";
+            count[candidate]--;
+            valid[candidate]=i+k;
+            sb.append((char)('a'+candidate));
         }
         return sb.toString();
     }
-    public int findValidMax(int[] count,int[] valid,int index){
+    public int findValidMax(int[] count,int index,int[] valid){
+        int candidate=-1;
         int max=Integer.MIN_VALUE;
-        int pos=-1;
         for(int i=0;i<count.length;i++){
             if(count[i]>0&&count[i]>max&&index>=valid[i]){
                 max=count[i];
-                pos=i;
+                candidate=i;
             }
         }
-        return pos;
+        return candidate;
     }
 }
